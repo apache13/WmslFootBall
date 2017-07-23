@@ -67,3 +67,9 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 
 gem 'rqrcode', '~> 0.10.1'
 
+gem 'omniauth-facebook', '~> 4.0'
+
+gem 'bootstrap-social-rails', '~> 4.12'
+
+gem 'flag-icons-rails', '~> 1.1', '>= 1.1.2'
+
