@@ -2,22 +2,14 @@
 	<%= form_tag(users_path, method: "get") do |form| %>
 	<div class="col-md-4">
 		<div class="form-group">
-			<%= label_tag(:provider) %>
-			<%= text_field_tag(:provider,nil,:class=>'form-control') %>
-		</div>
-		<div class="form-group">
-			<%= label_tag(:uid) %>
-			<%= text_field_tag(:uid,nil, :class=>'form-control') %>
+			<%= label_tag(:name) %>
+			<%= text_field_tag(:name,nil, :class=>'form-control') %>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="form-group">
-			<%= label_tag(:name) %>
-			<%= text_field_tag(:name,nil, :class=>'form-control') %>
-		</div>
-		<div class="form-group">
-			<%= label_tag(:email) %>
-			<%= text_field_tag(:email,nil, :class=>'form-control') %>
+			<%= label_tag(:uid) %>
+			<%= text_field_tag(:uid,nil, :class=>'form-control') %>
 		</div>
 	</div>	
 </div>

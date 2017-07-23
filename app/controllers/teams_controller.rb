@@ -4,8 +4,21 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    # @teams = Team.all
-    @teams = Team.paginate(:page => params[:page])
+    # @teams = Team.all    
+    if params[:name].present? && params[:code].present?
+        @teams = Team.where("name like ?","%#{params[:name]}%").where("code like ?","%#{params[:code]}%").paginate(:page => params[:page])
+    else
+      if params[:name].present?
+        @teams = Team.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page])
+      else
+        if params[:code].present?
+          @teams = Team.where("code like ?","%#{params[:code]}%").paginate(:page => params[:page])
+        else
+          @teams = Team.paginate(:page => params[:page])
+        end 
+      end
+    end
+    
   end
 
   # GET /teams/1

@@ -7,11 +7,20 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     # @users = User.all   
-    if params[:provider].present?
-      @users = User.where("provider like ?","%#{params[:provider]}%").paginate(:page => params[:page])
+    if params[:name].present? && params[:uid].present?
+        @users = User.where("name like ?","%#{params[:name]}%").where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page])
     else
-      @users = User.paginate(:page => params[:page])
+      if params[:name].present?
+        @users = User.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page])
+      else
+        if params[:uid].present?
+          @users = User.where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page])
+        else
+          @users = User.paginate(:page => params[:page])
+        end 
+      end
     end
+    
   end
 
   # GET /users/1
