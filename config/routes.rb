@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :groups
   resources :teams
   resources :users
   get 'overview/index'

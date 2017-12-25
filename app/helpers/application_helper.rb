@@ -8,6 +8,6 @@ module ApplicationHelper
   end
   
   def flag_image_tag(code)
-    flag_icon(code, class: "flag img-rounded")
+    flag_icon(code.downcase, class: "flag img-rounded")
   end
 end

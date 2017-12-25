@@ -10,8 +10,6 @@ RUN bundle install
 
 COPY . .
 
-RUN rake db:drop:_unsafe
-
 RUN rake db:create
 
 RUN rake db:migrate

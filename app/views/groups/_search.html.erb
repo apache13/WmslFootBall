@@ -1,0 +1,20 @@
+<div class="row">
+	<%= form_tag(groups_path, method: "get") do |form| %>
+	<div class="col-md-4">
+		<div class="form-group">
+			<%= label_tag(:name) %>
+			<%= text_field_tag(:name,nil,:class=>'form-control') %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="actions">
+			<%= submit_tag("Search", :class=>'btn btn-default') %>
+			<%= submit_tag("Clear", :class=>'btn btn-default',:type => "reset") %>
+		</div>
+	</div>
+</div>
+
+<% end %>
