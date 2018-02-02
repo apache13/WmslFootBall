@@ -1,4 +1,5 @@
-class TeamsController < ApplicationController
+class TeamsController < ApplicationController  
+  before_action :require_login_permission  
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams

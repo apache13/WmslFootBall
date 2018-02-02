@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225165921) do
+ActiveRecord::Schema.define(version: 20171225162206) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20171225165921) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "code"
+    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "group_id"
     t.index ["group_id"], name: "index_teams_on_group_id"
   end
 
