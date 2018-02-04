@@ -69,6 +69,8 @@ gem 'rqrcode', '~> 0.10.1'
 
 gem 'omniauth-facebook', '~> 4.0'
 
+gem 'omniauth-google-oauth2', '~> 0.5.3'
+
 gem 'bootstrap-social-rails', '~> 4.12'
 
 gem 'flag-icons-rails', '~> 1.1', '>= 1.1.2'

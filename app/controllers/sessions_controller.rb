@@ -7,10 +7,14 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Signed in!"
   end
 
-  def new
-    redirect_to '/auth/facebook'
+  def new_facebook
+    redirect_to '/auth/facebook'    
   end
 
+  def new_google
+    redirect_to '/auth/google_oauth2'    
+  end
+  
   def destroy
     reset_session
     redirect_to root_url, notice => 'Signed out'
