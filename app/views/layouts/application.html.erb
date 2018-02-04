@@ -7,7 +7,7 @@
 
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+		<!--<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>-->
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -24,10 +24,10 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#"><i class="fa fa-cog fa-lg"></i>&nbsp;Settings</a>
+							<a href="#"><i class="fa fa-cog aria-hidden="true"></i>&nbsp;Settings</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-question-circle fa-lg"></i>&nbsp;Help</a>
+							<a href="#"><i class="fa fa-question-circle aria-hidden="true"></i>&nbsp;Help</a>
 						</li>
 					</ul>
 				</div>
@@ -37,10 +37,10 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<%= active_link_to 'Overview', {controller: "overview"} , wrap_tag: :li %>
-						<%= active_link_to 'Users', users_path, wrap_tag: :li %>
-						<%= active_link_to 'Groups', groups_path, wrap_tag: :li %>
-						<%= active_link_to 'Teams', teams_path, wrap_tag: :li %>
+						<%= active_link_to '<i class="fa fa-trophy" aria-hidden="true"></i> Overview'.html_safe, {controller: "overview"} , wrap_tag: :li%>
+						<%= active_link_to '<i class="fa fa-user-circle-o" aria-hidden="true"></i> Users'.html_safe, users_path, wrap_tag: :li %>
+						<%= active_link_to '<i class="fa fa-table" aria-hidden="true"></i> Groups'.html_safe, groups_path, wrap_tag: :li %>
+						<%= active_link_to '<i class="fa fa-futbol-o" aria-hidden="true"></i> Teams'.html_safe, teams_path, wrap_tag: :li %>
 					</ul>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
