@@ -20,7 +20,13 @@
     <%= form.label :code %>
     <%= form.text_field :code, id: :team_code %>
   </div>
-
+	
+  <div class="field">
+    <%= form.label :group %>    
+    <%= form.collection_select(:group_id,Group.all,:id,:name,{prompt: true}) %>
+    
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>

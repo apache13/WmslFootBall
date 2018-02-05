@@ -16,6 +16,7 @@
 					<th>Uid</th>
 					<th>Name</th>
 					<th>Email</th>
+					<th>Admin</th>
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -27,7 +28,8 @@
 					<td><%= user_image_tag(user) %></td>
 					<td><%= user.uid %></td>
 					<td><%= user.name %></td>
-					<td><%= user.email %></td>					
+					<td><%= user.email %></td>
+					<td><%= user.admin %></td>					
 					<td> <%= link_to 'Show', user , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_user_path(user) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

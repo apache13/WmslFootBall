@@ -1,10 +1,20 @@
 class SessionsController < ApplicationController
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.where(:provider => auth['provider'],
-    :uid => auth['uid']).first || User.create_with_omniauth(auth)
-    session[:user_id] = user.id
-    redirect_to root_url, :notice => "Signed in!"
+    auth = request.env["omniauth.auth"]    
+    
+    if ENV["ENABLE_REGISTER"].present?
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first || User.create_with_omniauth(auth)
+    else
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first
+    end    
+    
+    if user.nil?
+      redirect_to({ action: 'login' , :controller=>"sessions"})
+    else
+      session[:user_id] = user.id
+      redirect_to root_url, :notice => "Signed in!"  
+    end
+    
   end
 
   def new_facebook
