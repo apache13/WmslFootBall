@@ -11,8 +11,8 @@ class User < ApplicationRecord
         user.email = auth['info']['email'] || ""
         user.image = auth['info']['image'] || ""
       end      
-      if ENV['ADMIN_UID']
-        if ENV['ADMIN_UID'].eql?(user.uid)
+      if ENV['ROOT_UID']
+        if ENV['ROOT_UID'].eql?(user.uid)
           user.admin = true
         else
           user.admin = false
