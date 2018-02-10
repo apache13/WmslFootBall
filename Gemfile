@@ -53,7 +53,7 @@ gem 'validates_overlap', '~> 0.8.4'
 
 gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
 
-gem 'chartkick', '~> 2.2', '>= 2.2.4'
+#gem 'chartkick', '~> 2.2', '>= 2.2.4'
 
 gem 'jquery-rails'
 
@@ -65,7 +65,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 gem 'font-awesome-sass', '~> 4.7.0'
 
-gem 'rqrcode', '~> 0.10.1'
+#gem 'rqrcode', '~> 0.10.1'
 
 gem 'omniauth-facebook', '~> 4.0'
 
@@ -74,4 +74,6 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'bootstrap-social-rails', '~> 4.12'
 
 gem 'flag-icons-rails', '~> 1.1', '>= 1.1.2'
+
+gem 'jquery-countdown-rails', '~> 2.0', '>= 2.0.2'
 

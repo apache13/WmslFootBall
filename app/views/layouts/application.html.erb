@@ -38,6 +38,7 @@
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
 						<%= active_link_to '<i class="fa fa-trophy" aria-hidden="true"></i> Overview'.html_safe, {controller: "overview"} , wrap_tag: :li%>
+						<%= active_link_to '<i class="fa fa-cog" aria-hidden="true"></i> Config'.html_safe, configs_path, wrap_tag: :li %>
 						<%= active_link_to '<i class="fa fa-user-circle-o" aria-hidden="true"></i> Users'.html_safe, users_path, wrap_tag: :li %>
 						<%= active_link_to '<i class="fa fa-table" aria-hidden="true"></i> Groups'.html_safe, groups_path, wrap_tag: :li %>
 						<%= active_link_to '<i class="fa fa-futbol-o" aria-hidden="true"></i> Teams'.html_safe, teams_path, wrap_tag: :li %>

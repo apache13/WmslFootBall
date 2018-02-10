@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :configs
   resources :groups
   resources :teams
   resources :users
