@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Config.create(key: 'END_REGISTER',value: '2018-06-14T18:00:00+03:00')
+
 A = Group.create(name: 'A')
 B = Group.create(name: 'B')
 C = Group.create(name: 'C')
