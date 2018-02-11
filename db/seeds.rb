@@ -5,9 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Config.destroy_all
 Config.create(key: 'END_REGISTER',value: '2018-06-14T18:00:00+03:00')
 
+Group.destroy_all
 A = Group.create(name: 'A')
 B = Group.create(name: 'B')
 C = Group.create(name: 'C')
@@ -17,6 +18,7 @@ F = Group.create(name: 'F')
 G = Group.create(name: 'G')
 H = Group.create(name: 'H')
 
+Team.destroy_all
 Russia = Team.create(name: 'Russia', code: 'RU', group: A)
 SaudiArabia = Team.create(name: 'Saudi Arabia', code: 'SA', group: A)
 Egypt = Team.create(name: 'Egypt', code: 'EG', group: A)
@@ -56,5 +58,16 @@ Poland = Team.create(name: 'Poland', code: 'PL', group: H)
 Senegal = Team.create(name: 'Senegal', code: 'SN', group: H)
 Colombia = Team.create(name: 'Colombia', code: 'CO', group: H)
 Japan = Team.create(name: 'Japan', code: 'JP', group: H)
+
+Match.destroy_all
+Match01 = Match.create(title: 'Match-01', description: '', start: DateTime.parse('2018-06-14T18:00:00+03:00'), left: Russia, right: SaudiArabia)
+Match02 = Match.create(title: 'Match-02', description: '', start: DateTime.parse('2018-06-15T17:00:00+05:00'), left: Egypt, right: Uruguay)
+Match03 = Match.create(title: 'Match-03', description: '', start: DateTime.parse('2018-06-15T18:00:00+03:00'), left: Portugal, right: Spain)
+Match04 = Match.create(title: 'Match-04', description: '', start: DateTime.parse('2018-06-15T21:00:00+03:00'), left: Morocco, right: Iran)
+Match05 = Match.create(title: 'Match-05', description: '', start: DateTime.parse('2018-06-16T13:00:00+03:00'), left: France, right: Australia)
+Match06 = Match.create(title: 'Match-06', description: '', start: DateTime.parse('2018-06-16T19:00:00+03:00'), left: Peru, right: Denmark)
+
+
+
 
 

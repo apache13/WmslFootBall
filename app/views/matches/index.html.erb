@@ -1,0 +1,52 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<h1>Matches</h1>
+
+<%= render 'search' %>
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Start</th>
+					<th>Left</th>
+					<th>Right</th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @matches.each do |match| %>
+				<tr>
+					<td><%= match.title %></td>
+					<td><%= match.description %></td>
+					<td><%= match.start %></td>
+					<td><%= flag_image_tag(match.left) %></td>
+					<td><%= flag_image_tag(match.right) %></td>									
+					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>
+					<%= link_to 'Edit', edit_match_path(match) , :class => 'btn btn-default'%>
+					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= will_paginate @matches %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= link_to 'New Match', new_match_path , :class => 'btn btn-primary' %>
+	</div>
+</div>
+

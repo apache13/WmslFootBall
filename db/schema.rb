@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210092542) do
+ActiveRecord::Schema.define(version: 20180211140810) do
 
   create_table "configs", force: :cascade do |t|
     t.string "key"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20180210092542) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "start"
+    t.integer "left_id"
+    t.integer "team_id"
+    t.integer "right_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
