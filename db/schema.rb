@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20180211140810) do
     t.integer "right_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["left_id"], name: "index_matches_on_left_id"
+    t.index ["team_id"], name: "index_matches_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|

@@ -4,7 +4,7 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :description
       t.datetime :start
-      t.belongs_to :left, :team, index: false
+      t.belongs_to :left, :team, index: true
       t.belongs_to :right, :team, index: false
     
       t.timestamps
