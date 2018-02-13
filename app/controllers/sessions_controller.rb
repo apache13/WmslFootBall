@@ -1,19 +1,37 @@
-class SessionsController < ApplicationController
+class SessionsController < ApplicationController  
+      
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.where(:provider => auth['provider'],
-    :uid => auth['uid']).first || User.create_with_omniauth(auth)
-    session[:user_id] = user.id
-    redirect_to root_url, :notice => "Signed in!"
+    auth = request.env["omniauth.auth"]    
+    
+    endRegisterDateTime = DateTime.parse(Config.find_by_key('END_REGISTER').value)
+    logger.debug "endRegisterDateTime : "+endRegisterDateTime.to_s+" future? -> "+endRegisterDateTime.future?.to_s
+                   
+    if endRegisterDateTime.future?
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first || User.create_with_omniauth(auth)
+    else
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first
+    end    
+    
+    if user.nil?
+      redirect_to({ action: 'login' , :controller=>"sessions"})
+    else
+      session[:user_id] = user.id
+      redirect_to root_url  
+    end
+    
   end
 
-  def new
-    redirect_to '/auth/facebook'
+  def new_facebook
+    redirect_to '/auth/facebook'    
   end
 
+  def new_google
+    redirect_to '/auth/google_oauth2'    
+  end
+  
   def destroy
     reset_session
-    redirect_to root_url, notice => 'Signed out'
+    redirect_to root_url
   end
   
   def login    

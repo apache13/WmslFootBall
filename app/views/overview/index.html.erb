@@ -1,4 +1,33 @@
 <h1>Overview#index</h1>
+<button id="firstMatch" class="btn" countdown="<%= DateTime.parse(Config.find_by_key('END_REGISTER').value) %>"></button>
+<script>
+	console.log("Server : " + $("#firstMatch").attr("countdown"));
+	firstMatchDateTime = new Date($("#firstMatch").attr("countdown"));
+	console.log("Client : " + firstMatchDateTime);
+	function expiry() {
+		$("#firstMatch").prop("disabled", true)
+	}
+
+
+	$('#firstMatch').countdown({
+		until : firstMatchDateTime,
+		format : 'YOWDHMS',
+		compact : true,
+		onExpiry : expiry
+	}); 
+</script>
+
+<p>
 <p>
 	Find me in app/views/overview/index.html.erb
+</p>
+<p>
+	First Match LocalTime : <%= Config.find_by_key('END_REGISTER').value %>
+</p>
+<p>
+	First Match Display : <%= DateTime.parse(Config.find_by_key('END_REGISTER').value).in_time_zone('Bangkok') %>
+</p>
+<p>
+	Distance of time : <%= distance_of_time_in_words(DateTime.now, DateTime.parse(Config.find_by_key('END_REGISTER').value).in_time_zone('Bangkok') )  %>
+</p>
 </p>

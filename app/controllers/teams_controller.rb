@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController  
   before_action :require_login_permission  
+  before_action :require_login_permission_and_admin, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -84,6 +85,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :code)
+      params.require(:team).permit(:name, :code, :group_id)
     end
 end

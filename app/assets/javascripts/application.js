@@ -17,5 +17,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap
-//= require chartkick
+//= require jquery.countdown
 //= require_tree .

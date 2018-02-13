@@ -20,5 +20,16 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= @user.image %>
+</p>
+
+
+<p>
+  <strong>Admin:</strong>
+  <%= @user.admin %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
