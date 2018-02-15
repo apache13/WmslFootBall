@@ -14,6 +14,7 @@
 					<th>Title</th>
 					<th>Description</th>
 					<th>Start</th>
+					<th>Knockout</th>
 					<th>Left</th>
 					<th>Right</th>
 					<th colspan="3"></th>
@@ -26,6 +27,7 @@
 					<td><%= match.title %></td>
 					<td><%= match.description %></td>
 					<td><%= match.start %></td>
+					<td><%= match.knockout %></td>
 					<td><%= flag_image_tag(match.left) %></td>
 					<td><%= flag_image_tag(match.right) %></td>									
 					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>

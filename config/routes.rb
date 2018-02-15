@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :bets
   resources :matches
   resources :configs
   resources :groups

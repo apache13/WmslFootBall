@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211140810) do
+ActiveRecord::Schema.define(version: 20180212162950) do
+
+  create_table "bets", force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "user_id"
+    t.integer "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_bets_on_match_id"
+    t.index ["user_id"], name: "index_bets_on_user_id"
+  end
 
   create_table "configs", force: :cascade do |t|
     t.string "key"
@@ -29,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180211140810) do
     t.string "title"
     t.string "description"
     t.datetime "start"
+    t.boolean "knockout"
     t.integer "left_id"
     t.integer "team_id"
     t.integer "right_id"
