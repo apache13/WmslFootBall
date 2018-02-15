@@ -1,9 +1,9 @@
 module ApplicationHelper
-  def user_image_tag(user)
+  def display_user(user)
     image_tag user.image ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
   end
   
-  def flag_image_tag(team)
+  def display_team(team)
     if(team.nil?)
       image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
     else
@@ -11,4 +11,20 @@ module ApplicationHelper
     end    
   end
   
+  def display_match_result(match)
+    if match.result.nil?
+      image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
+    else
+      if match.result == 0
+        image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
+      else
+        if match.result < 0
+          display_team(match.left)
+        else
+          display_team(match.right)
+        end
+      end  
+    end
+    
+  end
 end

@@ -7,7 +7,8 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.boolean :knockout
       t.belongs_to :left, :team, index: true
       t.belongs_to :right, :team, index: false
-    
+      t.integer :result
+      
       t.timestamps
     end
   end

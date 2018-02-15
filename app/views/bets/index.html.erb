@@ -12,8 +12,10 @@
 			<thead>
 			    <tr>
 			      <th>Match</th>
+			      <th>Close?</th>
 			      <th>User</th>
-			      <th>Result</th>
+			      <th>Guess</th>
+			      <th>Win?</th>
 			      <th colspan="3"></th>
 			    </tr>
 			</thead>
@@ -22,8 +24,10 @@
 				<% @bets.each do |bet| %>
 				<tr>
 					<td><%= bet.match.title %></td>
-        			<td><%= user_image_tag(bet.user) %></td>
-        			<td><%= bet.result %></td>
+					<td><%= bet.match.close? %></td>
+        			<td><%= display_user(bet.user) %></td>
+        			<td><%= bet.guess %></td>
+        			<td><%= bet.win? %></td>
         			<td> <%= link_to 'Show', bet , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_bet_path(bet) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

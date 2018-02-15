@@ -17,19 +17,23 @@
 					<th>Knockout</th>
 					<th>Left</th>
 					<th>Right</th>
+					<th>Close?</th>
+					<th>Result</th>
 					<th colspan="3"></th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<% @matches.each do |match| %>
-				<tr>
+				<tr class=<%= match.close? ? ("danger") : ("success") %> >
 					<td><%= match.title %></td>
 					<td><%= match.description %></td>
 					<td><%= match.start %></td>
 					<td><%= match.knockout %></td>
-					<td><%= flag_image_tag(match.left) %></td>
-					<td><%= flag_image_tag(match.right) %></td>									
+					<td><%= display_team(match.left) %></td>
+					<td><%= display_team(match.right) %></td>
+					<td><%= match.close? %></td>						
+					<td><%= display_match_result(match) %></td>			
 					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_match_path(match) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

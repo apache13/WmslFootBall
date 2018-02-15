@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180212162950) do
   create_table "bets", force: :cascade do |t|
     t.integer "match_id"
     t.integer "user_id"
-    t.integer "result"
+    t.integer "guess"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["match_id"], name: "index_bets_on_match_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.integer "left_id"
     t.integer "team_id"
     t.integer "right_id"
+    t.integer "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["left_id"], name: "index_matches_on_left_id"
