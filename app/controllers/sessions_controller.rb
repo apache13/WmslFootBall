@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]    
     
-    endRegisterDateTime = DateTime.parse(Config.find_by_key('END_REGISTER').value)
+    endRegisterDateTime = DateTime.parse(Config.find_by_key('CLOSE_REGISTER_DATETIME').value)
     logger.debug "endRegisterDateTime : "+endRegisterDateTime.to_s+" future? -> "+endRegisterDateTime.future?.to_s
                    
     if endRegisterDateTime.future?

@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-3">
-		<button id="endRegister" class="btn" countdown="<%= DateTime.parse(Config.find_by_key('END_REGISTER').value) %>"></button>
+		<button id="endRegister" class="btn" countdown="<%= DateTime.parse(Config.find_by_key('CLOSE_REGISTER_DATETIME').value) %>"></button>
 		<script>
 			console.log("Server : " + $("#endRegister").attr("countdown"));
 			firstMatchDateTime = new Date($("#endRegister").attr("countdown"));

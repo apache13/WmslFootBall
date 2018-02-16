@@ -6,7 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
-Config.create(key: 'END_REGISTER',value: '2018-06-14T18:00:00+03:00')
+Config.create(key: 'TITLE',value: 'WMSL World Cup 2018')
+Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-06-14T18:00:00+03:00')
+
+User.destroy_all
+Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
+Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)
+Tester03 = User.create(provider: 'facebook', uid: '1853148911385862', name: 'Kengkote Kote', email: 'kengkote@hotmail.com', image: 'http://graph.facebook.com/v2.6/1853148911385862/picture', admin: false)
+Tester04 = User.create(provider: 'facebook', uid: '1695051147226674', name: 'Sutthisak Srimahakosol', email: 'mardnakub@hotmail.com', image: 'http://graph.facebook.com/v2.6/1695051147226674/picture', admin: false)
 
 Group.destroy_all
 A = Group.create(name: 'A')
@@ -76,8 +83,6 @@ Match13 = Match.create(title: 'Match-13', description: 'Group-Stage-G#1', start:
 Match14 = Match.create(title: 'Match-14', description: 'Group-Stage-G#1', start: DateTime.parse('2018-06-18T21:00:00+03:00'), knockout: false, left: Tunisia, right: England)
 Match15 = Match.create(title: 'Match-15', description: 'Group-Stage-H#1', start: DateTime.parse('2018-06-19T18:00:00+03:00'), knockout: false, left: Poland, right: Senegal)
 Match16 = Match.create(title: 'Match-16', description: 'Group-Stage-H#1', start: DateTime.parse('2018-06-19T15:00:00+03:00'), knockout: false, left: Colombia, right: Japan)
-
-
 
 
 
