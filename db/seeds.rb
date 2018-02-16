@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
-Config.create(key: 'TITLE',value: 'WMSL World Cup 2018')
+Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
 Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-06-14T18:00:00+03:00')
 
 User.destroy_all
