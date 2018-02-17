@@ -5,18 +5,18 @@ module ApplicationHelper
   
   def display_team(team)
     if(team.nil?)
-      image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
+      '<i class="fa fa-flag-checkered fa-2x" aria-hidden="true"></i>'.html_safe
     else
-      flag_icon(team.code.downcase, class: "flag img-rounded")
+      flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip" )
     end    
   end
   
   def display_match_result(match)
     if match.result.nil?
-      image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
+      '<i class="fa fa-question fa-2x" aria-hidden="true"></i>'.html_safe
     else
       if match.result == 0
-        image_tag '/winner-flag.png' ,:class => 'flag img-rounded' , height: '20', width: '25'
+        '<i class="fa fa-adjust fa-2x" aria-hidden="true"></i>'.html_safe
       else
         if match.result < 0
           display_team(match.left)
