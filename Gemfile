@@ -49,9 +49,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'validates_overlap', '~> 0.8.6'
+#gem 'validates_overlap', '~> 0.8.6'
 
-gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
+#gem 'validates_timeliness', '~> 4.0', '>= 4.0.2'
 
 gem 'jquery-rails'
 
@@ -65,7 +65,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 
 gem 'omniauth-facebook', '~> 4.0'
 
-gem 'omniauth-google-oauth2', '~> 0.5.3'
+#gem 'omniauth-google-oauth2', '~> 0.5.3'
 
 gem 'bootstrap-social-rails', '~> 4.12'
 
