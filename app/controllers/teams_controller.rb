@@ -1,6 +1,5 @@
 class TeamsController < ApplicationController  
-  before_action :require_login_permission  
-  before_action :require_login_permission_and_admin, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_login_permission_and_admin  
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams

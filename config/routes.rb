@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :groups
   resources :teams
   resources :users
-  get 'overview/index'
-  get 'sessions/login'
+  get '/overview/index'
+  get '/sessions/login'
   
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout

@@ -9,6 +9,7 @@ Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
 Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-06-14T18:00:00+03:00')
 
+Bet.destroy_all
 User.destroy_all
 Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
 Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)

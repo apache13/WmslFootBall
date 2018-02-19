@@ -1,6 +1,27 @@
 module ApplicationHelper
+    
   def display_user(user)
     image_tag user.image ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
+  end
+  
+  def display_user_nav(user_id)
+    if !user_id.nil?
+      user = User.find_by_id(user_id)
+      if !user.nil?
+        image_tag(user.image ,:class => 'img-rounded', height: '20', width: '20' , :title => user.name) + "&nbsp;#{user.name}".html_safe
+      end  
+    end                                       
+  end
+  
+  def admin?(user_id)
+    if !user_id.nil?
+      user = User.find_by_id(user_id)
+      if user.nil?
+        return false
+      else
+        return user.admin?
+      end
+    end
   end
   
   def display_team(team)

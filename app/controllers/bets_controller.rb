@@ -1,4 +1,5 @@
 class BetsController < ApplicationController
+  before_action :require_login_permission_and_admin
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
 
   # GET /bets

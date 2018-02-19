@@ -6,6 +6,9 @@
 		<%= csrf_meta_tags %>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<script>
+			$('.dropdown-toggle').dropdown()
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -19,32 +22,40 @@
 					</button>
 					<%= link_to Config.find_by_key('TITLE_STRING').value, root_path , class: "navbar-brand" %>
 				</div>
+				
 				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">							
-						<li>
-							<a href="#"><i class="fa fa-cog aria-hidden='true'"></i>&nbsp;Settings</a>					
+					<ul class="nav navbar-nav navbar-right">
+						<% if !session[:user_id].nil? %>
+						<li class="dropdown-toggle">								
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= display_user_nav(session[:user_id]) %><b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<%= active_link_to '<i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;Preference'.html_safe, root_path, wrap_tag: :li %>
+									<li role="separator" class="divider"></li>									
+									<%= active_link_to '<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out'.html_safe, signout_path, wrap_tag: :li %>									
+								</ul>
 						</li>
-						<li>
-							<a href="#"><i class="fa fa-question-circle aria-hidden='true'"></i>&nbsp;Help</a>
-						</li>
+						<% end %>						
+						<% if admin?(session[:user_id]) %>
+							<li class="dropdown-toggle">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-user-secret aria-hidden='true'"></i>&nbsp;Admin<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<%= active_link_to '<i class="fa fa-cog" aria-hidden="true"></i> Config'.html_safe, configs_path, wrap_tag: :li %>
+									<%= active_link_to '<i class="fa fa-user-circle-o" aria-hidden="true"></i> Users'.html_safe, users_path, wrap_tag: :li %>
+									<%= active_link_to '<i class="fa fa-table" aria-hidden="true"></i> Groups'.html_safe, groups_path, wrap_tag: :li %>
+									<%= active_link_to '<i class="fa fa-futbol-o" aria-hidden="true"></i> Teams'.html_safe, teams_path, wrap_tag: :li %>
+									<%= active_link_to '<i class="fa fa-television" aria-hidden="true"></i> Matches'.html_safe, matches_path, wrap_tag: :li %>
+									<%= active_link_to '<i class="fa fa-gamepad" aria-hidden="true"></i> Bets'.html_safe, bets_path, wrap_tag: :li %>
+								</ul>
+							</li>
+						<% end %>
+						<%= active_link_to '<i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Help'.html_safe, root_path, wrap_tag: :li %>						
 					</ul>
 				</div>
 			</div>
 		</nav>
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-3 col-md-2 sidebar">
-					<ul class="nav nav-sidebar">
-						<%= active_link_to '<i class="fa fa-trophy" aria-hidden="true"></i> Overview'.html_safe, {controller: "overview"} , wrap_tag: :li%>
-						<%= active_link_to '<i class="fa fa-cog" aria-hidden="true"></i> Config'.html_safe, configs_path, wrap_tag: :li %>
-						<%= active_link_to '<i class="fa fa-user-circle-o" aria-hidden="true"></i> Users'.html_safe, users_path, wrap_tag: :li %>
-						<%= active_link_to '<i class="fa fa-table" aria-hidden="true"></i> Groups'.html_safe, groups_path, wrap_tag: :li %>
-						<%= active_link_to '<i class="fa fa-futbol-o" aria-hidden="true"></i> Teams'.html_safe, teams_path, wrap_tag: :li %>
-						<%= active_link_to '<i class="fa fa-television" aria-hidden="true"></i> Matches'.html_safe, matches_path, wrap_tag: :li %>
-						<%= active_link_to '<i class="fa fa-gamepad" aria-hidden="true"></i> Bets'.html_safe, bets_path, wrap_tag: :li %>
-					</ul>
-				</div>
-				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">				
+				<div class="col-md-12 main">
 					<%= yield %>
 				</div>
 			</div>
