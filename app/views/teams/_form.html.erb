@@ -22,9 +22,13 @@
   </div>
 	
   <div class="field">
+    <%= form.label :club %>
+    <%= form.check_box :club, id: :team_club %>
+  </div>
+  
+  <div class="field">
     <%= form.label :group %>    
-    <%= form.collection_select(:group_id,Group.all,:id,:name,{prompt: true}) %>
-    
+    <%= form.collection_select(:group_id,Group.all,:id,:name,{prompt: true}) %>    
   </div>
   
   <div class="actions">

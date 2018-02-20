@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.string "name"
     t.string "code"
     t.integer "group_id"
+    t.boolean "club"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_teams_on_group_id"

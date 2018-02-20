@@ -23,12 +23,16 @@ module ApplicationHelper
       end
     end
   end
-  
+    
   def display_team(team)
     if(team.nil?)
       '<i class="fa fa-flag-checkered fa-2x" aria-hidden="true" title="?", data_toggle="tooltip"></i>'.html_safe
     else
-      flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip" )
+      if(team.club?)
+        "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe        
+      else
+        flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip" )
+      end
     end    
   end
   

@@ -86,6 +86,3 @@ Match15 = Match.create(title: 'Match-15', description: 'Group-Stage-H#1', start:
 Match16 = Match.create(title: 'Match-16', description: 'Group-Stage-H#1', start: DateTime.parse('2018-06-19T15:00:00+03:00'), knockout: false, left: Colombia, right: Japan)
 
 
-
-
-
