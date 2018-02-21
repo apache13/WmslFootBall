@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  get 'help/index', :as => :help
+
   resources :bets
   resources :matches
   resources :configs
