@@ -22,8 +22,8 @@ module ApplicationHelper
         return user.admin?
       end
     end
-  end
-    
+  end  
+  
   def display_team(team)
     if(team.nil?)
       '<i class="fa fa-flag-checkered fa-2x" aria-hidden="true" title="?", data_toggle="tooltip"></i>'.html_safe
