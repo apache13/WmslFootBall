@@ -4,6 +4,10 @@ module ApplicationHelper
     image_tag user.image ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
   end
   
+  def display_user_info(user)
+    image_tag user.image ,:class => 'img-circle' , height: '60', width: '60' , :title => user.name
+  end
+  
   def display_user_nav(user_id)
     if !user_id.nil?
       user = User.find_by_id(user_id)

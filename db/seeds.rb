@@ -85,4 +85,63 @@ Match14 = Match.create(title: 'Match-14', description: 'Group-Stage-G#1', start:
 Match15 = Match.create(title: 'Match-15', description: 'Group-Stage-H#1', start: DateTime.parse('2018-06-19T18:00:00+03:00'), knockout: false, left: Poland, right: Senegal)
 Match16 = Match.create(title: 'Match-16', description: 'Group-Stage-H#1', start: DateTime.parse('2018-06-19T15:00:00+03:00'), knockout: false, left: Colombia, right: Japan)
 
+Match17 = Match.create(title: 'Match-17', description: 'Group-Stage-A#2', start: DateTime.parse('2018-06-19T21:00:00+03:00'), knockout: false, left: Russia, right: Egypt)
+Match18 = Match.create(title: 'Match-18', description: 'Group-Stage-A#2', start: DateTime.parse('2018-06-20T18:00:00+03:00'), knockout: false, left: Uruguay, right: SaudiArabia)
+Match19 = Match.create(title: 'Match-19', description: 'Group-Stage-B#2', start: DateTime.parse('2018-06-20T15:00:00+03:00'), knockout: false, left: Portugal, right: Morocco)
+Match20 = Match.create(title: 'Match-20', description: 'Group-Stage-B#2', start: DateTime.parse('2018-06-21T21:00:00+03:00'), knockout: false, left: Iran, right: Spain)
+Match21 = Match.create(title: 'Match-21', description: 'Group-Stage-C#2', start: DateTime.parse('2018-06-21T16:00:00+05:00'), knockout: false, left: France, right: Peru)
+Match22 = Match.create(title: 'Match-22', description: 'Group-Stage-C#2', start: DateTime.parse('2018-06-21T20:00:00+04:00'), knockout: false, left: Denmark, right: Australia)
+Match23 = Match.create(title: 'Match-23', description: 'Group-Stage-D#2', start: DateTime.parse('2018-06-21T21:00:00+03:00'), knockout: false, left: Argentina, right: Croatia)
+Match24 = Match.create(title: 'Match-24', description: 'Group-Stage-D#2', start: DateTime.parse('2018-06-22T18:00:00+03:00'), knockout: false, left: Nigeria, right: Iceland)
+Match25 = Match.create(title: 'Match-25', description: 'Group-Stage-E#2', start: DateTime.parse('2018-06-22T15:00:00+03:00'), knockout: false, left: Brazil, right: CostaRica)
+Match26 = Match.create(title: 'Match-26', description: 'Group-Stage-E#2', start: DateTime.parse('2018-06-22T20:00:00+02:00'), knockout: false, left: Serbia, right: Switzerland)
+Match27 = Match.create(title: 'Match-27', description: 'Group-Stage-F#2', start: DateTime.parse('2018-06-23T21:00:00+03:00'), knockout: false, left: Germany, right: Sweden)
+Match28 = Match.create(title: 'Match-28', description: 'Group-Stage-F#2', start: DateTime.parse('2018-06-23T18:00:00+03:00'), knockout: false, left: SouthKorea, right: Mexico)
+Match29 = Match.create(title: 'Match-29', description: 'Group-Stage-G#2', start: DateTime.parse('2018-06-23T15:00:00+03:00'), knockout: false, left: Belgium, right: Tunisia)
+Match30 = Match.create(title: 'Match-30', description: 'Group-Stage-G#2', start: DateTime.parse('2018-06-24T15:00:00+03:00'), knockout: false, left: England, right: Panama)
+Match31 = Match.create(title: 'Match-31', description: 'Group-Stage-H#2', start: DateTime.parse('2018-06-24T21:00:00+03:00'), knockout: false, left: Poland, right: Colombia)
+Match32 = Match.create(title: 'Match-32', description: 'Group-Stage-H#2', start: DateTime.parse('2018-06-24T20:00:00+05:00'), knockout: false, left: Japan, right: Senegal)
+
+Match33 = Match.create(title: 'Match-33', description: 'Group-Stage-A#3', start: DateTime.parse('2018-06-25T18:00:00+04:00'), knockout: false, left: Uruguay, right: Russia)
+Match34 = Match.create(title: 'Match-34', description: 'Group-Stage-A#3', start: DateTime.parse('2018-06-25T17:00:00+03:00'), knockout: false, left: SaudiArabia, right: Egypt)
+Match35 = Match.create(title: 'Match-35', description: 'Group-Stage-B#3', start: DateTime.parse('2018-06-25T21:00:00+03:00'), knockout: false, left: Iran, right: Portugal)
+Match36 = Match.create(title: 'Match-36', description: 'Group-Stage-B#3', start: DateTime.parse('2018-06-25T20:00:00+02:00'), knockout: false, left: Spain, right: Morocco)
+Match37 = Match.create(title: 'Match-37', description: 'Group-Stage-C#3', start: DateTime.parse('2018-06-26T17:00:00+03:00'), knockout: false, left: Denmark, right: France)
+Match38 = Match.create(title: 'Match-38', description: 'Group-Stage-C#3', start: DateTime.parse('2018-06-26T17:00:00+03:00'), knockout: false, left: Australia, right: Peru)
+Match39 = Match.create(title: 'Match-39', description: 'Group-Stage-D#3', start: DateTime.parse('2018-06-26T21:00:00+03:00'), knockout: false, left: Nigeria, right: Argentina)
+Match40 = Match.create(title: 'Match-40', description: 'Group-Stage-D#3', start: DateTime.parse('2018-06-26T21:00:00+03:00'), knockout: false, left: Iceland, right: Croatia)
+Match41 = Match.create(title: 'Match-41', description: 'Group-Stage-E#3', start: DateTime.parse('2018-06-27T21:00:00+03:00'), knockout: false, left: Serbia, right: Brazil)
+Match42 = Match.create(title: 'Match-42', description: 'Group-Stage-E#3', start: DateTime.parse('2018-06-27T21:00:00+02:00'), knockout: false, left: Switzerland, right: CostaRica)
+Match43 = Match.create(title: 'Match-43', description: 'Group-Stage-F#3', start: DateTime.parse('2018-06-27T17:00:00+03:00'), knockout: false, left: SouthKorea, right: Germany)
+Match44 = Match.create(title: 'Match-44', description: 'Group-Stage-F#3', start: DateTime.parse('2018-06-27T19:00:00+05:00'), knockout: false, left: Mexico, right: Sweden)
+Match45 = Match.create(title: 'Match-45', description: 'Group-Stage-G#3', start: DateTime.parse('2018-06-28T20:00:00+02:00'), knockout: false, left: England, right: Belgium)
+Match46 = Match.create(title: 'Match-46', description: 'Group-Stage-G#3', start: DateTime.parse('2018-06-28T21:00:00+03:00'), knockout: false, left: Panama, right: Tunisia)
+Match47 = Match.create(title: 'Match-47', description: 'Group-Stage-H#3', start: DateTime.parse('2018-06-28T17:00:00+03:00'), knockout: false, left: Japan, right: Poland)
+Match48 = Match.create(title: 'Match-48', description: 'Group-Stage-H#3', start: DateTime.parse('2018-06-28T18:00:00+04:00'), knockout: false, left: Senegal, right: Colombia)
+
+#Round of 16
+Match49 = Match.create(title: 'Match-49', description: 'Round of 16', start: DateTime.parse('2018-06-30T21:00:00+03:00'), knockout: true)
+Match50 = Match.create(title: 'Match-50', description: 'Round of 16', start: DateTime.parse('2018-06-30T17:00:00+03:00'), knockout: true)
+Match51 = Match.create(title: 'Match-51', description: 'Round of 16', start: DateTime.parse('2018-07-1T17:00:00+03:00'), knockout: true)
+Match52 = Match.create(title: 'Match-52', description: 'Round of 16', start: DateTime.parse('2018-07-1T21:00:00+03:00'), knockout: true)
+Match53 = Match.create(title: 'Match-53', description: 'Round of 16', start: DateTime.parse('2018-07-2T18:00:00+03:00'), knockout: true)
+Match54 = Match.create(title: 'Match-54', description: 'Round of 16', start: DateTime.parse('2018-07-2T21:00:00+03:00'), knockout: true)
+Match55 = Match.create(title: 'Match-55', description: 'Round of 16', start: DateTime.parse('2018-07-3T17:00:00+03:00'), knockout: true)
+Match56 = Match.create(title: 'Match-56', description: 'Round of 16', start: DateTime.parse('2018-07-3T21:00:00+03:00'), knockout: true)
+
+#Quarter-finals
+Match57 = Match.create(title: 'Match-57', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T17:00:00+03:00'), knockout: true)
+Match58 = Match.create(title: 'Match-58', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T21:00:00+03:00'), knockout: true)
+Match59 = Match.create(title: 'Match-59', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T18:00:00+03:00'), knockout: true)
+Match60 = Match.create(title: 'Match-60', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T21:00:00+03:00'), knockout: true)
+
+#Semi-finals
+Match61 = Match.create(title: 'Match-61', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
+Match62 = Match.create(title: 'Match-62', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
+
+#Third place play-off
+Match63 = Match.create(title: 'Match-63', description: 'Third place play-off', start: DateTime.parse('2018-07-14T17:00:00+03:00'), knockout: true)
+
+#Final
+Match64 = Match.create(title: 'Match-64', description: 'Final', start: DateTime.parse('2018-07-15T18:00:00+03:00'), knockout: true)
 
