@@ -45,10 +45,10 @@ module ApplicationHelper
 
   def display_bet(bet)
     if bet.nil?
-      '<i class="fa fa-question fa-2x" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
     else
       if bet.bet == 0
-        '<i class="fa fa-balance-scale fa-2x" aria-hidden="true"></i>'.html_safe
+        '<i class="fa fa-balance-scale fa-1x" aria-hidden="true"></i>'.html_safe
       else
         if bet.bet < 0
           display_team(bet.match.left)
@@ -58,21 +58,29 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def display_bet_result(bet)
     if bet.nil?
-      '<i class="fa fa-question fa-2x" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
     else
-      bet.win?
+      if bet.match.result.nil?
+        '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
+      else
+        if bet.win?
+          '<i class="fa fa-check fa-1x text-success" aria-hidden="true"></i>'.html_safe
+        else
+          '<i class="fa fa-close fa-1x text-danger" aria-hidden="true"></i>'.html_safe
+        end
+      end
     end
   end
 
   def display_match_result(match)
     if match.result.nil?
-      '<i class="fa fa-question fa-2x" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
     else
       if match.result == 0
-        '<i class="fa fa-balance-scale fa-2x" aria-hidden="true"></i>'.html_safe
+        '<i class="fa fa-balance-scale fa-1x" aria-hidden="true"></i>'.html_safe
       else
         if match.result < 0
           display_team(match.left)

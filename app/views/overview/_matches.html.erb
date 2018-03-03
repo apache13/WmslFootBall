@@ -1,28 +1,28 @@
-<table class="table table-hover">
+<table class="table table-hover table-bordered">
 	<thead>
-		<tr>
-			<th>Match</th>
-			<th>Stage</th>
-			<th>Start</th>
-			<th>Match</th>
-			<th>Result</th>
-			<th>Your Bet</th>
-			<th>Win?</th>
-			<th>Action</th>
+		<tr class="active">
+			<th class="text-center">NO.</th>
+			<th class="text-center">Stage</th>
+			<th class="text-center">Kick-off</th>
+			<th class="text-center">Match</th>
+			<th class="text-center">Result</th>
+			<th class="text-center">Your Bet</th>
+			<th class="text-center">Bet Result</th>
+			<th class="text-center">Bet</th>
 		</tr>
 	</thead>
 
 	<tbody>
 		<% @matches.each_with_index do |match,index| %>
 		<tr class=<%= match.lock? ? ("danger") : ("success") %> >
-			<td><%= index+1 %></td>
-			<td><%= match.description %></td>
-			<td><%= match.start %></td>
-			<td><%= display_match(match) %></td>
-			<td><%= display_match_result(match) %></td>
-			<td><%= display_bet(Bet.find_by(match: match,user: session[:user_id])) %></td>
-			<td><%= display_bet_result(Bet.find_by(match: match,user: session[:user_id])) %></td>
-			<td><%= link_to "Bet", new_bet_path(:match_id=>match.id), :id => "bet-#{index+1}", :countdown=>match.start, :class=>'btn' %>
+			<td class="text-center"><%= index+1 %></td>
+			<td class="text-left"><%= match.description %></td>
+			<td class="text-left"><%= match.start.strftime("%-d %-b %y %H:%M") %></td>
+			<td class="text-center"><%= display_match(match) %></td>
+			<td class="text-center"><%= display_match_result(match) %></td>
+			<td class="text-center"><%= display_bet(Bet.find_by(match: match,user: session[:user_id])) %></td>
+			<td class="text-center"><%= display_bet_result(Bet.find_by(match: match,user: session[:user_id])) %></td>
+			<td class="text-center"><%= link_to "Bet", new_bet_path(:match_id=>match.id), :id => "bet-#{index+1}", :countdown=>match.start, :class=>'btn-sm' %>
 			<script>
 				var startMatchDateTime = new Date($("#bet-<%= index+1 %>").attr("countdown"));
 				function expiry() {
