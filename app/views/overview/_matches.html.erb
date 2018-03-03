@@ -6,7 +6,9 @@
 			<th>Start</th>
 			<th>Match</th>
 			<th>Result</th>
-			<th>Bet</th>
+			<th>Your Bet</th>
+			<th>Win?</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 
@@ -18,7 +20,9 @@
 			<td><%= match.start %></td>
 			<td><%= display_match(match) %></td>
 			<td><%= display_match_result(match) %></td>
-			<td><%= link_to "Bet", root_path, :id => "bet-#{index+1}", :countdown=>match.start, :class=>'btn' %>
+			<td><%= display_bet(Bet.find_by(match: match,user: session[:user_id])) %></td>
+			<td><%= display_bet_result(Bet.find_by(match: match,user: session[:user_id])) %></td>
+			<td><%= link_to "Bet", new_bet_path(:match_id=>match.id), :id => "bet-#{index+1}", :countdown=>match.start, :class=>'btn' %>
 			<script>
 				var startMatchDateTime = new Date($("#bet-<%= index+1 %>").attr("countdown"));
 				function expiry() {
@@ -27,7 +31,7 @@
 				$("#bet-<%= index+1 %>").countdown({
 					until : startMatchDateTime,
 					onExpiry : expiry,
-					layout: '{dn} {dl}, {hn} {hl}, {mn} {ml}, {sn} {sl}'
+					layout: '{dnn} {dl}, {hnn} {hl}, {mnn} {ml}, {snn} {sl}'
 				});
 			</script></td>
 		</tr>
