@@ -8,7 +8,7 @@
 	<thead>
 		<tr class="active">
 			<th class="text-center">NO.</th>
-			<th class="text-center">Stage</th>
+			<th class="text-center">Match</th>
 			<th class="text-center">Kick-off</th>
 			<th class="text-center">Match</th>
 			<th class="text-center">Result</th>
@@ -22,8 +22,8 @@
 		<% @matches.each_with_index do |match,index| %>
 		<tr class=<%= match.lock? ? ("danger") : ("success") %> >
 			<td class="text-center"><p><%= index+1 %></p></td>
-			<td class="text-center"><%= display_match_modal(match.description, match) %></td>
-			<td class="text-center"><%= display_match_modal(match.start.strftime("%-d %-b %y %H:%M"), match) %></td>
+			<td class="text-center"><%= display_match_modal(match) %></td>
+			<td class="text-center"><%= match.start.strftime("%-d %-b %y %H:%M") %></td>
 			<td class="text-center"><%= display_match(match) %></td>
 			<td class="text-center"><%= display_match_result(match) %></td>
 			<td class="text-center"><%= display_bet(Bet.find_by(match: match,user: session[:user_id])) %></td>

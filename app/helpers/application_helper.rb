@@ -103,8 +103,12 @@ module ApplicationHelper
     end
   end
   
-  def display_match_modal(text, match)
-    link_to text, {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"  
+  def display_match_modal(match)
+    if match.knockout?
+      link_to match.title, {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"
+    else
+      link_to "#{match.description} #{match.title}", {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"
+    end  
   end
   
   def display_bet_button(index, match)
