@@ -67,3 +67,5 @@ gem 'flag-icons-rails', '~> 1.1', '>= 1.1.2'
 
 gem 'jquery-countdown-rails', '~> 2.0', '>= 2.0.2'
 
+gem 'lightbox-bootstrap-rails', '5.1.0.1'
+

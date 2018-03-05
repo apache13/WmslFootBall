@@ -15,12 +15,16 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
-    user = User.find(session[:user_id])
-    match = Match.find(params[:match_id])
-            
-    @bet = Bet.new    
-    @bet.match = match 
-    @bet.user = user    
+    if !params[:lightbox].nil?
+      user = User.find(session[:user_id])
+      match = Match.find(params[:match_id])              
+      @bet = Bet.new    
+      @bet.match = match 
+      @bet.user = user
+      render layout: false
+    else
+      @bet = Bet.new
+    end   
   end
   
   # GET /bets/1/edit
@@ -75,6 +79,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:match_id, :user_id, :bet, :result)
+      params.require(:bet).permit(:match_id, :user_id, :bet, :result, :bet_left_score, :bet_right_score)
     end
 end

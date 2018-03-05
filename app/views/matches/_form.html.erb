@@ -46,6 +46,16 @@
     <%= form.number_field :result, id: :bet_result %>
   </div>
   
+  <div class="field">
+    <%= form.label :left_score %>
+    <%= form.number_field :left_score, id: :match_left_score %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :right_score %>
+    <%= form.number_field :right_score, id: :match_right_score %>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>

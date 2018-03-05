@@ -40,7 +40,11 @@ module ApplicationHelper
   end
 
   def display_match(match)
-    display_team(match.left) + " <span data-toggle='tooltip' title='Start on #{match.start}'><strong>vs</strong></span> ".html_safe + display_team(match.right)
+    if match.result.nil?
+      display_team(match.left) + " <strong>vs</strong> ".html_safe + display_team(match.right)
+    else
+      display_team(match.left) + " <strong>#{match.left_score}-#{match.right_score}</strong> ".html_safe + display_team(match.right)
+    end    
   end
 
   def display_bet(bet)
@@ -98,5 +102,12 @@ module ApplicationHelper
       '<i class="fa fa-unlock fa-2x" aria-hidden="true"></i>'.html_safe
     end
   end
-
+  
+  def display_match_modal(text, match)
+    link_to text, {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"  
+  end
+  
+  def display_bet_button(index, match)
+    link_to "Bet", new_bet_path(:match_id=>match.id, :lightbox=>'true'), :id => "bet-#{index}", :countdown=>match.start, "data-toggle"=>"lightbox", "data-type"=>"url", :class=>'btn-sm'
+  end
 end

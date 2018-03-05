@@ -19,6 +19,8 @@
 					<th>Right</th>
 					<th>Locked?</th>
 					<th>Result</th>
+					<th>Left Score</th>
+					<th>Right Score</th>
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -33,7 +35,9 @@
 					<td><%= display_team(match.left) %></td>
 					<td><%= display_team(match.right) %></td>
 					<td><%= display_match_lock(match) %></td>						
-					<td><%= display_match_result(match) %></td>			
+					<td><%= display_match_result(match) %></td>
+					<td><%= match.left_score %></td>
+					<td><%= match.right_score %></td>			
 					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_match_path(match) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

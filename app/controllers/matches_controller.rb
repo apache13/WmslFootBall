@@ -11,6 +11,9 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    if !params[:lightbox].nil?
+      render layout: false  
+    end        
   end
 
   # GET /matches/new
@@ -70,6 +73,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:title, :description, :start, :knockout, :left_id, :right_id, :result)
+      params.require(:match).permit(:title, :description, :start, :knockout, :left_id, :right_id, :result, :left_score, :right_score)
     end
 end
