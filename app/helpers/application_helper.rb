@@ -41,9 +41,9 @@ module ApplicationHelper
 
   def display_match(match)
     if match.result.nil?
-      display_team(match.left) + " <strong>vs</strong> ".html_safe + display_team(match.right)
+      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
     else
-      display_team(match.left) + " <strong>#{match.left_score}-#{match.right_score}</strong> ".html_safe + display_team(match.right)
+      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
     end    
   end
 
