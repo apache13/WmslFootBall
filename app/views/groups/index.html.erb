@@ -23,11 +23,9 @@
 				<tr>
 					<td><%= group.name %></td>
 					<td>
-						<ul class="flag-horizontal">
 						<% group.teams.each do |team| %>
-							<li><%= display_team(team) %></li>
-						<% end %>
-						</ul>
+							<%= display_team(team) %>
+						<% end %>						
 					</td>
 					<td> <%= link_to 'Show', group , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_group_path(group) , :class => 'btn btn-default'%>

@@ -14,21 +14,12 @@ class BetsController < ApplicationController
   end
 
   # GET /bets/new
-  def new
-    if !params[:lightbox].nil?
-      user = User.find(session[:user_id])
-      match = Match.find(params[:match_id])              
-      @bet = Bet.new    
-      @bet.match = match 
-      @bet.user = user
-      render layout: false
-    else
-      @bet = Bet.new
-    end   
+  def new    
+    @bet = Bet.new   
   end
   
   # GET /bets/1/edit
-  def edit
+  def edit    
   end
 
   # POST /bets
