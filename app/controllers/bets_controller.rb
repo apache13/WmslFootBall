@@ -63,13 +63,15 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @user = User.find(session[:user_id])   
     
-    if !@user.admin?      
+    puts params.inspect
+    
+    if !params[:admin].present?
       @bet.user = @user
     end
     
     respond_to do |format|
       if @bet.save
-        if @user.admin?
+        if @user.admin? && params[:admin].present?
           format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
         else
           format.html { redirect_to :root, notice: 'Bet was successfully created.', layout: false }  
@@ -93,7 +95,7 @@ class BetsController < ApplicationController
           
     respond_to do |format|
       if @bet.update(bet_params)
-        if @user.admin?
+        if @user.admin? && params[:admin].present?
           format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
         else
           format.html { redirect_to :root, notice: 'Bet was successfully updated.', layout: false }
