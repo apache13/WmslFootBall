@@ -15,8 +15,7 @@
 			<th class="text-center">NO.</th>
 			<th class="text-center">Match</th>
 			<th class="text-center">Kick-off</th>
-			<th class="text-center">Match</th>
-			<th class="text-center">Result</th>
+			<th class="text-center">Match</th>			
 			<th class="text-center">Your Bet</th>
 			<th class="text-center">Bet Result</th>
 			<th class="text-center">Bet</th>
@@ -29,8 +28,7 @@
 			<td class="text-center"><p><%= index+1 %></p></td>
 			<td class="text-center"><%= display_match_modal(match) %></td>
 			<td class="text-center"><%= match.start.strftime("%-d %-b %y %H:%M") %></td>
-			<td class="text-center"><%= display_match(match) %></td>
-			<td class="text-center"><%= display_match_result(match) %></td>
+			<td class="text-center"><%= display_match(match) %></td>			
 			<td class="text-center"><%= display_bet(Bet.find_by(match: match,user: session[:user_id])) %></td>
 			<td class="text-center"><%= display_bet_result(Bet.find_by(match: match,user: session[:user_id])) %></td>
 			<td class="text-center"><%= display_bet_button(index+1, match) %>

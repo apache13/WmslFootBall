@@ -11,19 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :match_id %>
-    <%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true} ) %>
+  <div class="field">	
+	<% if @admin_mode %>
+		<%= form.label :match_id %>
+		<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
+	<% else %>
+		<%= form.hidden_field :match_id%>
+	<% end %>
   </div>
   
+  <% if @admin_mode %>  
+	  <div class="field">
+	    <%= form.label :user_id %>
+	    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true} ) %>
+	  </div>
+  <% end %>
+  
   <div class="field">
-    <%= form.label :bet %>
-    <%= form.number_field :bet, id: :bet_guess %>
+    <%= form.label :bet %>    
+    <% if @admin_mode %>
+    	<%= form.number_field :bet, id: :bet %>
+    <% else %>
+    	<%= form.collection_select :bet, @bet_data, :first, :last, prompt: true %>   
+    <% end %> 
   </div>
   
   <!-- 

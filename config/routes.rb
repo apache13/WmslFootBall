@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   get '/overview/index'
   get '/sessions/login'
   
-  get '/overview/user_bet', :as => :user_bet
-  post '/overview/user_create_bet', :as => :user_create_bet
-  get '/overview/show'
+  get '/overview/bet', :as => :user_bet
   
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout

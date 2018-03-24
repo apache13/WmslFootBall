@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
-  before_action :require_login_permission_and_admin
+  before_action :require_login_permission_and_admin, except: [:show]
+  before_action :require_login_permission, only: [:show]
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
   # GET /matches

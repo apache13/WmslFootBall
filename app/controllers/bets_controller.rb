@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
-  before_action :require_login_permission_and_admin
+  before_action :require_login_permission_and_admin, except: [:new, :edit, :create, :update]
+  before_action :require_login_permission, only: [:new, :edit, :create, :update]
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
 
   # GET /bets
@@ -14,22 +15,65 @@ class BetsController < ApplicationController
   end
 
   # GET /bets/new
-  def new    
-    @bet = Bet.new   
+  def new                     
+    #puts params.inspect    
+    
+    @user = User.find(session[:user_id])
+    if @user.admin? && params[:admin].present?
+      @bet = Bet.new
+      @admin_mode = true;
+    else
+      @admin_mode = false;
+      match = Match.find(params[:match])   
+      if !match.nil?
+        @bet = Bet.new    
+        @bet.user = @user
+        @bet.match = match          
+        if @bet.match.knockout?
+          @bet_data = [[-1,@bet.match.left.name],[1,@bet.match.right.name]]
+        else
+          @bet_data = [[-1,@bet.match.left.name],[0,'Draw'],[1,@bet.match.right.name]]  
+        end                    
+      end
+      render layout: false
+    end      
   end
   
   # GET /bets/1/edit
   def edit    
+    
+    #puts params.inspect
+    @user = User.find(session[:user_id])    
+    if @user.admin? && params[:admin].present?
+      @admin_mode = true;
+    else
+      @admin_mode = false;
+      if @bet.match.knockout?
+        @bet_data = [[-1,@bet.match.left.name],[1,@bet.match.right.name]]
+      else
+        @bet_data = [[-1,@bet.match.left.name],[0,'Draw'],[1,@bet.match.right.name]]  
+      end
+      render layout: false
+    end
   end
 
   # POST /bets
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
-
+    @user = User.find(session[:user_id])   
+    
+    if !@user.admin?      
+      @bet.user = @user
+    end
+    
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        if @user.admin?
+          format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        else
+          format.html { redirect_to :root, notice: 'Bet was successfully created.', layout: false }  
+        end                         
         format.json { render :show, status: :created, location: @bet }
       else
         format.html { render :new }
@@ -41,9 +85,19 @@ class BetsController < ApplicationController
   # PATCH/PUT /bets/1
   # PATCH/PUT /bets/1.json
   def update
+    @user = User.find(session[:user_id])     
+    
+    if !@user.admin?      
+      @bet.user = @user
+    end
+          
     respond_to do |format|
       if @bet.update(bet_params)
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+        if @user.admin?
+          format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+        else
+          format.html { redirect_to :root, notice: 'Bet was successfully updated.', layout: false }
+        end
         format.json { render :show, status: :ok, location: @bet }
       else
         format.html { render :edit }
