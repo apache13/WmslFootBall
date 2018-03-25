@@ -3,11 +3,6 @@
 		event.preventDefault();
 		$(this).ekkoLightbox();
 	}); 	
-	
-	$('.modal').on('hidden', function () {
-  		document.location.reload();
-	})
-	
 </script>
 <table class="table table-hover table-bordered">
 	<thead>
@@ -35,10 +30,11 @@
 			<script>
 				var startMatchDateTime = new Date($("#bet-<%= index+1 %>").attr("countdown"));
 				function expiry() {
-					$("#bet-<%= index+1 %>").prop("disabled", true)
+					$("#bet-<%= index+1 %>").hide();
 				}
 				$("#bet-<%= index+1 %>").countdown({
 					until : startMatchDateTime,
+					alwaysExpire: true,
 					onExpiry : expiry,
 					layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
 				});
