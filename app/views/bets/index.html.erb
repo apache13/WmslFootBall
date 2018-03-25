@@ -31,7 +31,7 @@
         			<td><%= display_bet(bet) %></td>        					
         			<td><%= bet.win? %></td>
         			<td> <%= link_to 'Show', bet , :class => 'btn btn-default'%>
-					<%= link_to 'Edit', edit_bet_path(bet) , :class => 'btn btn-default'%>
+					<%= link_to 'Edit', edit_bet_path(bet,:admin=>true) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>
 				</tr>
 				<% end %>
@@ -48,7 +48,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<%= link_to 'New Bet', new_bet_path , :class => 'btn btn-primary' %>
+		<%= link_to 'New Bet', new_bet_path(:admin=>true) , :class => 'btn btn-primary' %>
 	</div>
 </div>
 

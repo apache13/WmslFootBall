@@ -35,7 +35,7 @@ class Bet < ApplicationRecord
       errors.add(:user,"can't change")
     end    
     if self.match.knockout?
-      if self.result == 0
+      if self.bet == 0
         errors.add(:bat,"can't be zero in knockout stage")
       end
     end
