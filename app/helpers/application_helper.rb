@@ -70,11 +70,7 @@ module ApplicationHelper
       if bet.match.result.nil?
         '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
       else
-        if bet.win?
-          '<i class="fa fa-check fa-1x text-success" aria-hidden="true"></i>'.html_safe
-        else
-          '<i class="fa fa-close fa-1x text-danger" aria-hidden="true"></i>'.html_safe
-        end
+        bet.pts
       end
     end
   end

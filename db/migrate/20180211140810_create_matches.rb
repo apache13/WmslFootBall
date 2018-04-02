@@ -10,6 +10,10 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.integer :result
       t.integer :left_score
       t.integer :right_score
+      t.boolean :yellow_card
+      t.boolean :red_card
+      t.boolean :extra_time
+      t.boolean :penalty
       
       t.timestamps
     end

@@ -1,54 +1,89 @@
 <%= form_with(model: bet, local: true) do |form| %>
-  <% if bet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
+<% if bet.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
 
-      <ul>
-      <% bet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<ul>
+		<% bet.errors.full_messages.each do |message| %>
+		<li>
+			<%= message %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-  <div class="field">	
-	<% if @admin_mode %>
-		<%= form.label :match_id %>
-		<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
-	<% else %>
-		<%= form.hidden_field :match_id%>
-	<% end %>
-  </div>
-  
-  <% if @admin_mode %>  
-	  <div class="field">
-	    <%= form.label :user_id %>
-	    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true} ) %>
-	  </div>
-  <% end %>
-  
-  <div class="field">
-    <%= form.label :bet %>    
-    <% if @admin_mode %>
-    	<%= form.number_field :bet, id: :bet %>
-    <% else %>
-    	<%= form.collection_select :bet, @bet_data, :first, :last, prompt: true %>   
-    <% end %> 
-  </div>
-  
-  <!-- 
-  <div class="field">
-    <%= form.label :bet_left_score %>
-    <%= form.number_field :bet_left_score, id: :match_left_score %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :bet_right_score %>
-    <%= form.number_field :bet_right_score, id: :match_right_score %>
-  </div>
-  -->
-  
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Main
+	</div>
+	<div class="panel-body">
+
+		<div class="field">
+			<% if @admin_mode %>
+			<%= form.label :match_id %>
+			<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
+			<% else %>
+			<%= form.hidden_field :match_id%>
+			<% end %>
+		</div>
+		<% if @admin_mode %>
+		<div class="field">
+			<%= form.label :user_id %>
+			<%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true} ) %>
+		</div>
+		<% end %>
+
+		<div class="field">
+			<%= form.label "#{:bet} (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %>
+			<% if @admin_mode %>
+			<%= form.number_field :bet, id: :bet %>
+			<% else %>
+			<%= form.collection_select :bet, @bet_data, :first, :last, prompt: true %>
+			<% end %>
+		</div>
+
+		<div class="field">
+			<%= form.label "#{:bet_left_score} (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points)" %>
+			<%= form.number_field :bet_left_score, id: :match_left_score %>
+		</div>
+
+		<div class="field">
+			<%= form.label "#{:bet_right_score} (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points)" %>
+			<%= form.number_field :bet_right_score, id: :match_right_score %>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Bonus
+	</div>
+	<div class="panel-body">
+		<div class="field">
+			<%= form.label "#{:yellow_card} more than 3 cards (#{Config.find_by_key('BET_BONUS_YELLOW_CARD_PERCENT').value}%)" %>
+			<%= form.check_box :yellow_card, id: :yellow_card %>
+		</div>
+		<div class="field">
+			<%= form.label "#{:red_card} (#{Config.find_by_key('BET_BONUS_RED_CARD_PERCENT').value}%)" %>
+			<%= form.check_box :red_card, id: :red_card %>
+		</div>
+		<div class="field">
+			<%= form.label "#{:penalty} (#{Config.find_by_key('BET_BONUS_PENALTY_PERCENT').value}%)" %>
+			<%= form.check_box :penalty, id: :penalty %>
+		</div>
+		
+		<% if bet.match.knockout? %>
+			<div class="field">
+				<%= form.label "#{:extra_time} (#{Config.find_by_key('BET_BONUS_EXTRA_TIME_PERCENT').value}%)" %>
+				<%= form.check_box :extra_time, id: :extra_time %>
+			</div>
+		<% end %>
+				
+	</div>
+</div>
+
+<div class="actions">
+	<%= form.submit %>
+</div>
 <% end %>

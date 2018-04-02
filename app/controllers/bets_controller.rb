@@ -28,11 +28,11 @@ class BetsController < ApplicationController
       if !match.nil?
         @bet = Bet.new    
         @bet.user = @user
-        @bet.match = match          
-        if @bet.match.knockout?
-          @bet_data = [[-1,@bet.match.left.name],[1,@bet.match.right.name]]
+        @bet.match = match                 
+        if @bet.match.knockout?          
+          @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]          
         else
-          @bet_data = [[-1,@bet.match.left.name],[0,'Draw'],[1,@bet.match.right.name]]  
+          @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[0,'Draw'],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]  
         end                    
       end
       render layout: false
@@ -49,9 +49,9 @@ class BetsController < ApplicationController
     else
       @admin_mode = false;
       if @bet.match.knockout?
-        @bet_data = [[-1,@bet.match.left.name],[1,@bet.match.right.name]]
+        @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]
       else
-        @bet_data = [[-1,@bet.match.left.name],[0,'Draw'],[1,@bet.match.right.name]]  
+        @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[0,'Draw'],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]] 
       end
       render layout: false
     end
@@ -128,6 +128,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:match_id, :user_id, :bet, :result, :bet_left_score, :bet_right_score)
+      params.require(:bet).permit(:match_id, :user_id, :bet, :result, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :extra_time, :penalty)
     end
 end

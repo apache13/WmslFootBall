@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.integer "bet"
     t.integer "bet_left_score"
     t.integer "bet_right_score"
+    t.boolean "yellow_card"
+    t.boolean "red_card"
+    t.boolean "extra_time"
+    t.boolean "penalty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["match_id"], name: "index_bets_on_match_id"
@@ -48,6 +52,10 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.integer "result"
     t.integer "left_score"
     t.integer "right_score"
+    t.boolean "yellow_card"
+    t.boolean "red_card"
+    t.boolean "extra_time"
+    t.boolean "penalty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["left_id"], name: "index_matches_on_left_id"

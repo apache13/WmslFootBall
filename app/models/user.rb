@@ -25,7 +25,7 @@ class User < ApplicationRecord
     bets = Bet.where(user: self)    
     bets.each do |bet|
       if bet.win?
-      total = total +1
+      total = total + bet.pts
       end
     end
     return total

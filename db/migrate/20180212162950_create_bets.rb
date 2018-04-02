@@ -6,6 +6,10 @@ class CreateBets < ActiveRecord::Migration[5.1]
       t.integer :bet
       t.integer :bet_left_score
       t.integer :bet_right_score
+      t.boolean :yellow_card
+      t.boolean :red_card
+      t.boolean :extra_time
+      t.boolean :penalty
       
       t.timestamps
     end
