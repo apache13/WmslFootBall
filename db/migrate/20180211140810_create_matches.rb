@@ -12,6 +12,7 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.integer :right_score
       t.boolean :yellow_card
       t.boolean :red_card
+      t.boolean :own_goal
       t.boolean :extra_time
       t.boolean :penalty
       

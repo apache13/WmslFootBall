@@ -7,7 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL EPL 2017-2018')
-Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-03-31T18:30:00+07:00')
+Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-04-07T18:30:00+07:00')
+
+# Score Config
+Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_LEFT_TEAM_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_RIGHT_TEAM_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_YELLOW_CARD_CONDITION',value: '3')
+Config.create(key: 'BET_MAIN_YELLOW_CARD_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_YELLOW_CARD_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_RED_CARD_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_RED_CARD_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_OWN_GOAL_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_OWN_GOAL_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_EXTRA_TIME_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_EXTRA_TIME_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_PENALTY_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_PENALTY_SCORE',value: '1')
+
 
 Bet.destroy_all
 Group.destroy_all
@@ -15,10 +32,11 @@ Team.destroy_all
 User.destroy_all
 Match.destroy_all
 
-Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
-Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)
-Tester03 = User.create(provider: 'facebook', uid: '1853148911385862', name: 'Kengkote Kote', email: 'kengkote@hotmail.com', image: 'http://graph.facebook.com/v2.6/1853148911385862/picture', admin: false)
-Tester04 = User.create(provider: 'facebook', uid: '1695051147226674', name: 'Sutthisak Srimahakosol', email: 'mardnakub@hotmail.com', image: 'http://graph.facebook.com/v2.6/1695051147226674/picture', admin: false)
+# Test user
+#Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
+#Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)
+#Tester03 = User.create(provider: 'facebook', uid: '1853148911385862', name: 'Kengkote Kote', email: 'kengkote@hotmail.com', image: 'http://graph.facebook.com/v2.6/1853148911385862/picture', admin: false)
+#Tester04 = User.create(provider: 'facebook', uid: '1695051147226674', name: 'Sutthisak Srimahakosol', email: 'mardnakub@hotmail.com', image: 'http://graph.facebook.com/v2.6/1695051147226674/picture', admin: false)
 
 EPL = Group.create(name: 'English Premier League')
 
@@ -43,16 +61,17 @@ Southampton = Team.create(name: 'Southampton', code: 'SOU', group: EPL, club: tr
 StokeCity = Team.create(name: 'Stoke City', code: 'STK', group: EPL, club: true)
 WestBromwichAlbion = Team.create(name: 'West Bromwich Albion', code: 'WBA', group: EPL, club: true)
 
-Match01 = Match.create(title: 'Match#01', description: 'EPL-32', start: DateTime.parse('2018-03-31T18:30:00+07:00'), knockout: false, left: CrystalPalace, right: Liverpool)
-Match02 = Match.create(title: 'Match#02', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: BrightonAndHoveAlbion, right: LeicesterCity)
-Match03 = Match.create(title: 'Match#03', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: ManchesterUnited, right: SwanseaCity)
-Match04 = Match.create(title: 'Match#04', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: NewcastleUnited, right: HuddersfieldTown)
-Match05 = Match.create(title: 'Match#05', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: Watford, right: Bournemouth)
-Match06 = Match.create(title: 'Match#06', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: WestBromwichAlbion, right: Burnley)
-Match07 = Match.create(title: 'Match#07', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: WestHamUnited, right: Southampton)
-Match08 = Match.create(title: 'Match#08', description: 'EPL-32', start: DateTime.parse('2018-03-31T21:00:00+07:00'), knockout: false, left: Everton, right: ManchesterCity)
-Match09 = Match.create(title: 'Match#09', description: 'EPL-32', start: DateTime.parse('2018-04-01T19:30:00+07:00'), knockout: false, left: Arsenal, right: StokeCity)
-Match10 = Match.create(title: 'Match#10', description: 'EPL-32', start: DateTime.parse('2018-04-01T22:00:00+07:00'), knockout: false, left: Chelsea, right: TottenhamHotspur)
+Match01 = Match.create(title: 'Match#01', description: 'EPL-32', start: DateTime.parse('2018-04-07T18:30:00+07:00'), knockout: false, left: Everton, right: Liverpool)
+Match02 = Match.create(title: 'Match#02', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: Bournemouth, right: CrystalPalace)
+Match03 = Match.create(title: 'Match#03', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: BrightonAndHoveAlbion, right: HuddersfieldTown)
+Match04 = Match.create(title: 'Match#04', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: LeicesterCity, right: NewcastleUnited)
+Match05 = Match.create(title: 'Match#05', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: StokeCity, right: TottenhamHotspur)
+Match06 = Match.create(title: 'Match#06', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: Watford, right: Burnley)
+Match07 = Match.create(title: 'Match#07', description: 'EPL-32', start: DateTime.parse('2018-04-07T21:00:00+07:00'), knockout: false, left: WestBromwichAlbion, right: SwanseaCity)
+Match08 = Match.create(title: 'Match#08', description: 'EPL-32', start: DateTime.parse('2018-04-07T23:30:00+07:00'), knockout: false, left: ManchesterCity, right: ManchesterUnited)
+Match09 = Match.create(title: 'Match#09', description: 'EPL-32', start: DateTime.parse('2018-04-08T20:15:00+07:00'), knockout: false, left: Arsenal, right: Southampton)
+Match10 = Match.create(title: 'Match#10', description: 'EPL-32', start: DateTime.parse('2018-04-08T22:30:00+07:00'), knockout: false, left: Chelsea, right: WestHamUnited)
+
 
 
 

@@ -93,7 +93,7 @@ class BetsController < ApplicationController
       @bet.user = @user
     end
     
-    #puts params.inspect
+    puts params.inspect
           
     respond_to do |format|
       if @bet.update(bet_params)
@@ -128,6 +128,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:match_id, :user_id, :bet, :result, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :extra_time, :penalty)
+      params.require(:bet).permit(:match_id, :user_id, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty)
     end
 end

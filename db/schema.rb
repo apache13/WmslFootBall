@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.integer "bet_right_score"
     t.boolean "yellow_card"
     t.boolean "red_card"
+    t.boolean "own_goal"
     t.boolean "extra_time"
     t.boolean "penalty"
     t.datetime "created_at", null: false
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180212162950) do
     t.integer "right_score"
     t.boolean "yellow_card"
     t.boolean "red_card"
+    t.boolean "own_goal"
     t.boolean "extra_time"
     t.boolean "penalty"
     t.datetime "created_at", null: false

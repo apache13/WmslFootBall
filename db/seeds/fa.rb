@@ -9,20 +9,33 @@ Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL FA Cup 2017-2018')
 Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-04-21T23:15:00+07:00')
 
-Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '50')
-Config.create(key: 'BET_MAIN_LEFT_TEAM_SCORE',value: '25')
-Config.create(key: 'BET_MAIN_RIGHT_TEAM_SCORE',value: '25')
-Config.create(key: 'BET_BONUS_YELLOW_CARD_PERCENT',value: '10')
-Config.create(key: 'BET_BONUS_RED_CARD_PERCENT',value: '10')
-Config.create(key: 'BET_BONUS_PENALTY_PERCENT',value: '10')
-Config.create(key: 'BET_BONUS_EXTRA_TIME_PERCENT',value: '10')
-
+# Score Config
+Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_LEFT_TEAM_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_RIGHT_TEAM_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_YELLOW_CARD_CONDITION',value: '3')
+Config.create(key: 'BET_MAIN_YELLOW_CARD_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_YELLOW_CARD_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_RED_CARD_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_RED_CARD_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_OWN_GOAL_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_OWN_GOAL_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_EXTRA_TIME_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_EXTRA_TIME_SCORE',value: '1')
+Config.create(key: 'BET_MAIN_PENALTY_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_NO_PENALTY_SCORE',value: '1')
 
 Bet.destroy_all
 Group.destroy_all
 Team.destroy_all
 User.destroy_all
 Match.destroy_all
+
+# Test user
+#Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
+#Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)
+#Tester03 = User.create(provider: 'facebook', uid: '1853148911385862', name: 'Kengkote Kote', email: 'kengkote@hotmail.com', image: 'http://graph.facebook.com/v2.6/1853148911385862/picture', admin: false)
+#Tester04 = User.create(provider: 'facebook', uid: '1695051147226674', name: 'Sutthisak Srimahakosol', email: 'mardnakub@hotmail.com', image: 'http://graph.facebook.com/v2.6/1695051147226674/picture', admin: false)
 
 FA = Group.create(name: 'FA Cup')
 
