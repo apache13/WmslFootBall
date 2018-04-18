@@ -10,11 +10,11 @@ Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
 Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-06-14T18:00:00+03:00')
 
 # Score Config
-Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')
 Config.create(key: 'BET_MAIN_LEFT_TEAM_SCORE',value: '1')
 Config.create(key: 'BET_MAIN_RIGHT_TEAM_SCORE',value: '1')
 Config.create(key: 'BET_MAIN_YELLOW_CARD_CONDITION',value: '3')
-Config.create(key: 'BET_MAIN_YELLOW_CARD_SCORE',value: '3')
+Config.create(key: 'BET_MAIN_YELLOW_CARD_SCORE',value: '1')
 Config.create(key: 'BET_MAIN_NO_YELLOW_CARD_SCORE',value: '1')
 Config.create(key: 'BET_MAIN_RED_CARD_SCORE',value: '3')
 Config.create(key: 'BET_MAIN_NO_RED_CARD_SCORE',value: '1')
@@ -31,12 +31,6 @@ Group.destroy_all
 Team.destroy_all
 User.destroy_all
 Match.destroy_all
-
-# Test user
-#Tester01 = User.create(provider: 'facebook', uid: '1735656219789615', name: 'Ohm Narawat', email: 'narawat777@gmail.com', image: 'http://graph.facebook.com/v2.6/1735656219789615/picture', admin: false)
-#Tester02 = User.create(provider: 'facebook', uid: '10155924626118820', name: 'Cat Oraphanthong', email: 'to_be_cat@hotmail.com', image: 'http://graph.facebook.com/v2.6/10155924626118820/picture', admin: false)
-#Tester03 = User.create(provider: 'facebook', uid: '1853148911385862', name: 'Kengkote Kote', email: 'kengkote@hotmail.com', image: 'http://graph.facebook.com/v2.6/1853148911385862/picture', admin: false)
-#Tester04 = User.create(provider: 'facebook', uid: '1695051147226674', name: 'Sutthisak Srimahakosol', email: 'mardnakub@hotmail.com', image: 'http://graph.facebook.com/v2.6/1695051147226674/picture', admin: false)
 
 A = Group.create(name: 'A')
 B = Group.create(name: 'B')

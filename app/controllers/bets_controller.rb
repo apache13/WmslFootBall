@@ -12,6 +12,13 @@ class BetsController < ApplicationController
   # GET /bets/1
   # GET /bets/1.json
   def show
+    @user = User.find(session[:user_id])
+    if @user.admin? && params[:admin].present?
+      @admin_mode = true;
+    else
+      @admin_mode = false;
+      render layout: false
+    end
   end
 
   # GET /bets/new

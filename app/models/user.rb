@@ -23,10 +23,8 @@ class User < ApplicationRecord
   def pts
     total = 0
     bets = Bet.where(user: self)    
-    bets.each do |bet|
-      if bet.win?
-      total = total + bet.pts
-      end
+    bets.each do |bet|    
+      total = total + bet.pts      
     end
     return total
   end

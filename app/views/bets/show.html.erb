@@ -1,14 +1,82 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Match:</strong>
-  <%= @bet.match %>
+<p id="notice">
+	<%= notice %>
 </p>
 
-<p>
-  <strong>Win?:</strong>
-  <%= @bet.win? %>
-</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Main
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+  			<tr class="active">
+  				<th class="text-center">Bet</th>
+  				<th class="text-center">Your bet</th>
+  				<th class="text-center">Match result</th>
+  				<th class="text-center">PTS</th>
+  			</tr>
+  			<tr>
+  				<td><%= "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= display_bet(@bet) %></td>
+  				<td class="text-center"><%= display_match_result(@bet.match) %></td>
+  				<td class="text-center"><%= @bet.pts_final_result %></td>
+  			</tr>
+  			<tr>
+  				<td><%= "Left Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @bet.bet_left_score %></td>
+  				<td class="text-center"><%= @bet.match.left_score %></td>
+  				<td class="text-center"><%= @bet.pts_left_team %></td>
+  			</tr>
+  			<tr>
+  				<td><%= "Right Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @bet.bet_right_score %></td>
+  				<td class="text-center"><%= @bet.match.right_score %></td>
+  				<td class="text-center"><%= @bet.pts_right_team %></td>
+  			</tr>
+  			<tr>
+  				<td><%= "#{:yellow_card}? (Yes/No) more then #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} cards (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @bet.yellow_card %></td>
+  				<td class="text-center"><%= @bet.match.yellow_card %></td>
+  				<td class="text-center"><%= @bet.pts_yellow_card %></td>
+  			</tr>
+  			<tr>
+  				<td><%= "#{:red_card}? (Yes/No) (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @bet.red_card %></td>
+  				<td class="text-center"><%= @bet.match.red_card %></td>
+  				<td class="text-center"><%= @bet.pts_red_card %></td>
+  			</tr>
+  			<tr>
+  				<td><%= "#{:own_goal}? (Yes/No) (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @bet.own_goal %></td>
+  				<td class="text-center"><%= @bet.match.own_goal %></td>
+  				<td class="text-center"><%= @bet.pts_own_goal %></td>
+  			</tr>
+  			<% if @bet.match.knockout? %>
+	  			<tr>
+	  				<td><%= "#{:extra_time}? (Yes/No) (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} points)" %></td>
+	  				<td class="text-center"><%= @bet.extra_time %></td>
+	  				<td class="text-center"><%= @bet.match.extra_time %></td>
+	  				<td class="text-center"><%= @bet.pts_extra_time %></td>
+	  			</tr>
+	  			<tr>
+	  				<td><%= "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points)" %></td>
+	  				<td class="text-center"><%= @bet.penalty %></td>
+	  				<td class="text-center"><%= @bet.match.penalty %></td>
+	  				<td class="text-center"><%= @bet.pts_penalty %></td>
+	  			</tr>
+  			<% end %>
+  			<tr class="active">
+  				<td><strong>Total<strong></td>
+  				<td></td>
+  				<td></td>
+  				<td class="text-center"><strong><%= @bet.pts %><strong></td>
+  			</tr>
+		</table>
 
+	</div>
+</div>
+
+<% if @admin_mode %>
 <%= link_to 'Edit', edit_bet_path(@bet) %> |
 <%= link_to 'Back', bets_path %>
+<% end %>

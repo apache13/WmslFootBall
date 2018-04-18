@@ -70,7 +70,7 @@ module ApplicationHelper
       if bet.match.result.nil?
         '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
       else
-        bet.pts
+        link_to bet.pts, {controller: "bets", action: "show", id: bet, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{display_match(bet.match)} #{bet.match.title} #{bet.match.description}", "data-type"=>"url"
       end
     end
   end
