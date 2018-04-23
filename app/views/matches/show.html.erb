@@ -15,6 +15,50 @@
   <%= @match.start %>
 </p>
 
+
+
+		
+		<table class="table table-bordered">
+  			<tr class="active">
+  				<th class="text-center">Bet</th>
+  				<th class="text-center">Result</th>  				
+  			</tr>
+  			<tr>
+  				<td><%= "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %></td>    								
+  				<td class="text-center"><%= display_match_result(@match) %></td>  				  				
+  			</tr>
+  			<tr>
+  				<td><%= "Left Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points)" %></td>  				
+  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.left_score %></td>  				
+  			</tr>
+  			<tr>
+  				<td><%= "Right Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.right_score %></td>  				  				
+  			</tr>
+  			<tr>
+  				<td><%= "#{:yellow_card}? (Yes/No) more then #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} cards (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.yellow_card %></td>  				  				  			
+  			</tr>
+  			<tr>
+  				<td><%= "#{:red_card}? (Yes/No) (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.red_card %></td>  				  				
+  			</tr>
+  			<tr>
+  				<td><%= "#{:own_goal}? (Yes/No) (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} points)" %></td>
+  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.own_goal %></td>
+  			</tr>
+  			<% if @match.knockout? %>
+	  			<tr>
+	  				<td><%= "#{:extra_time}? (Yes/No) (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} points)" %></td>
+	  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.extra_time %></td>	  				
+	  			</tr>
+	  			<tr>
+	  				<td><%= "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points)" %></td>
+	  				<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.penalty %></td>	  					  				
+	  			</tr>
+  			<% end %>  			
+		</table>
+
 <% if params[:lightbox].nil? %>
 	<%= link_to 'Edit', edit_match_path(@match) %> |
 	<%= link_to 'Back', matches_path %>

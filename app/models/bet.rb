@@ -103,6 +103,10 @@ class Bet < ApplicationRecord
   
   def pts      
     
+    if self.match.result.nil?
+      return 0
+    end
+    
     main_score = pts_final_result + pts_left_team + pts_right_team + pts_yellow_card + pts_red_card + pts_own_goal
     if self.match.knockout?
       main_score = main_score + pts_extra_time + pts_penalty
