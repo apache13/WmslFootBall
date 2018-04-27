@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_login_permission_and_admin
+  def require_login_permission_and_admin    
     if(current_user != false && (current_user.admin == true) )
       logger.debug 'uid : '+current_user.uid
       logger.debug 'original_url   : '+request.original_url

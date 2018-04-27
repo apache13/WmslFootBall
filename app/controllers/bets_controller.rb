@@ -1,6 +1,6 @@
 class BetsController < ApplicationController
-  before_action :require_login_permission_and_admin, except: [:new, :edit, :create, :update]
-  before_action :require_login_permission, only: [:new, :edit, :create, :update]
+  before_action :require_login_permission_and_admin, except: [:show, :new, :edit, :create, :update]
+  before_action :require_login_permission, only: [:show, :new, :edit, :create, :update]
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
 
   # GET /bets
@@ -11,7 +11,7 @@ class BetsController < ApplicationController
 
   # GET /bets/1
   # GET /bets/1.json
-  def show
+  def show                
     @user = User.find(session[:user_id])
     if @user.admin? && params[:admin].present?
       @admin_mode = true;
