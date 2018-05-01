@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   get '/overview/bet', :as => :user_bet
   
+  get '/matches/:id/random_bets'  => 'matches#random_bets', :as => :random_bets
+  
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/signin_facebook' => 'sessions#new_facebook', :as => :signin_facebook

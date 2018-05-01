@@ -102,7 +102,7 @@ class Bet < ApplicationRecord
   
   
   def pts      
-    
+        
     if self.match.result.nil?
       return 0
     end
@@ -118,6 +118,18 @@ class Bet < ApplicationRecord
     logger.debug 'bonus_score : '+bonus_score.to_s
     
     return main_score+bonus_score
+  end 
+  
+  def self.random(user, match)        
+    Bet.create(user: user, match: match \
+    , bet: [-1,0,1].shuffle.first \
+    , bet_left_score: [0,1,2,3].shuffle.first \
+    , bet_right_score: [0,1,2,3].shuffle.first \
+    , yellow_card: [true,false].shuffle.first \
+    , red_card: [true,false].shuffle.first \
+    , own_goal: [true,false].shuffle.first \
+    , extra_time: [true,false].shuffle.first \
+    , penalty: [true,false].shuffle.first)
   end
   
   private  

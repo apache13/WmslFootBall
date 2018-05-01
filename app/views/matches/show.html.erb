@@ -11,13 +11,23 @@
 </p>
 
 <p>
+  <strong>Knockout:</strong>
+  <%= @match.knockout %>
+</p>
+
+<p>
   <strong>Start:</strong>
   <%= @match.start %>
 </p>
 
-
-
-		
+<p>
+  <strong>Bet:</strong>
+  <%= "#{@match.user_bet_count}/#{@match.total_bet_count}" %>
+</p>
+<p>
+  <strong>Statistics:</strong>
+  <%= "#{@match.bet_statistic}" %>
+</p>				
 		<table class="table table-bordered">
   			<tr class="active">
   				<th class="text-center">Bet</th>

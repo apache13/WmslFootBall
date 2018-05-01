@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   before_action :require_login_permission_and_admin, except: [:show]
   before_action :require_login_permission, only: [:show]
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :random_bets]
 
   # GET /matches
   # GET /matches.json
@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1
   # GET /matches/1.json
-  def show
+  def show                    
     if !params[:lightbox].nil?
       render layout: false  
     end        
@@ -63,6 +63,13 @@ class MatchesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def random_bets
+    @match.random_bets
+    respond_to do |format|
+      format.html { redirect_to matches_url, notice: 'Match was successfully random bets.' }
     end
   end
 
