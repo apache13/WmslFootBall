@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL UEFA Champions League 2017-2018')
-Config.create(key: 'CLOSE_REGISTER_DATETIME',value: '2018-04-04T01:45:00+07:00')
+Config.create(key: 'LOGIN_LOGO',value: 'ucl.jpg')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')
@@ -42,10 +42,8 @@ ManchesterCity = Team.create(name: 'ManchesterCity', code: 'MCI', group: UCL, cl
 Barcelona = Team.create(name: 'Barcelona', code: 'BCN', group: UCL, club: true)
 Roma = Team.create(name: 'Roma', code: 'RMA', group: UCL, club: true)
 
-Match01 = Match.create(title: 'Match#01', description: 'Quarter-finals Leg 1', start: DateTime.parse('2018-04-04T01:45:00+07:00'), knockout: false, left: Sevilla, right: Bayern)
-Match02 = Match.create(title: 'Match#02', description: 'Quarter-finals Leg 1', start: DateTime.parse('2018-04-04T01:45:00+07:00'), knockout: false, left: Juventus, right: RealMadrid)
-Match03 = Match.create(title: 'Match#03', description: 'Quarter-finals Leg 1', start: DateTime.parse('2018-04-05T01:45:00+07:00'), knockout: false, left: Liverpool, right: ManchesterCity)
-Match04 = Match.create(title: 'Match#04', description: 'Quarter-finals Leg 1', start: DateTime.parse('2018-04-05T01:45:00+07:00'), knockout: false, left: Barcelona, right: Roma)
+MatchFinal = Match.create(title: 'Final', description: 'Final', start: DateTime.parse('2018-05-27T01:45:00+07:00'), knockout: true, left: RealMadrid, right: Liverpool)
+
 
 
 

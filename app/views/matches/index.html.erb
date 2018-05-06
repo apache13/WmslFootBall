@@ -43,6 +43,7 @@
 					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_match_path(match) , :class => 'btn btn-default'%>
 					<%= link_to 'Bets', random_bets_path(match.id) , :class => 'btn btn-default'%>
+					<%= link_to 'Test', random_result_path(match.id) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>
 				</tr>
 				<% end %>

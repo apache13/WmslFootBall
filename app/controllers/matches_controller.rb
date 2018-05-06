@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   before_action :require_login_permission_and_admin, except: [:show]
   before_action :require_login_permission, only: [:show]
-  before_action :set_match, only: [:show, :edit, :update, :destroy, :random_bets]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :random_bets, :random_result]
 
   # GET /matches
   # GET /matches.json
@@ -72,7 +72,14 @@ class MatchesController < ApplicationController
       format.html { redirect_to matches_url, notice: 'Match was successfully random bets.' }
     end
   end
-
+  
+  def random_result
+    @match.random_result
+    respond_to do |format|
+      format.html { redirect_to matches_url, notice: 'Match was successfully random result.' }
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match

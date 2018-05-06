@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/overview/bet', :as => :user_bet
   
   get '/matches/:id/random_bets'  => 'matches#random_bets', :as => :random_bets
+  get '/matches/:id/random_result'  => 'matches#random_result', :as => :random_result
   
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout

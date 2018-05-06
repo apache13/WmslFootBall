@@ -1,45 +1,18 @@
 <div class="row">
-	<div class="col-md-3">
-		<button id="endRegister" class="btn" countdown="<%= DateTime.parse(Config.find_by_key('CLOSE_REGISTER_DATETIME').value) %>"></button>
-		<script>
-			console.log("Server : " + $("#endRegister").attr("countdown"));
-			firstMatchDateTime = new Date($("#endRegister").attr("countdown"));
-			console.log("Client : " + firstMatchDateTime);
-			function expiry() {
-				$("#endRegister").prop("disabled", true)
-			}
-
-
-			$('#endRegister').countdown({
-				until : firstMatchDateTime,
-				format : 'YOWDHMS',
-				compact : true,
-				onExpiry : expiry
-			});
-		</script>
+	<div class="col-md-12">		
+		<%= image_tag Config.find_by_key('LOGIN_LOGO').value , :class=> "img-responsive center-block" , height: '80%', width: '80%'%>					
 	</div>
 </div>
-
 </br>
-
 <div class="row">
-	<div class="col-md-3">
+	
+	<div class="col-md-2 center-block" style="float:none">
 		<%= link_to signin_facebook_path do %>
 		<div class="btn btn-social btn-facebook">
 			<i class="fa fa-facebook"></i> Sign in with Facebook
 		</div>
 		<% end %>
 	</div>
+	
 </div>
-<!--
-</br>
-<div class="row">
-<div class="col-md-3">
-<%= link_to signin_google_path do %>
-<div class="btn btn-social btn-google">
-<i class="fa fa-google"></i> Sign in with Google
-</div>
-<% end %>
-</div>
-</div>
--->
+

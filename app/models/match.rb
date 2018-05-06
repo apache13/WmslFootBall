@@ -24,6 +24,41 @@ class Match < ApplicationRecord
       end            
   end
   
+  def random_result   
+      logger.info "random result for match #{self.title}"      
+      if self.left.nil? || self.right.nil?
+        return  
+      else
+        
+        result = [-1,0,1].shuffle.first
+        left_score = 0
+        right_score = 0
+        
+        if result < 0
+          right_score = [0,1,2,3].shuffle.first
+          left_score = right_score + [0,1,2,3].shuffle.first
+        else
+          if result > 0
+            left_score = [0,1,2,3].shuffle.first
+            right_score = left_score + [0,1,2,3].shuffle.first  
+          else
+            left_score = [0,1,2,3].shuffle.first
+            right_score = left_score
+          end
+        end        
+        
+        self.update(result: result \
+        , left_score: left_score \
+        , right_score: right_score \
+        , yellow_card: [true,false].shuffle.first \
+        , red_card: [true,false].shuffle.first \
+        , own_goal: [true,false].shuffle.first \
+        , extra_time: [true,false].shuffle.first \
+        , penalty: [true,false].shuffle.first)
+      end            
+                  
+  end
+  
   
   def user_bet_count
     return Bet.where(match: self).length()
