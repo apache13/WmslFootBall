@@ -1,11 +1,41 @@
+<script>
+	$(document).ready(function() {
+		$('.flexslider').flexslider();
+	}); 
+</script>
+<style>
+	.flexslider .slides img {
+		max-height: 500px;
+		width: auto;
+		max-width: 80%;
+		margin: 0 auto;
+	}
+</style>
 <div class="row">
-	<div class="col-md-12">		
-		<%= image_tag Config.find_by_key('LOGIN_LOGO').value , :class=> "img-responsive center-block" , height: '80%', width: '80%'%>					
+	<div class="col-md-12">
+		<div class="flexslider">
+			<ul class="slides">
+				<li>
+					<%= image_tag Config.find_by_key('LOGIN_LOGO_1').value , :class=> "img-responsive center-block" %>
+				</li>
+				<li>
+					<%= image_tag Config.find_by_key('LOGIN_LOGO_2').value , :class=> "img-responsive center-block" %>
+				</li>
+				<li>
+					<%= image_tag Config.find_by_key('LOGIN_LOGO_3').value , :class=> "img-responsive center-block" %>
+				</li>
+				<li>
+					<%= image_tag Config.find_by_key('LOGIN_LOGO_4').value , :class=> "img-responsive center-block" %>
+				</li>
+				<li>
+					<%= image_tag Config.find_by_key('LOGIN_LOGO_5').value , :class=> "img-responsive center-block" %>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
-</br>
+
 <div class="row">
-	
 	<div class="col-md-2 center-block" style="float:none">
 		<%= link_to signin_facebook_path do %>
 		<div class="btn btn-social btn-facebook">
@@ -13,6 +43,5 @@
 		</div>
 		<% end %>
 	</div>
-	
 </div>
 

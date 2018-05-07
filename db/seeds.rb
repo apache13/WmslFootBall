@@ -7,7 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
-Config.create(key: 'LOGIN_LOGO',value: 'wc2018.jpg')
+Config.create(key: 'LOGIN_LOGO_1',value: 'wc2018-01.jpg')
+Config.create(key: 'LOGIN_LOGO_2',value: 'wc2018-01.jpg')
+Config.create(key: 'LOGIN_LOGO_3',value: 'wc2018-01.jpg')
+Config.create(key: 'LOGIN_LOGO_4',value: 'wc2018-01.jpg')
+Config.create(key: 'LOGIN_LOGO_5',value: 'wc2018-01.jpg')
+Config.create(key: 'LOGIN_LOGO_6',value: 'wc2018-01.jpg')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')

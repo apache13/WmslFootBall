@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
-Config.create(key: 'TITLE_STRING',value: 'WMSL UEFA Champions League 2017-2018')
-Config.create(key: 'LOGIN_LOGO_1',value: 'ucl-01.jpg')
-Config.create(key: 'LOGIN_LOGO_2',value: 'ucl-02.jpg')
-Config.create(key: 'LOGIN_LOGO_3',value: 'ucl-01.jpg')
-Config.create(key: 'LOGIN_LOGO_4',value: 'ucl-02.jpg')
+Config.create(key: 'TITLE_STRING',value: 'WMSL Football 2018')
+Config.create(key: 'LOGIN_LOGO_1',value: 'coppa-01.jpg')
+Config.create(key: 'LOGIN_LOGO_2',value: 'coppa-02.jpg')
+Config.create(key: 'LOGIN_LOGO_3',value: 'fa-01.jpg')
+Config.create(key: 'LOGIN_LOGO_4',value: 'fa-02.jpg')
 Config.create(key: 'LOGIN_LOGO_5',value: 'ucl-01.jpg')
 Config.create(key: 'LOGIN_LOGO_6',value: 'ucl-02.jpg')
 
@@ -36,20 +36,22 @@ Team.destroy_all
 User.destroy_all
 Match.destroy_all
 
+FA = Group.create(name: 'FA Cup')
 UCL = Group.create(name: 'UCL')
+COPPA = Group.create(name: 'Coppa')
 
-Sevilla = Team.create(name: 'Sevilla', code: 'SEV', group: UCL, club: true)
-Bayern = Team.create(name: 'Bayern', code: 'FCB', group: UCL, club: true)
-Juventus = Team.create(name: 'Juventus', code: 'JUV', group: UCL, club: true)
+Juventus = Team.create(name: 'Juventus', code: 'JUV', group: COPPA, club: true)
+Milan = Team.create(name: 'AC Milan', code: 'ACM', group: COPPA, club: true)
+
 RealMadrid = Team.create(name: 'RealMadrid', code: 'RMD', group: UCL, club: true)
 Liverpool = Team.create(name: 'Liverpool', code: 'LIV', group: UCL, club: true)
-ManchesterCity = Team.create(name: 'ManchesterCity', code: 'MCI', group: UCL, club: true)
-Barcelona = Team.create(name: 'Barcelona', code: 'BCN', group: UCL, club: true)
-Roma = Team.create(name: 'Roma', code: 'RMA', group: UCL, club: true)
 
-MatchFinal = Match.create(title: 'Final', description: 'Final', start: DateTime.parse('2018-05-27T01:45:00+07:00'), knockout: true, left: RealMadrid, right: Liverpool)
+ManchesterUnited = Team.create(name: 'Manchester United', code: 'MUN', group: FA, club: true)
+Chelsea = Team.create(name: 'Chelsea', code: 'CHE', group: FA, club: true)
 
-
+MatchFinalCoppa = Match.create(title: 'Coppa Italia', description: 'Coppa Italia', start: DateTime.parse('2018-05-10T02:00:00+07:00'), knockout: true,  left: Juventus, right: Milan)
+MatchFinal = Match.create(title: 'FA Cup', description: 'FA Cup', start: DateTime.parse('2018-05-19T23:15:00+07:00'), knockout: true,  left: Chelsea, right: ManchesterUnited)
+MatchFinalUCL = Match.create(title: 'UEFA Champions League', description: 'UEFA Champions League', start: DateTime.parse('2018-05-27T01:45:00+07:00'), knockout: true,  left: RealMadrid, right: Liverpool)
 
 
 

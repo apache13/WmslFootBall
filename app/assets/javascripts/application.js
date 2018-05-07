@@ -18,4 +18,5 @@
 //= require bootstrap
 //= require jquery.countdown
 //= require lightbox-bootstrap
+//= require jquery.flexslider
 //= require_tree .
