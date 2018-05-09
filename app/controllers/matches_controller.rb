@@ -67,16 +67,10 @@ class MatchesController < ApplicationController
   end
 
   def random_bets
-    @match.random_bets
+    caller = User.find(session[:user_id])
+    @match.random_bets(caller)
     respond_to do |format|
       format.html { redirect_to matches_url, notice: 'Match was successfully random bets.' }
-    end
-  end
-  
-  def random_result
-    @match.random_result
-    respond_to do |format|
-      format.html { redirect_to matches_url, notice: 'Match was successfully random result.' }
     end
   end
   

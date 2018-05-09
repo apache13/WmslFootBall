@@ -7,7 +7,9 @@ class Bet < ApplicationRecord
   validates :bet, :inclusion => {:in => [-1,0,1]}  
   validate :validate_on_bet
   #before_destroy :validate_before_destroy    
-    
+
+  attr_accessor :caller
+  
   def win?       
     if self.bet == self.match.result
       return true
@@ -120,30 +122,46 @@ class Bet < ApplicationRecord
     return main_score+bonus_score
   end 
   
-  def self.random(user, match)        
-    Bet.create(user: user, match: match \
-    , bet: [-1,0,1].shuffle.first \
-    , bet_left_score: [0,1,2,3].shuffle.first \
-    , bet_right_score: [0,1,2,3].shuffle.first \
-    , yellow_card: [true,false].shuffle.first \
-    , red_card: [true,false].shuffle.first \
-    , own_goal: [true,false].shuffle.first \
-    , extra_time: [true,false].shuffle.first \
-    , penalty: [true,false].shuffle.first)
+  def self.random(caller, user, match)        
+    logger.info "Random bets for user #{user.name}"  
+    if !Bet.exists?(user: user, match: match)
+      logger.info "Auto generate bet."
+      Bet.create(user: user, match: match \
+      , caller: caller \
+      , bet: [-1,0,1].shuffle.first \
+      , bet_left_score: [0,1,2,3].shuffle.first \
+      , bet_right_score: [0,1,2,3].shuffle.first \
+      , yellow_card: [true,false].shuffle.first \
+      , red_card: [true,false].shuffle.first \
+      , own_goal: [true,false].shuffle.first \
+      , extra_time: [true,false].shuffle.first \
+      , penalty: [true,false].shuffle.first)
+    else
+      logger.info "User already bet."
+    end
+    
   end
   
   private  
   def validate_before_destroy
-    if self.match.lock?
+    if self.match.lock?                 
       errors.add(:bet,"not allowed (match is locked on #{self.match.start})")
       throw(:abort)
     end
   end
   
-  def validate_on_bet
+  def validate_on_bet    
+                
     if self.match.lock?
-      errors.add(:bet,"not allowed (match is locked on #{self.match.start})")
+      if !self.caller.nil? && self.caller.admin?
+        logger.info "Caller from admin any bet can created. (skip validate match lock)"
+      else
+        logger.info "Caller from user any bet after match lock is prohibited."
+        errors.add(:bet,"not allowed (match is locked on #{self.match.start})")
+        throw(:abort)           
+      end      
     end
+    
     if !new_record? && self.match_id_changed?
       errors.add(:match,"can't change")
     end
