@@ -16,14 +16,6 @@ ARG RAILS_MASTER_KEY
 
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-RUN rake db:create
-
-RUN rake db:migrate
-
-ARG SEED
-
-RUN rake ${SEED}
-
 ENV RAILS_SERVE_STATIC_FILES=true
 
 RUN rake assets:precompile
