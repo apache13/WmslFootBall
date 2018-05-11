@@ -28,5 +28,9 @@ class User < ApplicationRecord
     end
     return total
   end
+    
+  def image_ssl
+    self.image.sub! 'http://','https://'
+  end
 
 end

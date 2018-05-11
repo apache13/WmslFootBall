@@ -1,17 +1,17 @@
 module ApplicationHelper
   def display_user(user)
-    image_tag user.image ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
+    image_tag user.image_ssl ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
   end
 
   def display_user_info(user)
-    image_tag user.image ,:class => 'img-circle' , height: '60', width: '60' , :title => user.name
+    image_tag user.image_ssl ,:class => 'img-circle' , height: '60', width: '60' , :title => user.name
   end
 
   def display_user_nav(user_id)
     if !user_id.nil?
       user = User.find_by_id(user_id)
       if !user.nil?
-        image_tag(user.image ,:class => 'img-rounded', height: '20', width: '20' , :title => user.name) + "&nbsp;#{user.name}".html_safe
+        image_tag(user.image_ssl ,:class => 'img-rounded', height: '20', width: '20' , :title => user.name) + "&nbsp;#{user.name}".html_safe
       end
     end
   end
