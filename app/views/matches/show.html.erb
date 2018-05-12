@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong>Live:</strong>
+  <%= @match.live %>
+</p>
+
+<p>
   <strong>Knockout:</strong>
   <%= @match.knockout %>
 </p>
@@ -20,10 +25,13 @@
   <%= @match.start %>
 </p>
 
+<!--
 <p>
   <strong>Bet:</strong>
   <%= "#{@match.user_bet_count}/#{@match.total_bet_count}" %>
 </p>
+-->
+
 <p>
   <strong>Statistics:</strong>
   <%= "#{@match.bet_statistic}" %>
