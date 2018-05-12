@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
   end
   
   def login    
+    @images = Config.find_by_key('SLIDE_IMAGE').value.split(",")
   end
   
 end

@@ -7,12 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL FA Cup 2017-2018')
-Config.create(key: 'LOGIN_LOGO_1',value: 'fa-01.jpg')
-Config.create(key: 'LOGIN_LOGO_2',value: 'fa-02.jpg')
-Config.create(key: 'LOGIN_LOGO_3',value: 'fa-01.jpg')
-Config.create(key: 'LOGIN_LOGO_4',value: 'fa-02.jpg')
-Config.create(key: 'LOGIN_LOGO_5',value: 'fa-01.jpg')
-Config.create(key: 'LOGIN_LOGO_6',value: 'fa-02.jpg')
+Config.create(key: 'SLIDE_IMAGE',value: 'fa-01.jpg')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')

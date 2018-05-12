@@ -5,9 +5,8 @@
 </script>
 <style>
 	.flexslider .slides img {
-		max-height: 500px;
-		width: auto;
-		max-width: 80%;
+		width: 960px;
+		height: 540px;				
 		margin: 0 auto;
 	}
 </style>
@@ -15,21 +14,11 @@
 	<div class="col-md-12">
 		<div class="flexslider">
 			<ul class="slides">
-				<li>
-					<%= image_tag Config.find_by_key('LOGIN_LOGO_1').value , :class=> "img-responsive center-block" %>
-				</li>
-				<li>
-					<%= image_tag Config.find_by_key('LOGIN_LOGO_2').value , :class=> "img-responsive center-block" %>
-				</li>
-				<li>
-					<%= image_tag Config.find_by_key('LOGIN_LOGO_3').value , :class=> "img-responsive center-block" %>
-				</li>
-				<li>
-					<%= image_tag Config.find_by_key('LOGIN_LOGO_4').value , :class=> "img-responsive center-block" %>
-				</li>
-				<li>
-					<%= image_tag Config.find_by_key('LOGIN_LOGO_5').value , :class=> "img-responsive center-block" %>
-				</li>
+				<% @images.each do |image| %>
+					<li>
+						<%= image_tag image.strip, :class=> "img-rounded center-block" %>
+					</li>
+				<% end %>								
 			</ul>
 		</div>
 	</div>

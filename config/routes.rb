@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'privacy/index', :as => :privacy
   get 'help/index', :as => :help
 
   resources :bets
