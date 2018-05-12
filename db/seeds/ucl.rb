@@ -7,12 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL UEFA Champions League 2017-2018')
-Config.create(key: 'LOGIN_LOGO_1',value: 'ucl-01.jpg')
-Config.create(key: 'LOGIN_LOGO_2',value: 'ucl-02.jpg')
-Config.create(key: 'LOGIN_LOGO_3',value: 'ucl-01.jpg')
-Config.create(key: 'LOGIN_LOGO_4',value: 'ucl-02.jpg')
-Config.create(key: 'LOGIN_LOGO_5',value: 'ucl-01.jpg')
-Config.create(key: 'LOGIN_LOGO_6',value: 'ucl-02.jpg')
+Config.create(key: 'SLIDE_IMAGE',value: 'ucl-01.jpg,ucl-02.jpg')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')

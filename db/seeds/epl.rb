@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL EPL 2017-2018')
-Config.create(key: 'SLIDE_IMAGE',value: 'epl-01.jpg')
+Config.create(key: 'SLIDE_IMAGE',value: 'epl-01.jpg,epl-02.jpg')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')
