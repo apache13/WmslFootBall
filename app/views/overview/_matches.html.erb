@@ -1,9 +1,3 @@
-<script>
-	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
-		event.preventDefault();
-		$(this).ekkoLightbox();
-	}); 	
-</script>
 <table class="table table-hover table-bordered">
 	<thead>
 		<tr class="active">
@@ -38,8 +32,16 @@
 					onExpiry : expiry,
 					layout: '{dn} {dl} {hnn}{sep}{mnn}'
 				});
-			</script></td>
+			</script>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
+
+<script>
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+		event.preventDefault();
+		$(this).ekkoLightbox();
+	}); 	
+</script>
