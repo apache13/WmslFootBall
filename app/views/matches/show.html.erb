@@ -12,7 +12,13 @@
 
 <p>
   <strong>Live:</strong>
-  <%= @match.live %>
+  <% if @match.live.nil? %>
+  	<%= '<i class="fa fa-television fa-2x" aria-hidden="true"></i>'.html_safe %>
+  <% else %>
+  	<% @match.live.split(",").each do |live| %>
+      <%= image_tag "tv/#{live}.jpg", height: '30', :title => live %>  
+  	<% end %>
+  <% end %>  
 </p>
 
 <p>

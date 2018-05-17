@@ -110,4 +110,5 @@ module ApplicationHelper
   def display_bet_button(index, match)
     link_to "Bet", user_bet_path(:match_id=>match.id), :id => "bet-#{index}", :countdown=>match.start, "data-toggle"=>"lightbox", "data-title"=>"#{display_match(match)} #{match.title} #{match.description}", "data-type"=>"url", :class=>'btn-sm'        
   end
+  
 end
