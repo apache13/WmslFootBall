@@ -2,7 +2,7 @@ class Match < ApplicationRecord
   
   validates :title, :start, presence: true
   validates :title, length: { maximum: 64 }
-  validates :description, length: { maximum: 128 }      
+  validates :description, :live, length: { maximum: 128 }      
   validate :validate_live
     
   belongs_to :left, :class_name => 'Team', :foreign_key => 'left_id', optional: true
