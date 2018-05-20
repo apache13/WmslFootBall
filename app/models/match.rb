@@ -2,8 +2,9 @@ class Match < ApplicationRecord
   
   validates :title, :start, presence: true
   validates :title, length: { maximum: 64 }
-  validates :description, length: { maximum: 128 }  
-  
+  validates :description, length: { maximum: 128 }      
+  validate :validate_live
+    
   belongs_to :left, :class_name => 'Team', :foreign_key => 'left_id', optional: true
   belongs_to :right, :class_name => 'Team', :foreign_key => 'right_id', optional: true
     
@@ -55,4 +56,17 @@ class Match < ApplicationRecord
     
   end
   
+   private
+
+  def validate_live
+    support = ['amarin', 'gmm25', 'mcot9', 'nation22', 'nbt11', 'one', 'thaipbs', 'true4u', 'tv_thairath', 'tv_workpoint23', 'tv3', 'tv3family', 'tv3sd', 'tv5', 'tv7', 'tv8']
+    if !self.live.nil?
+      self.live.split(",").each do |live|
+        if !support.include?(live)        
+          errors.add(:match,"live channel #{live} not supported.")
+          throw(:abort)
+        end
+      end
+    end
+  end
 end
