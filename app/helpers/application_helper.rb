@@ -29,7 +29,7 @@ module ApplicationHelper
 
   def display_team(team)
     if(team.nil?)
-      '<i class="fa fa-flag-checkered fa-2x" aria-hidden="true" title="?", data_toggle="tooltip"></i>'.html_safe
+      image_tag('flag.jpg' ,:class => 'img-rounded', height: '25', :title => '?')      
     else
       if(team.club?)
         "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe

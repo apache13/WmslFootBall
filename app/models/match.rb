@@ -56,10 +56,9 @@ class Match < ApplicationRecord
     
   end
   
-   private
-
+  private
   def validate_live
-    support = ['amarin', 'gmm25', 'mcot9', 'nation22', 'nbt11', 'one', 'thaipbs', 'true4u', 'tv_thairath', 'tv_workpoint23', 'tv3', 'tv3family', 'tv3sd', 'tv5', 'tv7', 'tv8']
+    support = ['amarin', 'gmm25', 'mcot9', 'nation22', 'nbt11', 'one', 'thaipbs', 'true4u', 'tv_thairath', 'tv_workpoint23', 'tv3', 'tv3family', 'tv3sd', 'tv5', 'tv7', 'tv8', 'pptv']
     if !self.live.nil?
       self.live.split(",").each do |live|
         if !support.include?(live)        
