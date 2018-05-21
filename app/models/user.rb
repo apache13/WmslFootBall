@@ -28,13 +28,5 @@ class User < ApplicationRecord
     end
     return total
   end
-    
-  def image_ssl
-    if self.image.include?('http://')
-      return self.image.sub! 'http://','https://' 
-    else
-      return self.image
-    end    
-  end
 
 end
