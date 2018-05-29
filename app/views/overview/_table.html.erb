@@ -3,6 +3,7 @@
 		<tr class="active">
 			<th class="text-center">Rank</th>
 			<th class="text-center">Player</th>
+			<th class="text-center">P</th>
 			<th class="text-center">PTS</th>
 		</tr>
 	</thead>
@@ -11,6 +12,7 @@
 		<tr>
 			<td class="text-center"><%= index+1 %></td>
 			<td class="text-center"><%= display_user(user) %></td>
+			<td class="text-center"><%= user.p %></td>
 			<td class="text-center"><%= user.pts %></td>
 		</tr>
 		<% end %>

@@ -71,3 +71,4 @@ gem 'lightbox-bootstrap-rails', '5.1.0.1'
 
 gem 'flex-slider-rails', '~> 2.6', '>= 2.6.4.1'
 
+gem 'flexirest', '~> 1.6', '>= 1.6.7'

@@ -1,13 +1,41 @@
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-4">		
 		<div class="panel panel-default">
+			<div class="panel-heading">Player</div>
+			<div class="panel-body">
+				<%= render 'information' %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">		
+		<div class="panel panel-default">
+			<div class="panel-heading">News</div>
+			<div class="panel-body">
+				{to do}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">		
+		<div class="panel panel-default">
+			<div class="panel-heading"><%= @leagueTable.nil? ? "N/A":"#{@leagueTable.leagueCaption} Standings" %></div>
+			<div class="panel-body">
+				<%= render 'league_table' %>				
+			</div>
+		</div>		
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">Your bets</div>
 			<div class="panel-body">
 				<%= render 'matches' %>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="panel panel-default">
+			<div class="panel-heading"><%="#{Config.find_by_key('TITLE_STRING').value} Standings"%></div>
 			<div class="panel-body">
 				<%= render 'table' %>
 			</div>

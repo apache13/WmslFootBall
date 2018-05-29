@@ -28,5 +28,16 @@ class User < ApplicationRecord
     end
     return total
   end
+  
+  def p
+    total = 0
+    matches = Match.all    
+    matches.each do |match| 
+      if !match.result.nil?   
+        total = total + 1
+      end      
+    end
+    return total
+  end
 
 end

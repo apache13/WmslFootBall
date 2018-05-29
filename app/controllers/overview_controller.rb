@@ -3,11 +3,19 @@ class OverviewController < ApplicationController
   before_action :require_login_permission
   
   def index
-    @table = User.all.sort {|a,b| b.pts <=> a.pts}        
+    @table = User.all.sort_by{|u| [-u.pts.to_i,u.id]}        
     @matches = Match.all
     if !session[:user_id].nil?
       @info = User.find_by_id(session[:user_id])  
     end    
+    
+    begin
+      @leagueTable = LeagueTable.find(Config.find_by_key('API_COMPETITION_ID').value.to_i)
+    rescue => error
+      logger.error error.inspect
+      @leagueTable = nil
+    end
+    
   end
   
   # GET /bet

@@ -1,0 +1,52 @@
+<div>
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		<% Group.all.each_with_index do |group,index| %>
+		<li role="presentation" class="<%=index==0?"active":""%>">
+			<a href=<%= "#table#{index}"%> aria-controls=<%= "#table#{index}"%> role="tab" data-toggle="tab"><%= group.name%></a>
+		</li>
+		<% end %>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<% Group.all.each_with_index do |group,index| %>
+		<div role="tabpanel" class="<%=index==0?"tab-pane active":"tab-pane"%>" id=<%= "table#{index}"%>>
+			<% if @leagueTable.nil? %>
+			<p>
+				N/A
+			</p>
+			<% else %>
+			<table class="table table-hover">
+				<thead>
+					<tr class="active">
+						<th class="text-center">Rank</th>
+						<th class="text-left">Team</th>
+						<th class="text-center">P</th>
+						<th class="text-center">G</th>
+						<th class="text-center">GA</th>
+						<th class="text-center">GD</th>
+						<th class="text-center">PTS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @leagueTable.standings[group.name].sort_by{|i| [i.rank,i.team]}.each_with_index do |item,index| %>
+					<tr>
+						<td class="text-center"><%= item.rank %></td>
+						<td class="text-left"><%= item.team %></td>
+						<td class="text-center"><%= item.playedGames %></td>
+						<td class="text-center"><%= item.goals %></td>
+						<td class="text-center"><%= item.goalsAgainst %></td>
+						<td class="text-center"><%= item.goalDifference %></td>
+						<td class="text-center"><%= item.points %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+	<p class="text-right small">
+		<a href="https://api.football-data.org" target="_blank">https://api.football-data.org</a>
+	</p>
+</div>

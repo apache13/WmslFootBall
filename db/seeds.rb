@@ -8,6 +8,7 @@
 Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
 Config.create(key: 'SLIDE_IMAGE',value: 'wc2018-01.jpg,wc2018-02.jpg,wc2018-03.jpg,wc2018-04.jpg,wc2018-05.jpg,wc2018-06.jpg')
+Config.create(key: 'API_COMPETITION_ID',value: '467')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')
@@ -133,28 +134,28 @@ Match47 = Match.create(title: 'H#3', description: 'Group-Stage', start: DateTime
 Match48 = Match.create(title: 'H#3', description: 'Group-Stage', start: DateTime.parse('2018-06-28T18:00:00+04:00'), knockout: false, left: Senegal, right: Colombia)
 
 #Round of 16
-Match49 = Match.create(title: 'Winners Group A vs Runners-up Group B', description: 'Round of 16', start: DateTime.parse('2018-06-30T21:00:00+03:00'), knockout: true)
-Match50 = Match.create(title: 'Winners Group C vs Runners-up Group D', description: 'Round of 16', start: DateTime.parse('2018-06-30T17:00:00+03:00'), knockout: true)
-Match51 = Match.create(title: 'Winners Group E vs Runners-up Group F', description: 'Round of 16', start: DateTime.parse('2018-07-1T17:00:00+03:00'), knockout: true)
-Match52 = Match.create(title: 'Winners Group G vs Runners-up Group G', description: 'Round of 16', start: DateTime.parse('2018-07-1T21:00:00+03:00'), knockout: true)
-Match53 = Match.create(title: 'Winners Group B vs Runners-up Group H', description: 'Round of 16', start: DateTime.parse('2018-07-2T18:00:00+03:00'), knockout: true)
-Match54 = Match.create(title: 'Winners Group D vs Runners-up Group A', description: 'Round of 16', start: DateTime.parse('2018-07-2T21:00:00+03:00'), knockout: true)
-Match55 = Match.create(title: 'Winners Group F vs Runners-up Group C', description: 'Round of 16', start: DateTime.parse('2018-07-3T17:00:00+03:00'), knockout: true)
-Match56 = Match.create(title: 'Winners Group H vs Runners-up Group G', description: 'Round of 16', start: DateTime.parse('2018-07-3T21:00:00+03:00'), knockout: true)
+Match49 = Match.create(title: 'Winners A vs Runners-up B', description: 'Round of 16', start: DateTime.parse('2018-06-30T21:00:00+03:00'), knockout: true)
+Match50 = Match.create(title: 'Winners C vs Runners-up D', description: 'Round of 16', start: DateTime.parse('2018-06-30T17:00:00+03:00'), knockout: true)
+Match51 = Match.create(title: 'Winners E vs Runners-up F', description: 'Round of 16', start: DateTime.parse('2018-07-1T17:00:00+03:00'), knockout: true)
+Match52 = Match.create(title: 'Winners G vs Runners-up G', description: 'Round of 16', start: DateTime.parse('2018-07-1T21:00:00+03:00'), knockout: true)
+Match53 = Match.create(title: 'Winners B vs Runners-up H', description: 'Round of 16', start: DateTime.parse('2018-07-2T18:00:00+03:00'), knockout: true)
+Match54 = Match.create(title: 'Winners D vs Runners-up A', description: 'Round of 16', start: DateTime.parse('2018-07-2T21:00:00+03:00'), knockout: true)
+Match55 = Match.create(title: 'Winners F vs Runners-up C', description: 'Round of 16', start: DateTime.parse('2018-07-3T17:00:00+03:00'), knockout: true)
+Match56 = Match.create(title: 'Winners H vs Runners-up G', description: 'Round of 16', start: DateTime.parse('2018-07-3T21:00:00+03:00'), knockout: true)
 
 #Quarter-finals
-Match57 = Match.create(title: 'Winners Match 49 vs Winners Match 50', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T17:00:00+03:00'), knockout: true)
-Match58 = Match.create(title: 'Winners Match 53 vs Winners Match 54', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T21:00:00+03:00'), knockout: true)
-Match59 = Match.create(title: 'Winners Match 51 vs Winners Match 52', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T18:00:00+03:00'), knockout: true)
-Match60 = Match.create(title: 'Winners Match 55 vs Winners Match 56', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T21:00:00+03:00'), knockout: true)
+Match57 = Match.create(title: 'Winners 49 vs Winners 50', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T17:00:00+03:00'), knockout: true)
+Match58 = Match.create(title: 'Winners 53 vs Winners 54', description: 'Quarter-finals', start: DateTime.parse('2018-07-6T21:00:00+03:00'), knockout: true)
+Match59 = Match.create(title: 'Winners 51 vs Winners 52', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T18:00:00+03:00'), knockout: true)
+Match60 = Match.create(title: 'Winners 55 vs Winners 56', description: 'Quarter-finals', start: DateTime.parse('2018-07-7T21:00:00+03:00'), knockout: true)
 
 #Semi-finals
-Match61 = Match.create(title: 'Winners Match 57 vs Winners Match 58', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
-Match62 = Match.create(title: 'Winners Match 59 vs Winners Match 60', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
+Match61 = Match.create(title: 'Winners 57 vs Winners 58', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
+Match62 = Match.create(title: 'Winners 59 vs Winners 60', description: 'Semi-finals', start: DateTime.parse('2018-07-10T21:00:00+03:00'), knockout: true)
 
 #Third place play-off
-Match63 = Match.create(title: 'Losers Match 61 vs Losers Match 62', description: 'Third place play-off', start: DateTime.parse('2018-07-14T17:00:00+03:00'), knockout: true)
+Match63 = Match.create(title: 'Losers 61 vs Losers 62', description: 'Third place play-off', start: DateTime.parse('2018-07-14T17:00:00+03:00'), knockout: true)
 
 #Final
-Match64 = Match.create(title: 'Winners Match 61 vs Winners Match 62', description: 'Final', start: DateTime.parse('2018-07-15T18:00:00+03:00'), knockout: true)
+Match64 = Match.create(title: 'Winners 61 vs Winners 62', description: 'Final', start: DateTime.parse('2018-07-15T18:00:00+03:00'), knockout: true)
 
