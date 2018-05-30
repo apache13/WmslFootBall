@@ -25,6 +25,12 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    begin
+      @players = Player.find(@team.api_id).players
+    rescue => error
+      logger.error error.inspect
+      @players = nil
+    end   
   end
 
   # GET /teams/new
@@ -84,6 +90,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :code, :group_id, :club)
+      params.require(:team).permit(:name, :code, :group_id, :club, :api_id)
     end
 end

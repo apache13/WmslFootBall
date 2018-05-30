@@ -22,6 +22,11 @@
   </div>
 	
   <div class="field">
+    <%= form.label :api_id %>
+    <%= form.number_field :api_id, id: :api_id %>
+  </div>
+  
+  <div class="field">
     <%= form.label :club %>
     <%= form.check_box :club, id: :team_club %>
   </div>

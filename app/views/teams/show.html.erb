@@ -10,5 +10,35 @@
   <%= @team.code %>
 </p>
 
+<p>
+  <strong>API ID:</strong>
+  <%= @team.api_id %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @team.club %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @team.group.name %>
+</p>
+
+<div class="row">
+	<div class="col-md-12">		
+		<div class="panel panel-default">
+			<div class="panel-heading"><strong>Players</strong></div>
+			<div class="panel-body">
+				<% if @players.nil? %>
+					<p>n/a</p>
+				<% else %>
+					<%= render 'players' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

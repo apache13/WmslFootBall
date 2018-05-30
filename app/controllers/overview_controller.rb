@@ -14,7 +14,7 @@ class OverviewController < ApplicationController
     rescue => error
       logger.error error.inspect
       @leagueTable = nil
-    end
+    end        
     
   end
   

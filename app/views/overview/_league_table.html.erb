@@ -32,7 +32,7 @@
 					<% @leagueTable.standings[group.name].sort_by{|i| [i.rank,i.team]}.each_with_index do |item,index| %>
 					<tr>
 						<td class="text-center"><%= item.rank %></td>
-						<td class="text-left"><%= item.team %></td>
+						<td class="text-left"><span title="<%= item.teamId %>" data_toggle="tooltip"><%= item.team %></span></td>
 						<td class="text-center"><%= item.playedGames %></td>
 						<td class="text-center"><%= item.goals %></td>
 						<td class="text-center"><%= item.goalsAgainst %></td>
