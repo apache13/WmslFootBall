@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController  
-  before_action :require_login_permission_and_admin  
+  before_action :require_login_permission_and_admin, except: [:show]  
+  before_action :require_login_permission, only: [:show]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   # GET /teams
@@ -25,12 +26,22 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    
     begin
       @players = Player.find(@team.api_id).players
     rescue => error
       logger.error error.inspect
       @players = nil
-    end   
+    end
+    
+    @user = User.find(session[:user_id])
+    if @user.admin? && params[:admin].present?
+      @admin_mode = true;
+    else
+      @admin_mode = false;
+      render layout: false
+    end       
+    
   end
 
   # GET /teams/new

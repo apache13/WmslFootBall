@@ -34,7 +34,7 @@ module ApplicationHelper
       if(team.club?)
         "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe
       else
-        flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip" )
+        link_to flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip"), {controller: "teams", action: "show", id: team, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{team.name}", "data-type"=>"url"
       end
     end
   end
