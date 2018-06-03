@@ -1,6 +1,10 @@
 class User < ApplicationRecord
 
+  belongs_to :champion, :class_name => 'Team', :foreign_key => 'team_id', optional: true
+  
   validates :uid, uniqueness: true
+  validates :top_goal_scorer, length: { maximum: 64 }
+    
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']

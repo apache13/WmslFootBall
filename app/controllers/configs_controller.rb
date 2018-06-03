@@ -9,10 +9,10 @@ class ConfigsController < ApplicationController
     if params[:key].present? && params[:value].present?
         @configs = Config.where("key like ?","%#{params[:key]}%").where("value like ?","%#{params[:value]}%").paginate(:page => params[:page])
     else
-      if params[:name].present?
+      if params[:key].present?
         @configs = Config.where("key like ?","%#{params[:key]}%").paginate(:page => params[:page])
       else
-        if params[:uid].present?
+        if params[:value].present?
           @configs = Config.where("value like ?","%#{params[:value]}%").paginate(:page => params[:page])
         else
           @configs = Config.paginate(:page => params[:page])

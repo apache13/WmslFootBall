@@ -1,17 +1,17 @@
 module ApplicationHelper
   def display_user(user)
-    image_tag user.image ,:class => 'img-circle' , height: '30', width: '30' , :title => user.name
+    image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.name)
   end
 
   def display_user_info(user)
-    image_tag user.image ,:class => 'img-circle' , height: '60', width: '60' , :title => user.name
+    image_tag(user.image, :class => 'img-circle', height: '60', width: '60', :title => user.name)
   end
 
   def display_user_nav(user_id)
     if !user_id.nil?
       user = User.find_by_id(user_id)
       if !user.nil?
-        image_tag(user.image ,:class => 'img-rounded', height: '20', width: '20' , :title => user.name) + "&nbsp;#{user.name}".html_safe
+        image_tag(user.image ,:class => 'img-circle', height: '20', width: '20' , :title => user.name) + "&nbsp;#{user.name}".html_safe
       end
     end
   end
@@ -20,34 +20,41 @@ module ApplicationHelper
     if !user_id.nil?
       user = User.find_by_id(user_id)
       if user.nil?
-      return false
+        return false
       else
-      return user.admin?
+        return user.admin?
       end
     end
-  end
-
-  def display_team(team)
+  end  
+  
+  def display_flag(team)        
     if(team.nil?)
-      image_tag('flag.jpg' ,:class => 'img-rounded', height: '25', :title => '?')      
+      image_tag('flag.jpg' ,:class => 'img-rounded', height: '25', :title => '???')      
     else
       if(team.club?)
         "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe
-      else
-        link_to flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip"), {controller: "teams", action: "show", id: team, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{team.name}", "data-type"=>"url"
+      else               
+        flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip")                
+      end
+    end
+  end
+  
+  def display_team(team)        
+    if(team.nil?)
+      image_tag('flag.jpg' ,:class => 'img-rounded', height: '25', :title => '???')      
+    else
+      if(team.club?)
+        "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe
+      else               
+        text = flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip")
+        path = {controller: "teams", action: "show", id: team, lightbox: 'true'}
+        title = team.name
+        display_modal_button(text, path, title)        
       end
     end
   end
 
-  def display_match(match)
-    if match.result.nil?
-      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
-    else
-      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
-    end    
-  end
-
-  def display_bet(bet)
+  def display_your_bet(bet)    
     if bet.nil?
       '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
     else
@@ -63,18 +70,29 @@ module ApplicationHelper
     end
   end
 
-  def display_bet_result(bet)
+  def display_your_score(bet)
     if bet.nil?
-      '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
     else
       if bet.match.result.nil?
-        '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
+        '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
       else
-        link_to bet.pts, {controller: "bets", action: "show", id: bet, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{display_match(bet.match)} #{bet.match.title} #{bet.match.description}", "data-type"=>"url"
+        text = bet.pts
+        path = {controller: "bets", action: "show", id: bet, lightbox: 'true'}
+        title =  "#{display_match_versus(bet.match)} #{bet.match.title} #{bet.match.description}"       
+        display_modal_button(text, path, title)
       end
     end
   end
 
+  def display_match_versus(match)
+    if match.result.nil?
+      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
+    else
+      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
+    end    
+  end
+  
   def display_match_result(match)
     if match.result.nil?
       '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
@@ -90,25 +108,35 @@ module ApplicationHelper
       end
     end
   end
-
-  def display_match_lock(match)
-    if match.lock?
-      '<i class="fa fa-lock fa-2x" aria-hidden="true"></i>'.html_safe
-    else
-      '<i class="fa fa-unlock fa-2x" aria-hidden="true"></i>'.html_safe
-    end
+    
+  def display_match_description(match)    
+      if match.knockout?
+        text = match.title
+      else
+        text = "#{match.description} #{match.title}"
+      end      
+      path = {controller: "matches", action: "show", id: match, lightbox: 'true'}
+      title = "#{match.title} #{match.description}"      
+      display_modal_button(text, path, title)       
   end
   
-  def display_match_modal(match)
-    if match.knockout?
-      link_to match.title, {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"
-    else
-      link_to "#{match.description} #{match.title}", {controller: "matches", action: "show", id: match, lightbox: 'true'}, "data-toggle"=>"lightbox", "data-title"=>"#{match.title} #{match.description}", "data-type"=>"url"
-    end  
+  def display_bet_button(index, match)    
+    text = "Bet"
+    path = user_bet_path(:match_id=>match.id)
+    title = "#{display_match_versus(match)} #{match.title} #{match.description}"
+    id = "bet-#{index}"
+    time = match.start    
+    display_modal_button_countdown(text, path, title, id, time)            
   end
   
-  def display_bet_button(index, match)
-    link_to "Bet", user_bet_path(:match_id=>match.id), :id => "bet-#{index}", :countdown=>match.start, "data-toggle"=>"lightbox", "data-title"=>"#{display_match(match)} #{match.title} #{match.description}", "data-type"=>"url", :class=>'btn-sm'        
+  private  
+  def display_modal_button(text, path, title)
+    link_to text, path, "data-lightbox"=>SecureRandom.hex, "data-toggle"=>"lightbox", "data-title"=>title, "data-type"=>"url"
   end
+  
+  def display_modal_button_countdown(text, path, title, id, end_time)
+    link_to text, path, "data-lightbox"=>SecureRandom.hex, "data-toggle"=>"lightbox", "data-title"=>title, "data-type"=>"url", :id=>id, :countdown=>end_time, :class=>'btn-sm'
+  end
+  
   
 end

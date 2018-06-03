@@ -6,7 +6,7 @@ class OverviewController < ApplicationController
     @table = User.all.sort_by{|u| [-u.pts.to_i,u.id]}        
     @matches = Match.all
     if !session[:user_id].nil?
-      @info = User.find_by_id(session[:user_id])  
+      @user = User.find_by_id(session[:user_id])  
     end    
     
     begin

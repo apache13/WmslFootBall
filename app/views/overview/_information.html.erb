@@ -1,28 +1,29 @@
 <div class="row">
 	<div class="col-md-3">
 		<p>
-			<%= display_user_info(@info) %>
+			<%= display_user_info(@user) %>
 		</p>
 	</div>
 	<div class="col-md-9">
 		<p>
-			Registered : <%= @info.created_at.strftime("%-d %-b %y %H:%M:%S") %>
+			Registered : <%= @user.created_at.strftime("%-d %-b %y %H:%M:%S") %>
 		</p>	
 		<p>
 			Bets : {to do}
 		</p>
 		<p>
-			PTS : <%= @info.pts %>
+			PTS : <%= @user.pts %>
 		</p>
 		<p>
 			Rank : {to do}
 		</p>
 		<p>
-			Champion : {to do}
-		</p>
+			Champion : <%= display_team(@user.champion) %> 
+		</p>		
 		<p>
-			Top goal scorer : {to do}
-		</p>
+			Top goal scorer : <%= @user.top_goal_scorer %>
+		</p>		
 	</div>	
 </div>
+
 

@@ -35,7 +35,7 @@
 					<td><%= match.knockout %></td>
 					<td><%= display_team(match.left) %></td>
 					<td><%= display_team(match.right) %></td>
-					<td><%= display_match_lock(match) %></td>						
+					<td><%= match.lock? %></td>						
 					<td><%= display_match_result(match) %></td>
 					<td><%= match.left_score %></td>
 					<td><%= match.right_score %></td>	

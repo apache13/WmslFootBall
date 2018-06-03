@@ -17,7 +17,7 @@
   			</tr>
   			<tr>
   				<td><%= "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %></td>
-  				<td class="text-center"><%= display_bet(@bet) %></td>
+  				<td class="text-center"><%= display_your_bet(@bet) %></td>
   				<td class="text-center"><%= display_match_result(@bet.match) %></td>
   				<td class="text-center"><%= @bet.pts_final_result %></td>
   			</tr>

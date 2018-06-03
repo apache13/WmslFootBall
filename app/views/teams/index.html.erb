@@ -27,7 +27,7 @@
 					<td><%= team.name %></td>
 					<td><%= team.club? %></td>	
 					<td><%= team.code %></td>
-					<td><%= display_team(team) %></td>
+					<td><%= display_flag(team) %></td>
 					<td> <%= link_to 'Show', team, :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_team_path(team,:admin=>true) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

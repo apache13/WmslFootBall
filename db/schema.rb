@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_150158) do
+ActiveRecord::Schema.define(version: 2018_06_02_160627) do
 
   create_table "bets", force: :cascade do |t|
     t.integer "match_id"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 2018_05_30_150158) do
     t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "team_id"
+    t.string "top_goal_scorer"
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
 end

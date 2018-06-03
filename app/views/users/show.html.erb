@@ -25,10 +25,19 @@
   <%= @user.image %>
 </p>
 
-
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
+</p>
+
+<p>
+  <strong>Champion:</strong>
+  <%= @user.champion.nil? ? "":@user.champion.name %>
+</p>
+
+<p>
+  <strong>Top goal scorer:</strong>
+  <%= @user.top_goal_scorer %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

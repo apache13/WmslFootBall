@@ -41,6 +41,16 @@
     <%= form.check_box :admin, id: :user_admin %>
   </div>
   
+  <div class="field">
+    <%= form.label :champion %>
+    <%= form.collection_select(:team_id, Team.all, :id, :name, {:include_blank => true} ) %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :top_goal_scorer %>
+    <%= form.text_field :top_goal_scorer, id: :top_goal_scorer %>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
