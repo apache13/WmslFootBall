@@ -9,6 +9,7 @@ Config.destroy_all
 Config.create(key: 'TITLE_STRING',value: 'WMSL World Cup 2018')
 Config.create(key: 'SLIDE_IMAGE',value: 'wc2018-01.jpg,wc2018-02.jpg,wc2018-03.jpg,wc2018-04.jpg,wc2018-05.jpg,wc2018-06.jpg')
 Config.create(key: 'API_COMPETITION_ID',value: '467')
+Config.create(key: 'API_AUTH_TOKEN',value: '')
 
 # Score Config
 Config.create(key: 'BET_MAIN_FINAL_RESULT_SCORE',value: '5')
