@@ -1,0 +1,24 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<%= form_with(model: @user, url: user_top_goal_scorer_edit_path, method: :put, local: true) do |form| %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Top goal scorer
+	</div>
+	<div class="panel-body">
+		<div class="field">
+			<%= form.label :team %>
+			<%= form.collection_select(:team_id, Team.all, :id, :name, {prompt: true}) %>
+		</div>
+		<div class="field">
+			<%= form.label :top_goal_scorer %>
+    		<%= form.text_field :top_goal_scorer, id: :top_goal_scorer %>
+		</div>
+	</div>
+</div>
+<div class="actions">
+	<%= form.submit %>
+</div>
+<% end %>

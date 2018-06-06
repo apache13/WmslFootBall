@@ -129,6 +129,20 @@ module ApplicationHelper
     display_modal_button_countdown(text, path, title, id, time)            
   end
   
+  def display_champion_button(user)        
+    text = 'Change'
+    path = user_champion_path(user)
+    title = "Champion"
+    display_modal_button(text, path, title)            
+  end
+  
+  def display_top_goal_scorer_button(user)        
+    text = 'Change'
+    path = user_top_goal_scorer_path(user)
+    title = "Top goal scorer"
+    display_modal_button(text, path, title)            
+  end
+  
   private  
   def display_modal_button(text, path, title)
     link_to text, path, "data-lightbox"=>SecureRandom.hex, "data-toggle"=>"lightbox", "data-title"=>title, "data-type"=>"url"

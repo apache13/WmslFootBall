@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get '/matches/:id/random_bets'  => 'matches#random_bets', :as => :random_bets
   get '/matches/:id/random_result'  => 'matches#random_result', :as => :random_result
   
+  get '/users/:id/champion'  => 'users#champion', :as => :user_champion
+  get '/users/:id/top_goal_scorer'  => 'users#top_goal_scorer', :as => :user_top_goal_scorer
+  put '/users/:id/champion'  => 'users#update_champion', :as => :user_champion_edit 
+  put '/users/:id/top_goal_scorer'  => 'users#update_top_goal_scorer', :as => :user_top_goal_scorer_edit
+  
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/signin_facebook' => 'sessions#new_facebook', :as => :signin_facebook

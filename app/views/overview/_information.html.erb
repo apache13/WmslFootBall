@@ -7,21 +7,16 @@
 	<div class="col-md-9">
 		<p>
 			Registered : <%= @user.created_at.strftime("%-d %-b %y %H:%M:%S") %>
-		</p>	
-		<p>
-			Bets : {to do}
-		</p>
+		</p>			
 		<p>
 			PTS : <%= @user.pts %>
-		</p>
-		<p>
-			Rank : {to do}
-		</p>
-		<p>
-			Champion : <%= display_team(@user.champion) %> 
 		</p>		
 		<p>
-			Top goal scorer : <%= @user.top_goal_scorer %>
+			Champion : <%= display_team(@user.champion) %> <%= display_champion_button(@user) %> 
+		</p>		
+		<p>
+			<!-- Top goal scorer : <%= @user.top_goal_scorer %> <%= display_top_goal_scorer_button(@user) %> -->
+			Top goal scorer : {under construction}
 		</p>		
 	</div>	
 </div>

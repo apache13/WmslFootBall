@@ -1,6 +1,7 @@
 class UsersController < ApplicationController  
-  before_action :require_login_permission_and_admin
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login_permission_and_admin, except: [:champion, :top_goal_scorer]
+  before_action :require_login_permission, only: [:champion, :top_goal_scorer, :update_champion, :update_top_goal_scorer]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :champion, :top_goal_scorer]
 
   # GET /users
   # GET /users.json
@@ -75,7 +76,35 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def champion
+    @teams = Team.all
+    render layout: false
+  end
+  
+  def top_goal_scorer
+    @teams = Team.all
+    render layout: false
+  end
+  
+  def update_champion
+    @user = User.find(session[:user_id])  
+    respond_to do |format|      
+      if @user.update(user_champion_params)
+        format.html { redirect_to :root }  
+      end      
+    end    
+  end
+  
+  def update_top_goal_scorer
+    @user = User.find(session[:user_id])  
+    respond_to do |format|      
+      if @user.update(user_top_goal_scorer_params)
+        format.html { redirect_to :root }  
+      end      
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -86,4 +115,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:provider, :uid, :name, :email, :image, :admin, :team_id, :top_goal_scorer)
     end
+    
+    def user_champion_params
+      params.require(:user).permit(:team_id)
+    end
+    
+    def user_top_goal_scorer_params
+      params.require(:user).permit(:top_goal_scorer)
+    end
+    
 end

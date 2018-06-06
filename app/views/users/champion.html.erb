@@ -1,0 +1,20 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<%= form_with(model: @user, url: user_champion_edit_path, method: :put, local: true) do |form| %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Champion
+	</div>
+	<div class="panel-body">
+		<div class="field">
+			<%= form.label :champion %>
+			<%= form.collection_select(:team_id, Team.all, :id, :name, {prompt: true}) %>
+		</div>
+	</div>
+</div>
+<div class="actions">
+	<%= form.submit %>
+</div>
+<% end %>
