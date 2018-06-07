@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   put '/users/:id/champion'  => 'users#update_champion', :as => :user_champion_edit 
   put '/users/:id/top_goal_scorer'  => 'users#update_top_goal_scorer', :as => :user_top_goal_scorer_edit
   
+  get '/teams/:id/players' => 'teams#players', :as => :team_players
+  
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/signin_facebook' => 'sessions#new_facebook', :as => :signin_facebook

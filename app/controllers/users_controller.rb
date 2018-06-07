@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
   
   def top_goal_scorer
-    @teams = Team.all
+    @teams = Team.all        
     render layout: false
   end
   

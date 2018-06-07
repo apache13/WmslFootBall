@@ -10,7 +10,7 @@
 	<div class="panel-body">
 		<div class="field">
 			<%= form.label :champion %>
-			<%= form.collection_select(:team_id, Team.all, :id, :name, {prompt: true}) %>
+			<%= form.collection_select(:team_id, Team.all, :id, :name, {prompt: true, include_blank: true}) %>
 		</div>
 	</div>
 </div>

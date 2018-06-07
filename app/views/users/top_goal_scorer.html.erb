@@ -1,7 +1,6 @@
 <p id="notice">
 	<%= notice %>
 </p>
-
 <%= form_with(model: @user, url: user_top_goal_scorer_edit_path, method: :put, local: true) do |form| %>
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -14,7 +13,7 @@
 		</div>
 		<div class="field">
 			<%= form.label :top_goal_scorer %>
-    		<%= form.text_field :top_goal_scorer, id: :top_goal_scorer %>
+			<%= form.select(:top_goal_scorer, {}) %>
 		</div>
 	</div>
 </div>
@@ -22,3 +21,13 @@
 	<%= form.submit %>
 </div>
 <% end %>
+<script>
+	$('#user_team_id').on('change', function() {
+		$.getJSON("teams/" + this.value + "/players.json", function(data) {
+			$.each(data, function(key, value) {
+				var top_goal_scorer = value.jerseyNumber + ' ' + value.name + ' (' + value.position + ')';
+				$('#user_top_goal_scorer').append($("<option></option>").attr("value", top_goal_scorer).text(top_goal_scorer));
+			});
+		});
+	})
+</script>
