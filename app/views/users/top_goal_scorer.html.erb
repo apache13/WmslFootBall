@@ -23,9 +23,10 @@
 <% end %>
 <script>
 	$('#user_team_id').on('change', function() {
+		$('#user_top_goal_scorer').empty();
 		$.getJSON("teams/" + this.value + "/players.json", function(data) {
 			$.each(data, function(key, value) {
-				var top_goal_scorer = value.jerseyNumber + ' ' + value.name + ' (' + value.position + ')';
+				var top_goal_scorer = value.name + ' (' + value.position + ')';
 				$('#user_top_goal_scorer').append($("<option></option>").attr("value", top_goal_scorer).text(top_goal_scorer));
 			});
 		});
