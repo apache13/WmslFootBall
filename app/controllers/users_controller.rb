@@ -88,20 +88,24 @@ class UsersController < ApplicationController
   end
   
   def update_champion
+    user_bet_champion_end_time = DateTime.parse(Config.find_by_key('USER_BET_CHAMPION_END_TIME').value)    
     @user = User.find(session[:user_id])  
-    respond_to do |format|      
-      if @user.update(user_champion_params)
-        format.html { redirect_to :root }  
+    respond_to do |format|
+      if user_bet_champion_end_time.future?
+        @user.update(user_champion_params)
       end      
+      format.html { redirect_to :root }      
     end    
   end
   
   def update_top_goal_scorer
+    user_bet_top_goal_scorer_end_time = DateTime.parse(Config.find_by_key('USER_BET_TOP_GOAL_SCORER_END_TIME').value)    
     @user = User.find(session[:user_id])  
-    respond_to do |format|      
-      if @user.update(user_top_goal_scorer_params)
-        format.html { redirect_to :root }  
-      end      
+    respond_to do |format|     
+      if user_bet_top_goal_scorer_end_time.future?
+        @user.update(user_top_goal_scorer_params)
+      end       
+      format.html { redirect_to :root }           
     end
   end
   

@@ -87,9 +87,9 @@ module ApplicationHelper
 
   def display_match_versus(match)
     if match.result.nil?
-      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
+      "<ul class='flag-horizontal' style='padding-left: 10px;'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
     else
-      "<ul class='flag-horizontal'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
+      "<ul class='flag-horizontal' style='padding-left: 10px;'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
     end    
   end
   
@@ -130,17 +130,21 @@ module ApplicationHelper
   end
   
   def display_champion_button(user)        
-    text = 'Change'
+    text = "Change"
     path = user_champion_path(user)
     title = "Champion"
-    display_modal_button(text, path, title)            
+    id = "user_bet_champion"
+    end_time = DateTime.parse(Config.find_by_key('USER_BET_CHAMPION_END_TIME').value)
+    display_modal_button_countdown(text, path, title, id, end_time)            
   end
   
   def display_top_goal_scorer_button(user)        
-    text = 'Change'
+    text = "Change"
     path = user_top_goal_scorer_path(user)
     title = "Top goal scorer"
-    display_modal_button(text, path, title)            
+    id = "user_bet_top_goal_scorer"
+    end_time = DateTime.parse(Config.find_by_key('USER_BET_TOP_GOAL_SCORER_END_TIME').value)
+    display_modal_button_countdown(text, path, title, id, end_time)            
   end
   
   private  

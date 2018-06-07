@@ -12,11 +12,34 @@
 			PTS : <%= @user.pts %>
 		</p>		
 		<p>
-			Champion : <%= display_team(@user.champion) %> <%= display_champion_button(@user) %> 
+			Champion : <%= display_team(@user.champion) %> <%= display_champion_button(@user) %>
+			<script>
+				var userBetChampionEndTime = new Date($(user_bet_champion).attr('countdown'));
+				function expiry() {
+					$(user_bet_champion).hide();
+				}
+				$(user_bet_champion).countdown({
+					until : userBetChampionEndTime,
+					alwaysExpire: true,
+					onExpiry : expiry,
+					layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
+				});
+			</script> 
 		</p>		
 		<p>
-			<!-- Top goal scorer : <%= @user.top_goal_scorer %> <%= display_top_goal_scorer_button(@user) %> -->
-			Top goal scorer : {under construction}
+			Top goal scorer : <%= @user.top_goal_scorer %> <%= display_top_goal_scorer_button(@user) %>
+			<script>
+				var userBetTopGoalScorerEndTime = new Date($(user_bet_top_goal_scorer).attr('countdown'));
+				function expiry() {
+					$(user_bet_top_goal_scorer).hide();
+				}
+				$(user_bet_top_goal_scorer).countdown({
+					until : userBetTopGoalScorerEndTime,
+					alwaysExpire: true,
+					onExpiry : expiry,
+					layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
+				});
+			</script>
 		</p>		
 	</div>	
 </div>
