@@ -87,9 +87,9 @@ module ApplicationHelper
 
   def display_match_versus(match)
     if match.result.nil?
-      "<ul class='flag-horizontal' style='padding-left: 10px;'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
+      "<ul class='flag-horizontal' style='padding-left: 5px;'><li>#{display_team(match.left)}</li><li><strong>vs</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe
     else
-      "<ul class='flag-horizontal' style='padding-left: 10px;'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
+      "<ul class='flag-horizontal' style='padding-left: 5px;'><li>#{display_team(match.left)}</li><li><strong>#{match.left_score}-#{match.right_score}</strong></li><li>#{display_team(match.right)}</li></ul>".html_safe      
     end    
   end
   

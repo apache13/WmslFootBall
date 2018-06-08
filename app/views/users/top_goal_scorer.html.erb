@@ -9,7 +9,7 @@
 	<div class="panel-body">
 		<div class="field">
 			<%= form.label :team %>
-			<%= form.collection_select(:team_id, Team.all, :id, :name, {prompt: true}) %>
+			<%= form.collection_select(:top_goal_scorer_team_id, Team.all, :id, :name, {prompt: true}) %>
 		</div>
 		<div class="field">
 			<%= form.label :top_goal_scorer %>
@@ -22,13 +22,16 @@
 </div>
 <% end %>
 <script>
-	$('#user_team_id').on('change', function() {
-		$('#user_top_goal_scorer').empty();
+	$('#user_top_goal_scorer_team_id').on('change', function() {
+		$("#user_top_goal_scorer").empty();
+		$("#user_top_goal_scorer").hide();
 		$.getJSON("teams/" + this.value + "/players.json", function(data) {
-			$.each(data, function(key, value) {
-				var top_goal_scorer = value.name + ' (' + value.position + ')';
-				$('#user_top_goal_scorer').append($("<option></option>").attr("value", top_goal_scorer).text(top_goal_scorer));
+			$.each(data, function(key, value) {								
+				var top_goal_scorer_key = value.name + ' (' + $("#user_top_goal_scorer_team_id :selected").text() + ')';
+				var top_goal_scorer_value = value.name + ' (' + value.position + ')';
+				$('#user_top_goal_scorer').append($("<option></option>").attr("value", top_goal_scorer_key).text(top_goal_scorer_value));
 			});
+			$("#user_top_goal_scorer").show();  
 		});
 	})
 </script>

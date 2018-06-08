@@ -1,47 +1,71 @@
 <div class="row">
 	<div class="col-md-3">
-		<p>
+		<p class="text-center">
 			<%= display_user_info(@user) %>
 		</p>
 	</div>
 	<div class="col-md-9">
 		<p>
 			Registered : <%= @user.created_at.strftime("%-d %-b %y %H:%M:%S") %>
+		</p>
+		<p>
+			Rank : <%= @user.rank %>
 		</p>			
 		<p>
 			PTS : <%= @user.pts %>
-		</p>		
-		<p>
-			Champion : <%= display_team(@user.champion) %> <%= display_champion_button(@user) %>
-			<script>
-				var userBetChampionEndTime = new Date($(user_bet_champion).attr('countdown'));
-				function expiry() {
-					$(user_bet_champion).hide();
-				}
-				$(user_bet_champion).countdown({
-					until : userBetChampionEndTime,
-					alwaysExpire: true,
-					onExpiry : expiry,
-					layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
-				});
-			</script> 
-		</p>		
-		<p>
-			Top goal scorer : <%= @user.top_goal_scorer %> <%= display_top_goal_scorer_button(@user) %>
-			<script>
-				var userBetTopGoalScorerEndTime = new Date($(user_bet_top_goal_scorer).attr('countdown'));
-				function expiry() {
-					$(user_bet_top_goal_scorer).hide();
-				}
-				$(user_bet_top_goal_scorer).countdown({
-					until : userBetTopGoalScorerEndTime,
-					alwaysExpire: true,
-					onExpiry : expiry,
-					layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
-				});
-			</script>
-		</p>		
+		</p>				
 	</div>	
+</div>
+<div class="row">
+	<div class="col-md-12">		
+		
+		<table class="table table-hover">
+			<thead>
+				<tr class="active">
+					<th>#</th>
+					<th class="text-center">Your Bet</th>
+					<th class="text-center" style="width: 150px">Bet</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Champion</td>				
+					<td><%= display_team(@user.champion) %></td>
+					<td class="text-center"><%= display_champion_button(@user) %></td>
+					<script>
+						var userBetChampionEndTime = new Date($(user_bet_champion).attr('countdown'));
+						function expiry() {
+							$(user_bet_champion).hide();
+						}
+						$(user_bet_champion).countdown({
+							until : userBetChampionEndTime,
+							alwaysExpire: true,
+							onExpiry : expiry,
+							layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
+						});
+					</script> 
+				</tr>
+				<tr>
+					<td>Top goal scorer</td>				
+					<td><%= @user.top_goal_scorer %></td>
+					<td class="text-center"><%= display_top_goal_scorer_button(@user) %></td>
+					<script>
+						var userBetTopGoalScorerEndTime = new Date($(user_bet_top_goal_scorer).attr('countdown'));
+						function expiry() {
+							$(user_bet_top_goal_scorer).hide();
+						}
+						$(user_bet_top_goal_scorer).countdown({
+							until : userBetTopGoalScorerEndTime,
+							alwaysExpire: true,
+							onExpiry : expiry,
+							layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
+						});
+					</script>
+				</tr>
+			</tbody>
+		</table>
+			
+	</div>
 </div>
 
 

@@ -43,5 +43,15 @@ class User < ApplicationRecord
     end
     return total
   end
+  
+  def rank
+    standings = User.all.sort_by{|u| [-u.pts.to_i,u.id]}
+    standings.each_with_index do |player, index|
+       if player.id == self.id
+         return index + 1
+       end
+    end
+    return -1
+  end
 
 end
