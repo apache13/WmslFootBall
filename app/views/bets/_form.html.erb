@@ -18,15 +18,16 @@
 		Main
 	</div>
 	<div class="panel-body">
-
+		
 		<div class="field">
 			<% if @admin_mode %>
-			<%= form.label :match_id %>
-			<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
+				<%= form.label :match_id %>
+				<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
 			<% else %>
-			<%= form.hidden_field :match_id%>
+				<%= form.hidden_field :match_id %>				
 			<% end %>
 		</div>
+		
 		<% if @admin_mode %>
 		<div class="field">
 			<%= form.label :user_id %>
@@ -44,12 +45,12 @@
 		</div>
 
 		<div class="field">
-			<%= form.label "Left Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points) : " %>
+			<%= form.label "#{@bet.match.left.nil? ? 'Left':@bet.match.left.name} Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points) : " %>
 			<%= form.number_field :bet_left_score, id: :match_left_score %>
 		</div>
 
 		<div class="field">
-			<%= form.label "Right Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points) : " %>
+			<%= form.label "#{@bet.match.right.nil? ? 'Right':@bet.match.right.name} Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points) : " %>
 			<%= form.number_field :bet_right_score, id: :match_right_score %>
 		</div>
 		
@@ -76,13 +77,16 @@
 			<div class="field">
 				<%= form.label "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points): " %>
 				<%= form.check_box :penalty, id: :penalty %>
-			</div>								
-		<% end %>
+			</div>																
+		<% end %>				
 		
 	</div>
 </div>
 
 <div class="actions">
+	<% if @modal == true %>
+		<%= hidden_field_tag :modal, @modal %>
+	<% end %>
 	<%= form.submit %>
 </div>
 <% end %>

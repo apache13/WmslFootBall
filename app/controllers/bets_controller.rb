@@ -40,11 +40,9 @@ class BetsController < ApplicationController
   end
 
   # GET /bets/new
-  def new                     
-    #puts params.inspect    
-    
+  def new                         
     @user = User.find(session[:user_id])
-    if @user.admin? && params[:admin].present?
+    if @user.admin?
       @bet = Bet.new
       @admin_mode = true;
     else
@@ -53,14 +51,19 @@ class BetsController < ApplicationController
       if !match.nil?
         @bet = Bet.new    
         @bet.user = @user
-        @bet.match = match                 
-        if @bet.match.knockout?          
-          @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]          
-        else
-          @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[0,'Draw'],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]  
-        end                    
+        @bet.match = match        
+        @bet_data = bet_result_data(@bet)                            
       end
-      render layout: false
+      
+      respond_to do |format|
+        if params[:modal].present?
+          @modal = true
+          format.html {render :new, layout: false}
+        else
+          format.html {render :new}
+        end
+      end
+      
     end      
   end
   
@@ -69,16 +72,21 @@ class BetsController < ApplicationController
     
     #puts params.inspect
     @user = User.find(session[:user_id])    
-    if @user.admin? && params[:admin].present?
+    if @user.admin?
       @admin_mode = true;
     else
       @admin_mode = false;
-      if @bet.match.knockout?
-        @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]]
-      else
-        @bet_data = [[-1,@bet.match.left.nil? ? ('Left'):(@bet.match.left.name)],[0,'Draw'],[1,@bet.match.right.nil? ? ('Right'):(@bet.match.right.name)]] 
+      @bet_data = bet_result_data(@bet)
+      
+      respond_to do |format|
+        if params[:modal].present?
+          @modal = true
+          format.html {render :edit, layout: false}
+        else
+          format.html {render :edit}
+        end
       end
-      render layout: false
+      
     end
   end
 
@@ -88,23 +96,26 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @user = User.find(session[:user_id])   
     
-    #puts params.inspect
-    
-    if !params[:admin].present?
-      @bet.user = @user
+    if !@user.admin?
+       @bet.user = @user
     end
     
     respond_to do |format|
       if @bet.save
-        if @user.admin? && params[:admin].present?
-          format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        if params[:modal].present?
+          format.html { redirect_to :root }          
         else
-          format.html { redirect_to :root, layout: false }  
+          format.html { redirect_to @bet, notice: 'Bet was successfully created.' }  
         end                         
         format.json { render :show, status: :created, location: @bet }
       else
-        format.html { render :new }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
+        if params[:modal].present?
+          format.html { redirect_to :root, notice: @bet.errors.full_messages}  
+        else
+          @bet_data = bet_result_data(@bet)
+          format.html { render :new }
+          format.json { render json: @bet.errors, status: :unprocessable_entity }
+        end                
       end
     end
   end
@@ -125,12 +136,17 @@ class BetsController < ApplicationController
         if @user.admin? && params[:admin].present?
           format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
         else
-          format.html { redirect_to :root, layout: false }
+          format.html { redirect_to :root }
         end
         format.json { render :show, status: :ok, location: @bet }
       else
-        format.html { render :edit }
-        format.json { render json: @bet.errors, status: :unprocessable_entity }
+        if params[:modal].present?
+          format.html { redirect_to :root, notice: @bet.errors.full_messages}  
+        else
+          @bet_data = bet_result_data(@bet)
+          format.html { render :edit }
+          format.json { render json: @bet.errors, status: :unprocessable_entity }
+        end 
       end
     end
   end
@@ -155,4 +171,13 @@ class BetsController < ApplicationController
     def bet_params
       params.require(:bet).permit(:match_id, :user_id, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty)
     end
+    
+    def bet_result_data(bet)
+        if bet.match.knockout?
+          return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]]
+        else
+          return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[0,'Draw'],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]] 
+        end
+    end
+    
 end

@@ -1,3 +1,16 @@
+<% if !notice.nil? && notice.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(notice.count, "error") %> prohibited this bet from being saved:</h2>
+	<ul>
+		<% notice.each do |message| %>
+		<li>
+			<%= message %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
 <table class="table table-hover table-bordered">
 	<thead>
 		<tr class="active">

@@ -125,7 +125,7 @@ module ApplicationHelper
   
   def display_bet_button(index, match)    
     text = "Bet"
-    path = user_bet_path(:match_id=>match.id)
+    path = user_bet_path(:match_id=>match.id, :modal=>'true')
     title = "#{display_match_versus(match)} #{match.title} #{match.description}"
     id = "bet-#{index}"
     time = match.start    
