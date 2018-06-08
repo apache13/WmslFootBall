@@ -11,12 +11,29 @@ class BetsController < ApplicationController
 
   # GET /bets/1
   # GET /bets/1.json
-  def show                        
-    respond_to do |format|
-      if params[:modal].present?        
-        format.html { render :show_modal, layout: false }
+  def show
+    
+    accessible = false                                    
+    if @bet.match.result.nil?
+      @user = User.find(session[:user_id])
+      if @user.admin?
+        accessible = true
       else
-        format.html { render :show }
+        accessible = false
+      end  
+    else
+        accessible = true          
+    end
+    
+    respond_to do |format|
+      if accessible == true
+        if params[:modal].present?        
+          format.html { render :show_modal, layout: false }
+        else
+          format.html { render :show }
+        end
+      else
+        format.html { redirect_to '/404' }        
       end
     end
     
