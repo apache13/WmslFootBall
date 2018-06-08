@@ -1,6 +1,9 @@
 module ApplicationHelper
   def display_user(user)
-    image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.name)
+    text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.name)
+    path = {controller: "users", action: "show", id: user, modal: 'true'}
+    title = user.name
+    display_modal_button(text, path, title)   
   end
 
   def display_user_info(user)
@@ -47,7 +50,7 @@ module ApplicationHelper
         "<span class='badge-25 #{team.code}' title='#{team.name}' data_toggle='tooltip' ></span>".html_safe
       else               
         text = flag_icon(team.code.downcase, class: "flag img-rounded", title: team.name, data_toggle: "tooltip")
-        path = {controller: "teams", action: "show", id: team, lightbox: 'true'}
+        path = {controller: "teams", action: "show", id: team, modal: 'true'}
         title = team.name
         display_modal_button(text, path, title)        
       end
@@ -78,7 +81,7 @@ module ApplicationHelper
         '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
       else
         text = bet.pts
-        path = {controller: "bets", action: "show", id: bet, lightbox: 'true'}
+        path = {controller: "bets", action: "show", id: bet, modal: 'true'}
         title =  "#{display_match_versus(bet.match)} #{bet.match.title} #{bet.match.description}"       
         display_modal_button(text, path, title)
       end
@@ -115,7 +118,7 @@ module ApplicationHelper
       else
         text = "#{match.description} #{match.title}"
       end      
-      path = {controller: "matches", action: "show", id: match, lightbox: 'true'}
+      path = {controller: "matches", action: "show", id: match, modal: 'true'}
       title = "#{match.title} #{match.description}"      
       display_modal_button(text, path, title)       
   end

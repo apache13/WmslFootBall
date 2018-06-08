@@ -48,13 +48,16 @@ class TeamsController < ApplicationController
       @players = nil
     end
     
-    @user = User.find(session[:user_id])
-    if @user.admin? && params[:admin].present?
-      @admin_mode = true;
-    else
-      @admin_mode = false;
-      render layout: false
-    end       
+    @fans = User.where("team_id = ?",@team)    
+         
+    respond_to do |format|
+      if params[:modal].present?        
+        format.html { render :show_modal, layout: false }
+      else
+        format.html { render :show }
+      end
+    end
+    
     
   end
 

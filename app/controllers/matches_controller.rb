@@ -11,10 +11,14 @@ class MatchesController < ApplicationController
 
   # GET /matches/1
   # GET /matches/1.json
-  def show                    
-    if !params[:lightbox].nil?
-      render layout: false  
-    end        
+  def show                                
+    respond_to do |format|
+      if params[:modal].present?        
+        format.html { render :show_modal, layout: false }
+      else
+        format.html { render :show }
+      end
+    end
   end
 
   # GET /matches/new

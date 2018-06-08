@@ -1,42 +1,41 @@
-<p id="notice">
-	<%= notice %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @match.title %>
 </p>
 
 <p>
-	<strong>Title:</strong>
-	<%= @match.title %>
+  <strong>Description:</strong>
+  <%= @match.description %>
 </p>
 
 <p>
-	<strong>Description:</strong>
-	<%= @match.description %>
+  <strong>Live:</strong>
+  <% if @match.live.nil? %>
+  	<%= '<i class="fa fa-television fa-2x" aria-hidden="true"></i>'.html_safe %>
+  <% else %>
+  	<% @match.live.split(",").each do |live| %>
+      <%= image_tag "tv/#{live}.jpg", height: '30', :title => live %>  
+  	<% end %>
+  <% end %>  
 </p>
 
 <p>
-	<strong>Live:</strong>
-	<% if @match.live.nil? %>
-	<%= '<i class="fa fa-television fa-2x" aria-hidden="true"></i>'.html_safe %>
-	<% else %>
-	<% @match.live.split(",").each do |live| %>
-	<%= image_tag "tv/#{live}.jpg", height: '30', :title => live %>
-	<% end %>
-	<% end %>
+  <strong>Knockout:</strong>
+  <%= @match.knockout %>
 </p>
 
 <p>
-	<strong>Knockout:</strong>
-	<%= @match.knockout %>
+  <strong>Start:</strong>
+  <%= @match.start %>
 </p>
 
 <p>
-	<strong>Start:</strong>
-	<%= @match.start %>
-</p>
-
-<p>
-	<strong>Statistics:</strong>
-	<%= "#{@match.bet_statistic}" %>
-</p>
+  <strong>Statistics:</strong>
+  <%= "#{@match.bet_statistic}" %>
+</p>				
+		
 <table class="table table-bordered">
 	<tr class="active">
 		<th class="text-center">Bet</th>
@@ -77,7 +76,4 @@
 	</tr>
 	<% end %>
 </table>
-
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
 

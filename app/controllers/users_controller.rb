@@ -1,6 +1,6 @@
 class UsersController < ApplicationController  
-  before_action :require_login_permission_and_admin, except: [:champion, :top_goal_scorer]
-  before_action :require_login_permission, only: [:champion, :top_goal_scorer, :update_champion, :update_top_goal_scorer]
+  before_action :require_login_permission_and_admin, except: [:show, :champion, :top_goal_scorer, :update_champion, :update_top_goal_scorer]
+  before_action :require_login_permission, only: [:show, :champion, :top_goal_scorer, :update_champion, :update_top_goal_scorer]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :champion, :top_goal_scorer]
 
   # GET /users
@@ -25,7 +25,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show
+  def show         
+    respond_to do |format|
+      if params[:modal].present?        
+        format.html { render :show_modal, layout: false }
+      else
+        format.html { render :show }
+      end
+    end
   end
 
   # GET /users/new

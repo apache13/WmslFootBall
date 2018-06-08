@@ -11,14 +11,15 @@ class BetsController < ApplicationController
 
   # GET /bets/1
   # GET /bets/1.json
-  def show                
-    @user = User.find(session[:user_id])
-    if @user.admin? && params[:admin].present?
-      @admin_mode = true;
-    else
-      @admin_mode = false;
-      render layout: false
+  def show                        
+    respond_to do |format|
+      if params[:modal].present?        
+        format.html { render :show_modal, layout: false }
+      else
+        format.html { render :show }
+      end
     end
+    
   end
 
   # GET /bets/new
