@@ -37,7 +37,7 @@
 
 		<div class="field">
 			<%= form.label "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points) : " %>
-			<% if @admin_mode %>
+			<% if @admin_mode && !@modal %>
 				<%= form.number_field :bet, id: :bet %>
 			<% else %>
 				<%= form.collection_select :bet, @bet_data, :first, :last, prompt: true %>
