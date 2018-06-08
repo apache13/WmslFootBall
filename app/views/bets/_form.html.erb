@@ -20,7 +20,7 @@
 	<div class="panel-body">
 		
 		<div class="field">
-			<% if @admin_mode %>
+			<% if @admin_mode && !@modal %>
 				<%= form.label :match_id %>
 				<%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true} ) %>
 			<% else %>
@@ -28,7 +28,7 @@
 			<% end %>
 		</div>
 		
-		<% if @admin_mode %>
+		<% if @admin_mode && !@modal %>
 		<div class="field">
 			<%= form.label :user_id %>
 			<%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true} ) %>
@@ -84,7 +84,7 @@
 </div>
 
 <div class="actions">
-	<% if @modal == true %>
+	<% if @modal %>
 		<%= hidden_field_tag :modal, @modal %>
 	<% end %>
 	<%= form.submit %>
