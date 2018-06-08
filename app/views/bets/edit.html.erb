@@ -2,7 +2,7 @@
 
 <%= render 'form', bet: @bet %>
 
-<% if @admin_mode %>
+<% if !@modal %>
 	<%= link_to 'Show', @bet %> |
 	<%= link_to 'Back', bets_path %>
 <% end %>

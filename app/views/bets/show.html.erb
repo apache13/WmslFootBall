@@ -75,6 +75,7 @@
 
 	</div>
 </div>
-
+<% if !@modal %>
 <%= link_to 'Edit', edit_bet_path(@bet) %> |
 <%= link_to 'Back', bets_path %>
+<% end %>

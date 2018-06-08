@@ -42,52 +42,50 @@ class BetsController < ApplicationController
   # GET /bets/new
   def new                         
     @user = User.find(session[:user_id])
-    if @user.admin?
-      @bet = Bet.new
+    @bet = Bet.new
+    @bet.match = Match.find(params[:match])
+    @bet_data = bet_result_data(@bet)
+    
+    if @user.admin?      
       @admin_mode = true;
     else
-      @admin_mode = false;
-      match = Match.find(params[:match])   
-      if !match.nil?
-        @bet = Bet.new    
-        @bet.user = @user
-        @bet.match = match        
-        @bet_data = bet_result_data(@bet)                            
+      @admin_mode = false;                 
+      @bet.user = @user                
+    end
+                                             
+    respond_to do |format|
+      if params[:modal].present?
+        @modal = true
+        format.html {render :new, layout: false}
+      else
+        format.html {render :new}
       end
-      
-      respond_to do |format|
-        if params[:modal].present?
-          @modal = true
-          format.html {render :new, layout: false}
-        else
-          format.html {render :new}
-        end
-      end
-      
-    end      
+    end
+           
   end
   
   # GET /bets/1/edit
   def edit    
-    
-    #puts params.inspect
+        
     @user = User.find(session[:user_id])    
+    @bet_data = bet_result_data(@bet)
+    
     if @user.admin?
       @admin_mode = true;
     else
       @admin_mode = false;
-      @bet_data = bet_result_data(@bet)
-      
-      respond_to do |format|
-        if params[:modal].present?
-          @modal = true
-          format.html {render :edit, layout: false}
-        else
-          format.html {render :edit}
-        end
+      @bet.user = @user
+    end   
+     
+    respond_to do |format|
+      if params[:modal].present?
+        @modal = true
+        format.html {render :edit, layout: false}
+      else
+        format.html {render :edit}
       end
-      
     end
+
   end
 
   # POST /bets
