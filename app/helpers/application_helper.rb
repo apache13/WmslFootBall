@@ -10,6 +10,26 @@ module ApplicationHelper
     image_tag(user.image, :class => 'img-circle', height: '60', width: '60', :title => user.name)
   end
 
+  def display_label_bet_left_team(bet)
+    if bet.match.nil?
+      display_label_bet_team(nil)
+    else
+      display_label_bet_team(bet.match.left)  
+    end
+  end
+   
+  def display_label_bet_right_team(bet)
+    if bet.match.nil?
+      display_label_bet_team(nil)
+    else
+      display_label_bet_team(bet.match.right)  
+    end    
+  end
+  
+  def display_label_bet_team(team)
+    return "#{team.nil? ? 'Left':team.name} Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points) : "
+  end
+  
   def display_user_nav(user_id)
     if !user_id.nil?
       user = User.find_by_id(user_id)
@@ -98,7 +118,7 @@ module ApplicationHelper
   
   def display_match_result(match)
     if match.result.nil?
-      '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe
     else
       if match.result == 0
         '<i class="fa fa-balance-scale fa-1x" aria-hidden="true"></i>'.html_safe

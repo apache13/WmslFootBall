@@ -5,6 +5,10 @@ class User < ApplicationRecord
   validates :uid, uniqueness: true
   validates :top_goal_scorer, length: { maximum: 64 }
     
+  def admin?    
+    return self.admin
+  end    
+    
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']

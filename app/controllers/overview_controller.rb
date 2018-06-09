@@ -21,12 +21,11 @@ class OverviewController < ApplicationController
   # GET /bet
   def bet
     user = User.find(session[:user_id])
-    match = Match.find(params[:match_id])    
-                  
+    match = Match.find(params[:match_id])                     
     if !user.nil? && !match.nil?                   
       if Bet.exists?(match: match,user: user)
-        @bet = Bet.find_by(match: match, user: user)
-        redirect_to edit_bet_path(@bet, :modal=>'true')
+        bet = Bet.find_by(match: match, user: user)
+        redirect_to edit_bet_path(bet, :modal=>'true')
       else 
         redirect_to new_bet_path(:match=>match, :modal=>'true') 
       end           

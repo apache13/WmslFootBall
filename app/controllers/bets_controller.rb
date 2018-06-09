@@ -11,53 +11,36 @@ class BetsController < ApplicationController
 
   # GET /bets/1
   # GET /bets/1.json
-  def show
-    
-    accessible = false                                    
-    if @bet.match.result.nil?
-      @user = User.find(session[:user_id])
-      if @user.admin?
-        accessible = true
-      else
-        accessible = false
-      end  
-    else
-        accessible = true          
-    end
-    
+   def show
     respond_to do |format|
-      if accessible == true
-        if params[:modal].present?        
+      if @bet.public?
+        if params[:modal].present?
           format.html { render :show_modal, layout: false }
         else
           format.html { render :show }
         end
       else
-        format.html { redirect_to '/404' }        
+        format.html { redirect_to '/404' }
       end
     end
-    
   end
 
   # GET /bets/new
   def new                         
-    @user = User.find(session[:user_id])
     @bet = Bet.new
-    @bet.match = Match.find(params[:match])
-    @bet_data = bet_result_data(@bet)
     
-    if @user.admin?      
-      @admin_mode = true;
-    else
-      @admin_mode = false;                 
-      @bet.user = @user                
+    if params[:match].present?
+      @bet.match = Match.find(params[:match])        
     end
-                                             
+        
+    @bet.user = User.find(session[:user_id])
+    @bet_data = bet_result_data(@bet)    
+    @modal = params[:modal].present? ? true:false  
+                        
     respond_to do |format|
-      if params[:modal].present?
-        @modal = true
+      if @modal          
         format.html {render :new, layout: false}
-      else
+      else 
         format.html {render :new}
       end
     end
@@ -67,19 +50,13 @@ class BetsController < ApplicationController
   # GET /bets/1/edit
   def edit    
         
-    @user = User.find(session[:user_id])    
-    @bet_data = bet_result_data(@bet)
-    
-    if @user.admin?
-      @admin_mode = true;
-    else
-      @admin_mode = false;
-      @bet.user = @user
-    end   
+    @user = User.find(session[:user_id])
+    @bet.user = @user    
+    @bet_data = bet_result_data(@bet)  
+    @modal = params[:modal].present? ? true:false
      
     respond_to do |format|
-      if params[:modal].present?
-        @modal = true
+      if @modal
         format.html {render :edit, layout: false}
       else
         format.html {render :edit}
@@ -91,24 +68,21 @@ class BetsController < ApplicationController
   # POST /bets
   # POST /bets.json
   def create
-    @bet = Bet.new(bet_params)
-    @user = User.find(session[:user_id])   
-    
-    if !@user.admin?
-       @bet.user = @user
-    end
+    @bet = Bet.new(bet_params)    
+    @bet.user = User.find(session[:user_id])
+    @modal = params[:modal].present? ? true:false
     
     respond_to do |format|
       if @bet.save
-        if params[:modal].present?
+        if @modal
           format.html { redirect_to :root }          
         else
           format.html { redirect_to @bet, notice: 'Bet was successfully created.' }  
         end                         
         format.json { render :show, status: :created, location: @bet }
       else
-        if params[:modal].present?
-          format.html { redirect_to :root, notice: @bet.errors.full_messages}  
+        if @modal
+          format.html { redirect_to :root }  
         else
           @bet_data = bet_result_data(@bet)
           format.html { render :new }
@@ -121,25 +95,23 @@ class BetsController < ApplicationController
   # PATCH/PUT /bets/1
   # PATCH/PUT /bets/1.json
   def update
-    @user = User.find(session[:user_id])     
-    
-    if !@user.admin?      
-      @bet.user = @user
-    end
-    
-    puts params.inspect
-          
+                                       
     respond_to do |format|
+      @modal = params[:modal].present? ? true:false
+      if !@bet.owner?(User.find(session[:user_id]))
+        format.html { redirect_to '/404' } 
+      end
+      
       if @bet.update(bet_params)
-        if @user.admin? && params[:admin].present?
-          format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
-        else
+        if @modal
           format.html { redirect_to :root }
+        else
+          format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
         end
         format.json { render :show, status: :ok, location: @bet }
       else
-        if params[:modal].present?
-          format.html { redirect_to :root, notice: @bet.errors.full_messages}  
+        if @modal
+          format.html { redirect_to :root }  
         else
           @bet_data = bet_result_data(@bet)
           format.html { render :edit }
@@ -151,9 +123,12 @@ class BetsController < ApplicationController
 
   # DELETE /bets/1
   # DELETE /bets/1.json
-  def destroy
-    @bet.destroy
-    respond_to do |format|
+  def destroy                    
+    respond_to do |format|      
+      if @bet.public?  
+        format.html { redirect_to '/404' } 
+      end      
+      @bet.destroy            
       format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -162,7 +137,7 @@ class BetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bet
-      @bet = Bet.find(params[:id])
+      @bet = Bet.find(params[:id])              
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -171,11 +146,16 @@ class BetsController < ApplicationController
     end
     
     def bet_result_data(bet)
-        if bet.match.knockout?
-          return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]]
+        if bet.match.nil?
+          return [[-1,'Left'],[0,'Draw'],[1,'Right']]
         else
-          return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[0,'Draw'],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]] 
+          if bet.match.knockout?
+            return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]]
+          else
+            return [[-1,bet.match.left.nil? ? ('Left'):(bet.match.left.name)],[0,'Draw'],[1,bet.match.right.nil? ? ('Right'):(bet.match.right.name)]] 
+          end  
         end
+        
     end
     
 end

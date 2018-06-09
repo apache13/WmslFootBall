@@ -1,26 +1,104 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+<p id="notice">
+	<%= notice %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Information</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				<p>
+					<strong>Name:</strong>
+					<%= @user.name %>
+				</p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+				<p>
+					<strong>Email:</strong>
+					<%= @user.email %>
+				</p>
 
-<p>
-  <strong>Champion:</strong>
-  <%= @user.champion.nil? ? "":@user.champion.name %>
-</p>
+				<p>
+					<strong>Admin:</strong>
+					<%= @user.admin %>
+				</p>
 
-<p>
-  <strong>Top goal scorer:</strong>
-  <%= @user.top_goal_scorer %>
-</p>
+				<p>
+					<strong>Champion:</strong>					
+					<%= display_team(@user.champion) %>
+				</p>
+
+				<p>
+					<strong>Top goal scorer:</strong>
+					<%= @user.top_goal_scorer %>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Statistic</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				<p>
+					<strong>Rank:</strong>
+					<%= @user.rank %>
+				</p>
+				<p>
+					<strong>PTS:</strong>
+					<%= @user.pts %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Bets</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				<table class="table table-hover">
+			<thead>
+			    <tr>
+			      <th class="text-center">Match</th>
+			      <th class="text-center">Information</th>
+			      <th class="text-center">Result</th>			      
+			      <th class="text-center">Bet</th>			      
+			      <th class="text-center">Score</th>
+			      <th colspan="3"></th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% @bets.each do |bet| %>
+				<tr>
+					<td><%= display_match_description(bet.match) %></td>
+					<td class="text-center"><%= display_match_versus(bet.match) %></td>										
+					<td class="text-center"><%= display_match_result(bet.match) %></td>    					    		
+        			<td class="text-center">
+        				<% if bet.public? %>
+        					<%= display_your_bet(bet) %>
+        				<% else %>
+        					<% if bet.owner?(User.find(session[:user_id]))%>
+        						<%= display_your_bet(bet) %>	
+							<% else %>
+								<i class="fa fa-eye-slash fa-1x" aria-hidden="true"></i>        						
+        					<% end %>
+        				<% end %>
+        			</td>
+        			        					
+        			<td class="text-right"><%= display_your_score(bet) %></td>        			
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+

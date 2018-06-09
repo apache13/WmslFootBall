@@ -1,79 +1,104 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @match.title %>
+<p id="notice">
+	<%= notice %>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @match.description %>
-</p>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Information</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				<p>
+					<strong>Title:</strong>
+					<%= @match.title %>
+				</p>				
+				<p>
+					<strong>Live:</strong>
+					<% if @match.live.nil? %>
+					<%= '<i class="fa fa-television fa-2x" aria-hidden="true"></i>'.html_safe %>
+					<% else %>
+					<% @match.live.split(",").each do |live| %>
+					<%= image_tag "tv/#{live}.jpg", height: '30', :title => live %>
+					<% end %>
+					<% end %>
+				</p>
+				<p>
+					<strong>Knockout:</strong>
+					<%= @match.knockout %>
+				</p>
+				<p>
+					<strong>Kick-off:</strong>
+					<%= @match.start.strftime("%-d %-b %Y %H:%M:%S") %>
+				</p>
+				<p>
+					<strong>Description:</strong>
+					<%= @match.description %>
+				</p>				
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Prices</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				
+			</div>
+		</div>
+	</div>
+</div>
 
-<p>
-  <strong>Live:</strong>
-  <% if @match.live.nil? %>
-  	<%= '<i class="fa fa-television fa-2x" aria-hidden="true"></i>'.html_safe %>
-  <% else %>
-  	<% @match.live.split(",").each do |live| %>
-      <%= image_tag "tv/#{live}.jpg", height: '30', :title => live %>  
-  	<% end %>
-  <% end %>  
-</p>
-
-<p>
-  <strong>Knockout:</strong>
-  <%= @match.knockout %>
-</p>
-
-<p>
-  <strong>Start:</strong>
-  <%= @match.start %>
-</p>
-
-<p>
-  <strong>Statistics:</strong>
-  <%= "#{@match.bet_statistic}" %>
-</p>				
-		
-<table class="table table-bordered">
-	<tr class="active">
-		<th class="text-center">Bet</th>
-		<th class="text-center">Result</th>
-	</tr>
-	<tr>
-		<td><%= "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %></td>
-		<td class="text-center"><%= display_match_result(@match) %></td>
-	</tr>
-	<tr>
-		<td><%= "Left Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.left_score %></td>
-	</tr>
-	<tr>
-		<td><%= "Right Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.right_score %></td>
-	</tr>
-	<tr>
-		<td><%= "#{:yellow_card}? (Yes/No) more then #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} cards (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.yellow_card %></td>
-	</tr>
-	<tr>
-		<td><%= "#{:red_card}? (Yes/No) (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.red_card %></td>
-	</tr>
-	<tr>
-		<td><%= "#{:own_goal}? (Yes/No) (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.own_goal %></td>
-	</tr>
-	<% if @match.knockout? %>
-	<tr>
-		<td><%= "#{:extra_time}? (Yes/No) (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.extra_time %></td>
-	</tr>
-	<tr>
-		<td><%= "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points)" %></td>
-		<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-hourglass-half fa-1x" aria-hidden="true"></i>'.html_safe : @match.penalty %></td>
-	</tr>
-	<% end %>
-</table>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Result</strong>
+			</div>
+			<div class="panel-body pre-scrollable">
+				<table class="table table-bordered">
+					<tr class="active">
+						<th class="text-center">Bet</th>
+						<th class="text-center">Result</th>
+					</tr>
+					<tr>
+						<td><%= "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points)" %></td>
+						<td class="text-center"><%= display_match_result(@match) %></td>
+					</tr>
+					<tr>
+						<td><%= "Left Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.left_score %></td>
+					</tr>
+					<tr>
+						<td><%= "Right Score (#{Config.find_by_key('BET_MAIN_RIGHT_TEAM_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.right_score %></td>
+					</tr>
+					<tr>
+						<td><%= "#{:yellow_card}? (Yes/No) more then #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} cards (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.yellow_card %></td>
+					</tr>
+					<tr>
+						<td><%= "#{:red_card}? (Yes/No) (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.red_card %></td>
+					</tr>
+					<tr>
+						<td><%= "#{:own_goal}? (Yes/No) (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.own_goal %></td>
+					</tr>
+					<% if @match.knockout? %>
+					<tr>
+						<td><%= "#{:extra_time}? (Yes/No) (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.extra_time %></td>
+					</tr>
+					<tr>
+						<td><%= "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points)" %></td>
+						<td class="text-center"><%= @match.result.nil? ? '<i class="fa fa-question fa-1x" aria-hidden="true"></i>'.html_safe : @match.penalty %></td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
 

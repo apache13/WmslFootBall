@@ -18,6 +18,22 @@ class Bet < ApplicationRecord
     end
   end
   
+  def owner?(user)
+    if self.user.id == user.id
+      return true
+    else
+      return false
+    end
+  end
+  
+  def public?
+    if self.match.result.nil?
+      return false
+    else
+      return true
+    end
+  end
+  
   def pts_final_result
     score = 0
     if self.bet == self.match.result
