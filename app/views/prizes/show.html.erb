@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @prize.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @prize.code %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @prize.price %>
+</p>
+
+<p>
+  <strong>Sponsor:</strong>
+  <%= @prize.sponsor %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @prize.description %>
+</p>
+
+<p>
+  <strong>Match:</strong>
+  <%= @prize.match.nil? ? nil:display_match_description(@prize.match) %>
+</p>
+
+<p>
+  <strong>Images:</strong>
+  <% @prize.images.each do |image| %>
+  	<p><%= image_tag(image.url, :class => 'img-circle', height: '50', width: '50') %></p>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_prize_path(@prize) %> |
+<%= link_to 'Back', prizes_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_02_160627) do
+ActiveRecord::Schema.define(version: 2018_06_09_100555) do
 
   create_table "bets", force: :cascade do |t|
     t.integer "match_id"
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 2018_06_02_160627) do
     t.string "live"
     t.index ["left_id"], name: "index_matches_on_left_id"
     t.index ["team_id"], name: "index_matches_on_team_id"
+  end
+
+  create_table "prizes", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "description"
+    t.string "sponsor"
+    t.decimal "price"
+    t.string "images"
+    t.integer "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|

@@ -11,7 +11,11 @@ class MatchesController < ApplicationController
 
   # GET /matches/1
   # GET /matches/1.json
-  def show                                
+  def show                        
+    
+    @top5 = Bet.where(match: @match).sort_by{|b| [-b.pts, b.id]}[0..4] 
+    
+                    
     respond_to do |format|
       if params[:modal].present?        
         format.html { render :show_modal, layout: false }

@@ -72,3 +72,7 @@ gem 'lightbox-bootstrap-rails', '~> 3.3', '>= 3.3.0.3'
 gem 'flex-slider-rails', '~> 2.6', '>= 2.6.4.1'
 
 gem 'flexirest', '~> 1.6', '>= 1.6.7'
+
+gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+
+gem 'file_validators', '~> 2.3'

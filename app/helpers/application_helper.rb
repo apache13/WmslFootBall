@@ -5,9 +5,25 @@ module ApplicationHelper
     title = user.name
     display_modal_button(text, path, title)   
   end
-
+  
+  def display_user_with_title(user, title)
+    text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => title)
+    path = {controller: "users", action: "show", id: user, modal: 'true'}
+    title = user.name
+    display_modal_button(text, path, title)   
+  end
+  
+  def display_prize(prize)
+    if !prize.images.nil?
+      image = prize.images[0]
+      if !image.nil?
+        image_tag(image.url, :class => 'img-circle', height: '30', width: '30', :title => prize.name)
+      end  
+    end        
+  end
+  
   def display_user_info(user)
-    image_tag(user.image, :class => 'img-circle', height: '60', width: '60', :title => user.name)
+    image_tag(user.image, :class => 'img-circle', height: '50', width: '50', :title => user.name)
   end
 
   def display_label_bet_left_team(bet)

@@ -39,12 +39,38 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Prices</strong>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Prizes</strong>
+					</div>
+					<div class="panel-body pre-scrollable">
+						<p>
+							<% @match.prizes.each do |prize| %>
+							<span><%= display_prize(prize) %></span>
+							<% end %>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="panel-body pre-scrollable">
-				
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Top 5</strong>
+					</div>
+					<div class="panel-body pre-scrollable">
+						<p>
+							<% if @match.final? %>
+								<% @top5.each do |bet| %>
+									<%= display_user_with_title(bet.user, bet.pts) %>
+								<% end %>
+							<% else %>
+								<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>				
+							<% end %>			
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

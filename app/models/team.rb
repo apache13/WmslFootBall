@@ -6,4 +6,5 @@ class Team < ApplicationRecord
   validates :code, length: { maximum: 3 }
   
   belongs_to :group
+  
 end
