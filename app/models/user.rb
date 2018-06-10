@@ -57,5 +57,27 @@ class User < ApplicationRecord
     end
     return -1
   end
+  
+  def ratio_win    
+    count = 0
+    win = 0
+    bets = Bet.where(user: self)    
+    bets.each do |bet|    
+      if bet.match.result.nil?        
+        next                  
+      end          
+      if bet.win?
+        win = win +1      
+      end      
+      count = count + 1      
+    end
+    
+    if count == 0
+      return 'n/a'
+    else
+      return win*100/count
+    end
+        
+  end
 
 end

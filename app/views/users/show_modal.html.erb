@@ -1,7 +1,3 @@
-<p id="notice">
-	<%= notice %>
-</p>
-
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
@@ -13,45 +9,63 @@
 					<strong>Name:</strong>
 					<%= @user.name %>
 				</p>
-
 				<p>
 					<strong>Email:</strong>
 					<%= @user.email %>
 				</p>
-
 				<p>
-					<strong>Admin:</strong>
-					<%= @user.admin %>
-				</p>
-
+					<strong>Rank:</strong>
+					<%= @user.rank %>
+					<strong>P:</strong>
+					<%= @user.p %>
+					<strong>PTS:</strong>
+					<%= @user.pts %>
+				<p>
 				<p>
 					<strong>Champion:</strong>					
 					<%= display_team(@user.champion) %>
 				</p>
-
 				<p>
 					<strong>Top goal scorer:</strong>
 					<%= @user.top_goal_scorer %>
-				</p>
+				</p>				
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>Statistic</strong>
-			</div>
-			<div class="panel-body pre-scrollable">
-				<p>
-					<strong>Rank:</strong>
-					<%= @user.rank %>
-				</p>
-				<p>
-					<strong>PTS:</strong>
-					<%= @user.pts %>
-				</p>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Statistic</strong>
+					</div>
+					<div class="panel-body pre-scrollable">
+						<p>
+							<strong>Win :</strong>
+							<%= "#{@user.ratio_win} %" %>
+						</p>						
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Prizes (<%= @prizes.size %>)</strong>
+					</div>
+					<div class="panel-body pre-scrollable">						
+						<p>
+							<% @prizes.each do |prize| %>
+							<span><%= display_prize(prize) %></span>
+							<% end %>
+						</p>						
+					</div>
+				</div>
+			</div>
+		</div>		
+		
 	</div>
 </div>
 
@@ -59,7 +73,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<strong>Bets</strong>
+				<strong>Bets (<%= @bets.size %>)</strong>
 			</div>
 			<div class="panel-body pre-scrollable">
 				<table class="table table-hover">

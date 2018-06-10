@@ -42,6 +42,11 @@
   </div>
   
   <div class="field">
+    <%= form.label :user %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true}) %>
+  </div>
+  
+  <div class="field">
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true %>
   </div>

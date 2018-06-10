@@ -13,7 +13,7 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show                        
     
-    @top5 = Bet.where(match: @match).sort_by{|b| [-b.pts, b.id]}[0..4] 
+    @top5 = Bet.where(match: @match).sort_by{|b| [-b.pts, b.created_at]}[0..4] 
     
                     
     respond_to do |format|

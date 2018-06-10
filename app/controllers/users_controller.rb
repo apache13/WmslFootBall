@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def show         
     
     @bets = Bet.where("user_id = ?",@user)
+    @prizes = Prize.where("user_id = ?",@user)
     
     respond_to do |format|
       if params[:modal].present?        

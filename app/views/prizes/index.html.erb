@@ -14,8 +14,9 @@
 					<th>Description</th>
 					<th>Sponsor</th>					
 					<th>Price</th>
-					<th>Match</th>
 					<th>Images</th>
+					<th>Match</th>					
+					<th>User</th>					
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -28,8 +29,9 @@
 					<td><%= prize.description %></td>
 					<td><%= prize.sponsor %></td>
 					<td><%= prize.price %></td>
-					<td><%= prize.match.nil? ? nil:display_match_description(prize.match) %></td>
-					<td><%= display_prize(prize) %></td>														
+					<td><%= display_prize(prize) %></td>
+					<td><%= prize.match.nil? ? nil:display_match_description(prize.match) %></td>					
+					<td><%= prize.user.nil? ? nil:display_user(prize.user) %></td>																		
 					<td> 
 						<%= link_to 'Show', prize, :class => 'btn btn-default'%>
 						<%= link_to 'Edit', edit_prize_path(prize) , :class => 'btn btn-default'%>

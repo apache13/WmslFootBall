@@ -40,10 +40,10 @@
 					<td><%= match.left_score %></td>
 					<td><%= match.right_score %></td>	
 					<td><%= "#{match.user_bet_count}/#{match.total_bet_count}" %></td>
-					<td> <%= link_to 'Show', match , :class => 'btn btn-default'%>
+					<td><%= link_to 'Show', match , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_match_path(match) , :class => 'btn btn-default'%>
-					<%= link_to 'Bets', random_bets_path(match.id) , :class => 'btn btn-default'%>
-					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>
+					<%= link_to 'Bets', random_bets_path(match.id), :class => 'btn btn-default'%>
+					<%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%></td>
 				</tr>
 				<% end %>
 			</tbody>
