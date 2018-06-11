@@ -13,13 +13,17 @@ module ApplicationHelper
     display_modal_button(text, path, title)   
   end
   
-  def display_prize(prize)
-    if !prize.images.nil?
-      image = prize.images[0]
-      if !image.nil?
-        image_tag(image.url, :class => 'img-circle', height: '30', width: '30', :title => prize.name)
-      end  
-    end        
+  def display_prize(prize)    
+      text = "n/a"
+      if !prize.images.nil?
+        image = prize.images[0]
+        if !image.nil?
+          text = image_tag(image.url, :class => 'img-circle', height: '30', width: '30', :title => "#{prize.code} #{prize.name}")
+        end          
+      end                 
+      path = {controller: "prizes", action: "show", id: prize, modal: 'true'}
+      title = "#{prize.code} #{prize.name}"      
+      display_modal_button(text, path, title)      
   end
   
   def display_user_info(user)

@@ -1,5 +1,6 @@
 class PrizesController < ApplicationController
-  before_action :require_login_permission_and_admin
+  before_action :require_login_permission_and_admin, except: [:show]
+  before_action :require_login_permission, only: [:show]
   before_action :set_prize, only: [:show, :edit, :update, :destroy]
 
   # GET /prizes
@@ -11,6 +12,13 @@ class PrizesController < ApplicationController
   # GET /prizes/1
   # GET /prizes/1.json
   def show
+    respond_to do |format|
+      if params[:modal].present?        
+        format.html { render :show_modal, layout: false }
+      else
+        format.html { render :show }
+      end
+    end
   end
 
   # GET /prizes/new

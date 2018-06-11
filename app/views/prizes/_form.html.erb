@@ -38,12 +38,12 @@
   
   <div class="field">
     <%= form.label :match %>
-    <%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true}) %>
+    <%= form.collection_select(:match_id, Match.all, :id, :title, {prompt: true, include_blank: true}) %>
   </div>
   
   <div class="field">
     <%= form.label :user %>
-    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true}) %>
+    <%= form.collection_select(:user_id, User.all, :id, :name, {prompt: true, include_blank: true}) %>
   </div>
   
   <div class="field">
