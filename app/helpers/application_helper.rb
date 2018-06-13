@@ -6,6 +6,18 @@ module ApplicationHelper
     display_modal_button(text, path, title)   
   end
   
+  def display_user_payment(user)
+    if user.payment.nil?
+      '<i class="fa fa-hourglass-half fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+    else
+      if user.payment
+        '<i class="fa fa-smile-o fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+      else      
+        '<i class="fa fa-hourglass-half fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+      end      
+    end
+  end
+  
   def display_user_with_title(user, title)
     text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => title)
     path = {controller: "users", action: "show", id: user, modal: 'true'}
@@ -31,25 +43,25 @@ module ApplicationHelper
   end
 
   def display_label_bet_left_team(bet)
-    if bet.match.nil?
-      display_label_bet_team(nil)
+    if bet.match.left.nil?
+      display_label_bet_team('left')
     else
-      display_label_bet_team(bet.match.left)  
+      display_label_bet_team(bet.match.left.name)  
     end
   end
    
   def display_label_bet_right_team(bet)
-    if bet.match.nil?
-      display_label_bet_team(nil)
+    if bet.match.right.nil?
+      display_label_bet_team('right')
     else
-      display_label_bet_team(bet.match.right)  
+      display_label_bet_team(bet.match.right.name)  
     end    
   end
   
-  def display_label_bet_team(team)
-    return "#{team.nil? ? 'Left':team.name} Score (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} points) : "
+  def display_label_bet_team(label)
+    return "ทีม #{label} ทำประตูได้ (#{Config.find_by_key('BET_MAIN_LEFT_TEAM_SCORE').value} คะแนน) : "
   end
-  
+    
   def display_user_nav(user_id)
     if !user_id.nil?
       user = User.find_by_id(user_id)
@@ -160,6 +172,13 @@ module ApplicationHelper
       end      
       path = {controller: "matches", action: "show", id: match, modal: 'true'}
       title = "#{match.title} #{match.description}"      
+      display_modal_button(text, path, title)       
+  end
+  
+  def display_match_description_full(match)          
+      text = match.display_title            
+      path = {controller: "matches", action: "show", id: match, modal: 'true'}
+      title = "#{match.title} #{match.description} (#{match.id})"      
       display_modal_button(text, path, title)       
   end
   

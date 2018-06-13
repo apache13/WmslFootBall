@@ -42,6 +42,16 @@
   </div>
   
   <div class="field">
+    <%= form.label :payment %>
+    <%= form.check_box :payment, id: :payment %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :party %>
+    <%= form.text_field :party, id: :party %>
+  </div>
+  
+  <div class="field">
     <%= form.label :champion %>
     <%= form.collection_select(:team_id, Team.all, :id, :name, {:include_blank => true} ) %>
   </div>

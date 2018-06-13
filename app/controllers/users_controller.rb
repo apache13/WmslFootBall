@@ -6,17 +6,18 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+        
     # @users = User.all   
     if params[:name].present? && params[:uid].present?
-        @users = User.where("name like ?","%#{params[:name]}%").where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page])
+        @users = User.where("name like ?","%#{params[:name]}%").where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 50)
     else
       if params[:name].present?
-        @users = User.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page])
+        @users = User.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page], :per_page => 50)
       else
         if params[:uid].present?
-          @users = User.where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page])
+          @users = User.where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 50)
         else
-          @users = User.paginate(:page => params[:page])
+          @users = User.paginate(:page => params[:page], :per_page => 50)
         end 
       end
     end
@@ -128,7 +129,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:provider, :uid, :name, :email, :image, :admin, :team_id, :top_goal_scorer)
+      params.require(:user).permit(:provider, :uid, :name, :email, :image, :admin, :team_id, :top_goal_scorer, :payment, :party)
     end
     
     def user_champion_params

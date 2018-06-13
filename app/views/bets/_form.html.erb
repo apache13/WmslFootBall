@@ -38,7 +38,7 @@
 		</div>
 					
 		<div class="field">
-			<%= form.label "Result (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} points) : " %>			
+			<%= form.label "ผลการแข่งขัน (#{Config.find_by_key('BET_MAIN_FINAL_RESULT_SCORE').value} คะแนน) : " %>			
 			<%= form.collection_select :bet, @bet_data, :first, :last, prompt: true %>			
 		</div>
 
@@ -53,27 +53,27 @@
 		</div>
 		
 		<div class="field">
-			<%= form.label "#{:yellow_card}? (Yes/No) more then #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} cards (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} points): " %>
+			<%= form.label "มีใบเหลืองเกิดขึ้นมากกว่า  #{Config.find_by_key('BET_MAIN_YELLOW_CARD_CONDITION').value} ใบ หรือไม่ ? (#{Config.find_by_key('BET_MAIN_YELLOW_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_YELLOW_CARD_SCORE').value} คะแนน): " %>
 			<%= form.check_box :yellow_card, id: :yellow_card %>
 		</div>
 
 		<div class="field">
-			<%= form.label "#{:red_card}? (Yes/No) (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} points): " %>
+			<%= form.label "มีใบแดงเกิดขึ้น หรือไม่ ? (#{Config.find_by_key('BET_MAIN_RED_CARD_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_RED_CARD_SCORE').value} คะแนน): " %>
 			<%= form.check_box :red_card, id: :red_card %>
 		</div>
 		
 		<div class="field">
-			<%= form.label "#{:own_goal}? (Yes/No) (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} points): " %>
+			<%= form.label "มีการทำประตูตัวเองเกิดขึ้น หรือไม่ ? (#{Config.find_by_key('BET_MAIN_OWN_GOAL_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_OWN_GOAL_SCORE').value} คะแนน): " %>
 			<%= form.check_box :own_goal, id: :own_goal %>
 		</div>
 		
 		<% if bet.match.knockout? %>
 			<div class="field">
-				<%= form.label "#{:extra_time}? (Yes/No) (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} points): " %>
+				<%= form.label "มีการต่อเวลาพิเศษ หรือไม่ ? (#{Config.find_by_key('BET_MAIN_EXTRA_TIME_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_EXTRA_TIME_SCORE').value} คะแนน): " %>
 				<%= form.check_box :extra_time, id: :extra_time %>
 			</div>		
 			<div class="field">
-				<%= form.label "#{:penalty} shootout after a drawn match? (Yes/No) (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points): " %>
+				<%= form.label "มีการตัดสินหาผู้ชนะด้วยวิธีการยิงจุดโทษ หรือไม่ ? (#{Config.find_by_key('BET_MAIN_PENALTY_SCORE').value}/#{Config.find_by_key('BET_MAIN_NO_PENALTY_SCORE').value} points): " %>
 				<%= form.check_box :penalty, id: :penalty %>
 			</div>
 		<% end %>

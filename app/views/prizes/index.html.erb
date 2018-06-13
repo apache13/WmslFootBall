@@ -2,7 +2,7 @@
 	<%= notice %>
 </p>
 
-<h1>Prizes</h1>
+<h1>Prizes (<%= @prizes.inject(0){|sum,x| sum + x.price} %>)</h1>
 
 <div class="row">
 	<div class="col-md-12">
@@ -30,7 +30,7 @@
 					<td><%= prize.sponsor %></td>
 					<td><%= prize.price %></td>
 					<td><%= display_prize(prize) %></td>
-					<td><%= prize.match.nil? ? nil:display_match_description(prize.match) %></td>					
+					<td><%= prize.match.nil? ? nil:display_match_description_full(prize.match) %></td>					
 					<td><%= prize.user.nil? ? nil:display_user(prize.user) %></td>																		
 					<td> 
 						<%= link_to 'Show', prize, :class => 'btn btn-default'%>

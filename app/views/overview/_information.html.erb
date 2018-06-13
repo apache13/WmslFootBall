@@ -6,14 +6,20 @@
 	</div>
 	<div class="col-md-9">
 		<p>
-			Registered : <%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %>
+			<strong>Registered : </strong><%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %>
 		</p>
 		<p>
-			Rank : <%= @user.rank %>
+			<strong>Payment : </strong><%= display_user_payment(@user) %>
+		</p>
+		<p>
+			<strong>Party : </strong><%= @user.party %>
+		</p>
+		<p>
+			<strong>Rank : </strong><%= @user.rank %>
 		</p>			
 		<p>
-			PTS : <%= @user.pts %>
-		</p>				
+			<strong>PTS : </strong><%= @user.pts %>
+		</p>					
 	</div>	
 </div>
 <div class="row">
@@ -29,7 +35,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Champion</td>				
+					<td><strong>Champion<strong></td>				
 					<td><%= display_team(@user.champion) %></td>
 					<td class="text-center"><%= display_champion_button(@user) %></td>
 					<script>
@@ -46,7 +52,7 @@
 					</script> 
 				</tr>
 				<tr>
-					<td>Top goal scorer</td>				
+					<td><strong>Top goal scorer<strong></td>				
 					<td><%= @user.top_goal_scorer %></td>
 					<td class="text-center"><%= display_top_goal_scorer_button(@user) %></td>
 					<script>

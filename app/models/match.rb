@@ -10,6 +10,10 @@ class Match < ApplicationRecord
   
   has_many :prizes
   
+  def display_title        
+       return "#{self.description} #{self.title} (#{self.id})"
+  end
+  
   def final?
     return !self.result.nil?
   end  
