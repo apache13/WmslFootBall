@@ -76,3 +76,5 @@ gem 'flexirest', '~> 1.6', '>= 1.6.7'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
 
 gem 'file_validators', '~> 2.3'
+
+gem 'csv_shaper', '~> 1.3'

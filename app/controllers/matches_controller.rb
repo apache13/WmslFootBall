@@ -9,19 +9,48 @@ class MatchesController < ApplicationController
     @matches = Match.order(:start).paginate(:page => params[:page])
   end
 
+  def bets_to_csv(bets)   
+    csv_string = CsvShaper::Shaper.encode do |csv|      
+      csv.headers do |csv|
+        csv.columns :match, :user, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
+      end      
+      bets.each do |bet|
+        csv.row do |csv|
+          csv.cell :match, bet.match.display_title
+          csv.cell :user, bet.user.name
+          csv.cell :bet, bet.bet          
+          csv.cell :bet_left_score, bet.bet_left_score
+          csv.cell :bet_right_score, bet.bet_right_score
+          csv.cell :yellow_card, bet.yellow_card
+          csv.cell :red_card, bet.red_card
+          csv.cell :own_goal, bet.own_goal
+          csv.cell :extra_time, bet.extra_time
+          csv.cell :penalty, bet.penalty
+          csv.cell :win?, bet.win?
+          csv.cell :pts, bet.pts                         
+        end
+      end
+    end
+    return csv_string
+  end
+  
   # GET /matches/1
   # GET /matches/1.json
   def show                        
     
     @top5 = Bet.where(match: @match).sort_by{|b| [-b.pts, b.created_at]}[0..4] 
-    
-                    
+                        
     respond_to do |format|
       if params[:modal].present?        
         format.html { render :show_modal, layout: false }
       else
         format.html { render :show }
-      end
+      end      
+      format.csv do
+        bets = Bet.where("match_id = ?", @match)
+        @data = bets_to_csv(bets)
+        render "data.csv.erb"
+      end            
     end
   end
 
