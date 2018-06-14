@@ -1,15 +1,15 @@
-<%= form_tag(users_path, method: "get") do |form| %>
+<%= form_tag(bets_path, method: "get") do |form| %>
 <div class="row">	
 	<div class="col-md-4">
 		<div class="form-group">
-			<%= label_tag(:name) %>
-			<%= text_field_tag(:name,nil, :class=>'form-control') %>
+			<%= label_tag(:match) %>
+			<%= select_tag :match, options_from_collection_for_select(Match.all, "id", "display_title"), :class=>'form-control', include_blank: true %>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="form-group">
-			<%= label_tag(:uid) %>
-			<%= text_field_tag(:uid,nil, :class=>'form-control') %>
+			<%= label_tag(:user) %>
+			<%= select_tag :user, options_from_collection_for_select(User.all, "id", "name"), :class=>'form-control', include_blank: true %>
 		</div>
 	</div>	
 </div>

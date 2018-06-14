@@ -9,15 +9,15 @@ class UsersController < ApplicationController
         
     # @users = User.all   
     if params[:name].present? && params[:uid].present?
-        @users = User.where("name like ?","%#{params[:name]}%").where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 50)
+        @users = User.where("name like ?","%#{params[:name]}%").where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 100)
     else
       if params[:name].present?
-        @users = User.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page], :per_page => 50)
+        @users = User.where("name like ?","%#{params[:name]}%").paginate(:page => params[:page], :per_page => 100)
       else
         if params[:uid].present?
-          @users = User.where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 50)
+          @users = User.where("uid like ?","%#{params[:uid]}%").paginate(:page => params[:page], :per_page => 100)
         else
-          @users = User.paginate(:page => params[:page], :per_page => 50)
+          @users = User.paginate(:page => params[:page], :per_page => 100)
         end 
       end
     end

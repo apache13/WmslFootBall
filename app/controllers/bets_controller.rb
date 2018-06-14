@@ -5,8 +5,21 @@ class BetsController < ApplicationController
 
   # GET /bets
   # GET /bets.json
-  def index
-    @bets = Bet.paginate(:page => params[:page])
+  def index        
+    if params[:match].present? && params[:user].present?
+        @bets = Bet.where("match_id = ?","#{params[:match]}").where("user_id = ?","#{params[:user]}").paginate(:page => params[:page])
+    else
+      if params[:match].present?
+        @bets = Bet.where("match_id = ?","#{params[:match]}").paginate(:page => params[:page])
+      else
+        if params[:user].present?
+          @bets = Bet.where("user_id = ?","#{params[:user]}").paginate(:page => params[:page])
+        else
+          @bets = Bet.paginate(:page => params[:page])
+        end 
+      end
+    end        
+    @bets.sort_by{|b| [b.match.start]}    
   end
 
   # GET /bets/1
