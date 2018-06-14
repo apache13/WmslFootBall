@@ -4,7 +4,7 @@ class OverviewController < ApplicationController
   
   def index
     @table = User.all.sort_by{|u| [-u.pts.to_i,u.id]}        
-    @matches = Match.all
+    @matches = Match.all.sort_by{|m| [m.start]}
     if !session[:user_id].nil?
       @user = User.find_by_id(session[:user_id])  
     end    
