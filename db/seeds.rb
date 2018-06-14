@@ -11,7 +11,7 @@ Config.create(key: 'SLIDE_IMAGE',value: 'wc2018-01.jpg,wc2018-02.jpg,wc2018-03.j
 Config.create(key: 'API_COMPETITION_ID',value: '467')
 Config.create(key: 'API_AUTH_TOKEN',value: '')
 
-Config.create(key: 'USER_REGISTER_END_TIME',value: '2018-06-14T22:00:00+07:00')
+Config.create(key: 'USER_REGISTER_ENABLE',value: 'true')
 Config.create(key: 'USER_BET_CHAMPION_END_TIME',value: '2018-07-01T01:00:00+07:00')
 Config.create(key: 'USER_BET_TOP_GOAL_SCORER_END_TIME',value: '2018-07-01T01:00:00+07:00')
 

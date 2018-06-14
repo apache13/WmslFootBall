@@ -1,4 +1,11 @@
 module ApplicationHelper
+  
+  def to_bool(value)
+    return true   if value == true   || value =~ (/(true|t|yes|y|1)$/i)
+    return false  if value == false  || value.blank? || value =~ (/(false|f|no|n|0)$/i)
+    raise ArgumentError.new("invalid value for Boolean: \"#{value}\"")
+  end
+  
   def display_user(user)
     text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.name)
     path = {controller: "users", action: "show", id: user, modal: 'true'}

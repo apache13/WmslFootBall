@@ -1,16 +1,16 @@
 class SessionsController < ApplicationController  
-      
+        
   def create
     auth = request.env["omniauth.auth"]    
     
-    #endRegisterDateTime = DateTime.parse(Config.find_by_key('CLOSE_REGISTER_DATETIME').value)
-    #logger.debug "endRegisterDateTime : "+endRegisterDateTime.to_s+" future? -> "+endRegisterDateTime.future?.to_s
+    user_register_enable = to_bool(Config.find_by_key('USER_REGISTER_ENABLE').value)
+    logger.debug "user_register_enable : "+user_register_enable.to_s
                    
-    #if endRegisterDateTime.future?
-    user = User.where(:provider => auth['provider'],:uid => auth['uid']).first || User.create_with_omniauth(auth)
-    #else
-    #  user = User.where(:provider => auth['provider'],:uid => auth['uid']).first
-    #end    
+    if user_register_enable
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first || User.create_with_omniauth(auth)
+    else
+      user = User.where(:provider => auth['provider'],:uid => auth['uid']).first
+    end    
     
     if user.nil?
       redirect_to({ action: 'login' , :controller=>"sessions"})
@@ -36,6 +36,6 @@ class SessionsController < ApplicationController
   
   def login    
     @images = Config.find_by_key('SLIDE_IMAGE').value.split(",")               
-  end
+  end  
   
 end
