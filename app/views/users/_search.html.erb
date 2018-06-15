@@ -12,6 +12,12 @@
 			<%= text_field_tag(:uid,nil, :class=>'form-control') %>
 		</div>
 	</div>	
+	<div class="col-md-4">
+		<div class="form-group">
+			<%= label_tag(:sort) %>
+			<%= select_tag :sort, options_for_select(["payment", "win", "loss"]), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>
 </div>
 
 <div class="row">

@@ -19,7 +19,10 @@
 					<th>Payment</th>
 					<th>Party</th>
 					<th>Champion</th>
-					<th>Top goal scorer</th>					
+					<th>Top goal scorer</th>
+					<th>Win Ratio</th>
+					<th>Win Cont.</th>
+					<th>Loss Cont.</th>					
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -35,7 +38,10 @@
 					<td><%= user.payment %></td>
 					<td><%= user.party %></td>						
 					<td><%= display_team(user.champion) %></td>
-					<td><%= user.top_goal_scorer %></td>								
+					<td><%= user.top_goal_scorer %></td>
+					<td><%= user.ratio_win %></td>
+					<td><%= user.continuous_win %></td>
+					<td><%= user.continuous_loss %></td>
 					<td> <%= link_to 'Show', user , :class => 'btn btn-default'%>
 					<%= link_to 'Edit', edit_user_path(user) , :class => 'btn btn-default'%>
 					<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger'%> </td>

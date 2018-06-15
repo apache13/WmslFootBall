@@ -79,5 +79,35 @@ class User < ApplicationRecord
     end
         
   end
+  
+  def continuous_win
+    win = 0
+    bets = Bet.where(user: self)    
+    bets.each do |bet|    
+      if bet.match.final?        
+        if bet.win?
+          win = win + 1
+        else
+          win = 0
+        end                   
+      end                      
+    end
+    return win
+  end
+  
+  def continuous_loss
+    loss = 0
+    bets = Bet.where(user: self)    
+    bets.each do |bet|    
+      if bet.match.final?        
+        if !bet.win?
+          loss = loss + 1
+        else
+          loss = 0
+        end                   
+      end                      
+    end
+    return loss
+  end
 
 end

@@ -1,5 +1,9 @@
 module ApplicationHelper
       
+  def display_bet_result_icon(bet)
+    bet.match.final? ? (bet.win? ? ('<i class="fa fa-check" aria-hidden="true" style="color:green"></i>'.html_safe):('<i class="fa fa-times fa-danger" aria-hidden="true" style="color:red"></i>'.html_safe)):"n/a"
+  end
+    
   def to_bool(value)
     return true   if value == true   || value =~ (/(true|t|yes|y|1)$/i)
     return false  if value == false  || value.blank? || value =~ (/(false|f|no|n|0)$/i)

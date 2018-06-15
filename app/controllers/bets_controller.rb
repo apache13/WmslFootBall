@@ -7,19 +7,19 @@ class BetsController < ApplicationController
   # GET /bets.json
   def index        
     if params[:match].present? && params[:user].present?
-        @bets = Bet.where("match_id = ?","#{params[:match]}").where("user_id = ?","#{params[:user]}").paginate(:page => params[:page])
+        @bets = Bet.where("match_id = ?","#{params[:match]}").where("user_id = ?","#{params[:user]}").order(:match_id).paginate(:page => params[:page], :per_page => 100)
     else
       if params[:match].present?
-        @bets = Bet.where("match_id = ?","#{params[:match]}").paginate(:page => params[:page])
+        @bets = Bet.where("match_id = ?","#{params[:match]}").order(:match_id).paginate(:page => params[:page], :per_page => 100)
       else
         if params[:user].present?
-          @bets = Bet.where("user_id = ?","#{params[:user]}").paginate(:page => params[:page])
+          @bets = Bet.where("user_id = ?","#{params[:user]}").order(:match_id).paginate(:page => params[:page], :per_page => 100)
         else
-          @bets = Bet.paginate(:page => params[:page])
+          @bets = Bet.order(:match_id).paginate(:page => params[:page], :per_page => 100)
         end 
       end
     end        
-    @bets.sort_by{|b| [b.match.start]}    
+    #@bets.sort_by{|b| [b.match.start]}    
   end
 
   # GET /bets/1

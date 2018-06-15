@@ -59,8 +59,14 @@
 					<div class="panel-heading">
 						<strong>Data</strong>
 					</div>
-					<div class="panel-body pre-scrollable">
-						<p>{to do}</p>
+					<div class="panel-body pre-scrollable">			
+						<p><strong>Bets Data : </strong>	
+						<% if @match.final? %>													
+							<%= link_to('<i class="fa fa-file-excel-o" aria-hidden="true"></i>'.html_safe, match_path(format: :csv)) %>
+						<% else %>
+							n/a
+						<% end %>
+						</p>
 					</div>
 				</div>
 			</div>

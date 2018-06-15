@@ -12,20 +12,35 @@ class MatchesController < ApplicationController
   def bets_to_csv(bets)   
     csv_string = CsvShaper::Shaper.encode do |csv|      
       csv.headers do |csv|
-        csv.columns :match, :user, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
+        csv.columns :match, :user, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
       end      
       bets.each do |bet|
         csv.row do |csv|
           csv.cell :match, bet.match.display_title
           csv.cell :user, bet.user.name
-          csv.cell :bet, bet.bet          
+          csv.cell :email, bet.user.email          
+          
+          if bet.bet == 0
+            csv.cell :bet, "Draw"  
+          else
+            if bet.bet == -1
+              csv.cell :bet, bet.match.left.name
+            else
+              csv.cell :bet, bet.match.right.name
+            end
+          end
+                              
           csv.cell :bet_left_score, bet.bet_left_score
           csv.cell :bet_right_score, bet.bet_right_score
           csv.cell :yellow_card, bet.yellow_card
           csv.cell :red_card, bet.red_card
           csv.cell :own_goal, bet.own_goal
-          csv.cell :extra_time, bet.extra_time
-          csv.cell :penalty, bet.penalty
+          
+          if bet.match.knockout?
+            csv.cell :extra_time, bet.extra_time
+            csv.cell :penalty, bet.penalty          
+          end       
+             
           csv.cell :win?, bet.win?
           csv.cell :pts, bet.pts                         
         end
@@ -47,9 +62,14 @@ class MatchesController < ApplicationController
         format.html { render :show }
       end      
       format.csv do
-        bets = Bet.where("match_id = ?", @match)
-        @data = bets_to_csv(bets)
-        render "data.csv.erb"
+        if @match.final?
+          bets = Bet.where("match_id = ?", @match)
+          @data = bets_to_csv(bets)
+          render "data.csv.erb"
+        else
+          @data = "wating match result."
+          render "data.csv.erb"
+        end        
       end            
     end
   end
