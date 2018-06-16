@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_16_052226) do
+ActiveRecord::Schema.define(version: 2018_06_16_064244) do
 
   create_table "bets", force: :cascade do |t|
     t.integer "match_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2018_06_16_052226) do
     t.boolean "payment"
     t.string "party"
     t.string "nickname"
+    t.string "gender"
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 

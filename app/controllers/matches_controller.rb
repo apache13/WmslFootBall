@@ -12,13 +12,14 @@ class MatchesController < ApplicationController
   def bets_to_csv(bets)   
     csv_string = CsvShaper::Shaper.encode do |csv|      
       csv.headers do |header|
-        header.columns :match, :user, :nickname, :payment, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
+        header.columns :match, :user, :nickname, :gender, :payment, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
       end      
       bets.each do |bet|
         csv.row do |row|
           row.cell :match, bet.match.display_title
           row.cell :user, bet.user.name
           row.cell :nickname, bet.user.nickname
+          row.cell :gender, bet.user.gender
           row.cell :payment, bet.user.display_payment
           row.cell :email, bet.user.email          
           
