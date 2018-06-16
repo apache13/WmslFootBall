@@ -4,6 +4,23 @@ class User < ApplicationRecord
   
   validates :uid, uniqueness: true
   validates :top_goal_scorer, length: { maximum: 64 }
+  validates :nickname, :party, length: { maximum: 32 }
+    
+  def display_payment
+    if self.payment.nil?
+       return 'Wait'
+    else
+       return self.payment ? 'Approve':'Wait'
+    end
+  end
+  
+  def display_name
+    if self.nickname.nil?
+      return self.name
+    else
+      return "#{self.name} (#{self.nickname})"
+    end
+  end  
     
   def admin?    
     return self.admin

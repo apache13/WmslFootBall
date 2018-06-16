@@ -11,7 +11,7 @@ module ApplicationHelper
   end
   
   def display_user(user)
-    text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.name)
+    text = image_tag(user.image, :class => 'img-circle', height: '30', width: '30', :title => user.display_name)
     path = {controller: "users", action: "show", id: user, modal: 'true'}
     title = user.name
     display_modal_button(text, path, title)   
@@ -182,14 +182,14 @@ module ApplicationHelper
         text = "#{match.description} #{match.title}"
       end      
       path = {controller: "matches", action: "show", id: match, modal: 'true'}
-      title = "#{match.title} #{match.description}"      
+      title = "#{match.title} #{match.description} (#{match.display_versus})"      
       display_modal_button(text, path, title)       
   end
   
   def display_match_description_full(match)          
       text = match.display_title            
       path = {controller: "matches", action: "show", id: match, modal: 'true'}
-      title = "#{match.title} #{match.description} (#{match.id})"      
+      title = "#{match.title} #{match.description} #{match.display_versus} (#{match.id})"      
       display_modal_button(text, path, title)       
   end
   

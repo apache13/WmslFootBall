@@ -14,10 +14,11 @@
 					<th>Avatar</th>
 					<th>UID</th>
 					<th>Name</th>
+					<th>Nickname</th>
 					<th>Email</th>
 					<th>Admin</th>
 					<th>Payment</th>
-					<th>Party</th>
+					<th>Party</th>					
 					<th>Champion</th>
 					<th>Top goal scorer</th>
 					<th>Win Ratio</th>
@@ -33,10 +34,11 @@
 					<td><%= display_user(user) %></td>
 					<td><%= user.uid %></td>
 					<td><%= user.name %></td>
-					<td><%= user.email %></td>
+					<td><%= user.nickname %></td>
+					<td><%= user.email %></td>					
 					<td><%= user.admin %></td>
-					<td><%= user.payment %></td>
-					<td><%= user.party %></td>						
+					<td><%= user.display_payment %></td>
+					<td><%= user.party %></td>											
 					<td><%= display_team(user.champion) %></td>
 					<td><%= user.top_goal_scorer %></td>
 					<td><%= user.ratio_win %></td>

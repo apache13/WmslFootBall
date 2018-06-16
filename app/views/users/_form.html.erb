@@ -48,7 +48,12 @@
   
   <div class="field">
     <%= form.label :party %>
-    <%= form.text_field :party, id: :party %>
+    <%= form.select(:party, @party, {:include_blank => true} ) %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, id: :nickname %>
   </div>
   
   <div class="field">

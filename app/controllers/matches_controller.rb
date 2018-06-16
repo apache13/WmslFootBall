@@ -11,38 +11,40 @@ class MatchesController < ApplicationController
 
   def bets_to_csv(bets)   
     csv_string = CsvShaper::Shaper.encode do |csv|      
-      csv.headers do |csv|
-        csv.columns :match, :user, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
+      csv.headers do |header|
+        header.columns :match, :user, :nickname, :payment, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
       end      
       bets.each do |bet|
-        csv.row do |csv|
-          csv.cell :match, bet.match.display_title
-          csv.cell :user, bet.user.name
-          csv.cell :email, bet.user.email          
+        csv.row do |row|
+          row.cell :match, bet.match.display_title
+          row.cell :user, bet.user.name
+          row.cell :nickname, bet.user.nickname
+          row.cell :payment, bet.user.display_payment
+          row.cell :email, bet.user.email          
           
           if bet.bet == 0
-            csv.cell :bet, "Draw"  
+            row.cell :bet, "Draw"  
           else
             if bet.bet == -1
-              csv.cell :bet, bet.match.left.name
+              row.cell :bet, bet.match.left.name
             else
-              csv.cell :bet, bet.match.right.name
+              row.cell :bet, bet.match.right.name
             end
           end
                               
-          csv.cell :bet_left_score, bet.bet_left_score
-          csv.cell :bet_right_score, bet.bet_right_score
-          csv.cell :yellow_card, bet.yellow_card
-          csv.cell :red_card, bet.red_card
-          csv.cell :own_goal, bet.own_goal
+          row.cell :bet_left_score, bet.bet_left_score
+          row.cell :bet_right_score, bet.bet_right_score
+          row.cell :yellow_card, bet.yellow_card
+          row.cell :red_card, bet.red_card
+          row.cell :own_goal, bet.own_goal
           
           if bet.match.knockout?
-            csv.cell :extra_time, bet.extra_time
-            csv.cell :penalty, bet.penalty          
+            row.cell :extra_time, bet.extra_time
+            row.cell :penalty, bet.penalty          
           end       
              
-          csv.cell :win?, bet.win?
-          csv.cell :pts, bet.pts                         
+          row.cell :win?, bet.win?
+          row.cell :pts, bet.pts                         
         end
       end
     end

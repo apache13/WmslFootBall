@@ -34,7 +34,7 @@
 				<p>
 					<strong>Description:</strong>
 					<%= @match.description %>
-				</p>				
+				</p>							
 			</div>
 		</div>
 	</div>
@@ -57,10 +57,13 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong>Data</strong>
+						<strong>Bets Stat</strong>
 					</div>
-					<div class="panel-body pre-scrollable">			
-						<p><strong>Bets Data : </strong>	
+					<div class="panel-body pre-scrollable">
+						<p><strong>Result (L/D/R) : </strong>
+							<%= @match.bet_statistic %>
+						</p>
+						<p><strong>Raw Data : </strong>	
 						<% if @match.final? %>													
 							<%= link_to('<i class="fa fa-file-excel-o" aria-hidden="true"></i>'.html_safe, match_path(format: :csv)) %>
 						<% else %>

@@ -43,10 +43,12 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @party = Config.find_by_key('PARTY').value.split(",")
   end
 
   # GET /users/1/edit
   def edit
+    @party = Config.find_by_key('PARTY').value.split(",")
   end
 
   # POST /users
@@ -129,7 +131,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:provider, :uid, :name, :email, :image, :admin, :team_id, :top_goal_scorer, :payment, :party)
+      params.require(:user).permit(:provider, :uid, :name, :email, :image, :admin, :team_id, :top_goal_scorer, :payment, :party, :nickname)
     end
     
     def user_champion_params

@@ -14,6 +14,14 @@ class Match < ApplicationRecord
        return "#{self.description} #{self.title} (#{self.id})"
   end
   
+  def display_versus
+    if self.left.nil? || self.right.nil?
+      return "left vs right"
+    else
+      return "#{self.left.name} vs #{self.right.name}"      
+    end    
+  end
+  
   def final?
     return !self.result.nil?
   end  
