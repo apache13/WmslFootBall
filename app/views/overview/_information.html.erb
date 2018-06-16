@@ -9,7 +9,7 @@
 			<strong>Registered : </strong><%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %>
 		</p>
 		<p>
-			<strong>Payment : </strong><%= display_user_payment(@user) %>
+			<strong>Payment : </strong><%= @user.display_payment %>
 		</p>
 		<p>
 			<strong>Party : </strong><%= @user.party %>
