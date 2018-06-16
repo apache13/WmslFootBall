@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show         
     
-    @bets = Bet.where("user_id = ?",@user)
+    @bets = Bet.where("user_id = ?",@user).sort_by{|b| [b.match.start]}
     @prizes = Prize.where("user_id = ?",@user)
     
     respond_to do |format|

@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 		<% @table.each_with_index do |user,index| %>
-		<tr class=<%= @user.id == user.id ? ("info") : ("") %> >
+		<tr class=<%= @user.id == user.id ? ("danger") : ("") %> >
 			<td class="text-center"><%= index+1 %></td>
 			<td class="text-center"><%= display_user(user) %></td>
 			<td class="text-center"><%= user.p %></td>

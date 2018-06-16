@@ -27,11 +27,7 @@ class Bet < ApplicationRecord
   end
   
   def public?
-    if self.match.result.nil?
-      return false
-    else
-      return true
-    end
+    return self.match.lock?      
   end
   
   def pts_final_result

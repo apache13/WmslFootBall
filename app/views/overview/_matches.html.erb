@@ -13,7 +13,7 @@
 
 	<tbody>
 		<% @matches.each_with_index do |match,index| %>
-		<tr class=<%= match.lock? ? ("info") : ("") %> >
+		<tr class=<%= match.lock? ? ("success") : ("") %> >
 			<td class="text-center"><p><%= index+1 %></p></td>
 			<td class="text-center"><%= display_match_description(match) %></td>
 			<td class="text-center"><%= match.start.strftime("%-d %-b %y %H:%M") %></td>
