@@ -99,7 +99,7 @@ class User < ApplicationRecord
   
   def continuous_win
     win = 0
-    bets = Bet.where(user: self)    
+    bets = Bet.where(user: self).sort_by{|b| [b.match.start]}    
     bets.each do |bet|    
       if bet.match.final?        
         if bet.win?
@@ -114,7 +114,7 @@ class User < ApplicationRecord
   
   def continuous_loss
     loss = 0
-    bets = Bet.where(user: self)    
+    bets = Bet.where(user: self).sort_by{|b| [b.match.start]}    
     bets.each do |bet|    
       if bet.match.final?        
         if !bet.win?

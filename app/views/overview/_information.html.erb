@@ -9,15 +9,14 @@
 			<strong>Registered : </strong><%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %>
 		</p>
 		<p>
-			<strong>Payment : </strong><%= @user.display_payment %>
+			<strong>Name : </strong><%= @user.display_name %>
 		</p>
 		<p>
+			<strong>Payment : </strong><%= @user.display_payment %>
 			<strong>Party : </strong><%= @user.party %>
 		</p>
 		<p>
 			<strong>Rank : </strong><%= @user.rank %>
-		</p>			
-		<p>
 			<strong>PTS : </strong><%= @user.pts %>
 		</p>					
 	</div>	

@@ -6,36 +6,22 @@
 			</div>
 			<div class="panel-body pre-scrollable">
 				<p>
-					<strong>Name:</strong>
-					<%= @user.name %>
+					<strong>Name : </strong>
+					<%= @user.display_name %>
 				</p>
 				<p>
-					<strong>Email:</strong>
+					<strong>Email : </strong>
 					<%= @user.email %>
 				</p>
 				<p>
-					<strong>Payment:</strong>
-					<%= @user.display_payment %>
+					<strong>Payment : </strong><%= @user.display_payment %>
+					<strong>Party : </strong><%= @user.party %>
+				</p>								
+				<p>
+					<strong>Champion : </strong><%= display_team(@user.champion) %>
 				</p>
 				<p>
-					<strong>Party:</strong>
-					<%= @user.party %>
-				</p>
-				<p>
-					<strong>Rank:</strong>
-					<%= @user.rank %>
-					<strong>P:</strong>
-					<%= @user.p %>
-					<strong>PTS:</strong>
-					<%= @user.pts %>
-				<p>
-				<p>
-					<strong>Champion:</strong>					
-					<%= display_team(@user.champion) %>
-				</p>
-				<p>
-					<strong>Top goal scorer:</strong>
-					<%= @user.top_goal_scorer %>
+					<strong>Top goal scorer : </strong><%= @user.top_goal_scorer %>
 				</p>				
 			</div>
 		</div>
@@ -46,13 +32,21 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong>Statistic</strong>
+						<strong>Stat</strong>
 					</div>
 					<div class="panel-body pre-scrollable">
 						<p>
-							<strong>Win :</strong>
-							<%= "#{@user.ratio_win} %" %>
-						</p>						
+							<strong>Rank : </strong><%= @user.rank %>
+							<strong>P : </strong><%= @user.p %>
+							<strong>PTS : </strong><%= @user.pts %>
+						<p>	
+						<p>
+							<strong>Win rate : </strong><%= "#{@user.ratio_win} %" %>
+						</p>											
+						<p>
+							<strong>Win cont. : </strong><%= "#{@user.continuous_win}" %>
+							<strong>Loss cont. : </strong><%= "#{@user.continuous_loss}" %>
+						</p>
 					</div>
 				</div>
 			</div>
