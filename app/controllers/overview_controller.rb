@@ -16,6 +16,13 @@ class OverviewController < ApplicationController
       @leagueTable = nil
     end        
     
+    @sponsors = Array.new
+    Sponsor.all.each do |sponsor|
+      if sponsor.show?
+        @sponsors << sponsor          
+      end      
+    end
+    
   end
   
   # GET /bet

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_16_064244) do
+ActiveRecord::Schema.define(version: 2018_06_17_142832) do
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "group"
+    t.string "code"
+    t.string "title"
+    t.string "message"
+    t.string "url"
+    t.date "start"
+    t.date "end"
+    t.string "images"
+    t.boolean "enable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bets", force: :cascade do |t|
     t.integer "match_id"
@@ -77,6 +91,18 @@ ActiveRecord::Schema.define(version: 2018_06_16_064244) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_prizes_on_user_id"
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "url"
+    t.boolean "enable"
+    t.date "start"
+    t.date "end"
+    t.string "images"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|

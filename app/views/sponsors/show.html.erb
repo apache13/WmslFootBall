@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @sponsor.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sponsor.name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @sponsor.url %>
+</p>
+
+<p>
+  <strong>Enable:</strong>
+  <%= @sponsor.enable %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @sponsor.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @sponsor.end %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= display_sponsor(@sponsor) %>
+</p>
+
+<%= link_to 'Edit', edit_sponsor_path(@sponsor) %> |
+<%= link_to 'Back', sponsors_path %>

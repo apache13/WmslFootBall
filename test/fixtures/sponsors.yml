@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group: MyString
+  code: MyString
+  name: MyString
+  url: MyString
+  enable: false
+  start: 2018-06-17
+  end: 2018-06-17
+
+two:
+  group: MyString
+  code: MyString
+  name: MyString
+  url: MyString
+  enable: false
+  start: 2018-06-17
+  end: 2018-06-17

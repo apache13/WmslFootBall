@@ -49,6 +49,22 @@ module ApplicationHelper
       display_modal_button(text, path, title)      
   end
   
+  def display_sponsor(sponsor)    
+      text = sponsor.name
+      if !sponsor.images.nil?
+        image = sponsor.images[0]
+        if !image.nil?
+          text = image_tag(image.url, :class => 'img-rounded', :title => "#{sponsor.code} #{sponsor.name}")
+        end          
+      end                 
+      path = sponsor.url
+      if sponsor.url.blank? 
+        return text
+      else        
+        return link_to text, path, :target => :_blank  
+      end                 
+  end
+  
   def display_user_info(user)
     image_tag(user.image, :class => 'img-circle', height: '50', width: '50', :title => user.name)
   end

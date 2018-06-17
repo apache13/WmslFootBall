@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="flexslider">
+			<ul class="slides">
+				<% @sponsors.each do |sponsor| %>
+					<li>
+						<%= display_sponsor(sponsor) %>
+					</li>
+				<% end %>								
+			</ul>
+		</div>
+	</div>
+</div>
