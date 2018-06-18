@@ -70,7 +70,7 @@ module ApplicationHelper
       if !sponsor.images.nil?
         image = sponsor.images[0]
         if !image.nil?
-          text = image_tag(image.url, :class => 'img-rounded', :title => "#{sponsor.code} #{sponsor.name}")
+          text = image_tag(image.url, :class => 'img-rounded', height: '250', width: '250', :title => "#{sponsor.code} #{sponsor.name}")
         end          
       end                 
       path = sponsor.url
