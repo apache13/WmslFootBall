@@ -12,8 +12,9 @@
 			<strong>Name : </strong><%= @user.display_name %>
 		</p>
 		<p>
+			<strong>Gender : </strong><%= display_gender(@user) %>
 			<strong>Payment : </strong><%= @user.display_payment %>
-			<strong>Party : </strong><%= @user.party %>
+			<strong>Party : </strong><%= @user.party %>			
 		</p>
 		<p>
 			<strong>Rank : </strong><%= @user.rank %>

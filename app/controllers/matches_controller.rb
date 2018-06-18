@@ -12,7 +12,7 @@ class MatchesController < ApplicationController
   def bets_to_csv(bets)   
     csv_string = CsvShaper::Shaper.encode do |csv|      
       csv.headers do |header|
-        header.columns :match, :user, :nickname, :gender, :payment, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :pts
+        header.columns :match, :user, :nickname, :gender, :payment, :email, :bet, :bet_left_score, :bet_right_score, :yellow_card, :red_card, :own_goal, :extra_time, :penalty, :win?, :random?, :pts
       end      
       bets.each do |bet|
         csv.row do |row|
@@ -43,6 +43,12 @@ class MatchesController < ApplicationController
             row.cell :extra_time, bet.extra_time
             row.cell :penalty, bet.penalty          
           end       
+             
+          if bet.updated_at > bet.match.start
+            row.cell :random?, "Y"
+          else
+            row.cell :random?, "N"
+          end
              
           row.cell :win?, bet.win?
           row.cell :pts, bet.pts                         

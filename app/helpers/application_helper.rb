@@ -1,4 +1,20 @@
 module ApplicationHelper
+  
+  def display_gender(user)
+    if user.gender.blank?
+      '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+    else
+      if user.gender == 'male'
+        '<i class="fa fa-male fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+      else
+        if user.gender == 'female'
+          '<i class="fa fa-female fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+        else
+          '<i class="fa fa-question fa-1x text-secondary" aria-hidden="true"></i>'.html_safe
+        end
+      end
+    end
+  end    
       
   def display_bet_result_icon(bet)
     bet.match.final? ? (bet.win? ? ('<i class="fa fa-check" aria-hidden="true" style="color:green"></i>'.html_safe):('<i class="fa fa-times fa-danger" aria-hidden="true" style="color:red"></i>'.html_safe)):"n/a"

@@ -15,7 +15,7 @@
 	<div class="col-md-4">
 		<div class="form-group">
 			<%= label_tag(:sort) %>
-			<%= select_tag :sort, options_for_select(["payment", "win", "loss"]), :class=>'form-control', include_blank: true %>
+			<%= select_tag :sort, options_for_select(["win-ratio","win-cont.", "loss-cont."]), :class=>'form-control', include_blank: true %>
 		</div>
 	</div>
 </div>

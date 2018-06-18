@@ -21,6 +21,20 @@ class UsersController < ApplicationController
         end 
       end
     end
+        
+    if params[:sort].present?
+      if params[:sort] == 'win-ratio'
+        @users = @users.sort_by{|u| [-u.ratio_win, u.id]}
+      else
+        if params[:sort] == 'win-cont.'  
+          @users = @users.sort_by{|u| [-u.continuous_win, u.id]}
+        else
+          if params[:sort] == 'loss-cont.'  
+            @users = @users.sort_by{|u| [-u.continuous_loss, u.id]}
+          end
+        end  
+      end
+    end
     
   end
 
