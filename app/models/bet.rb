@@ -128,8 +128,8 @@ class Bet < ApplicationRecord
     
     bonus_score = 0
 
-    logger.debug 'main_score : '+main_score.to_s
-    logger.debug 'bonus_score : '+bonus_score.to_s
+    #logger.debug 'main_score : '+main_score.to_s
+    #logger.debug 'bonus_score : '+bonus_score.to_s
     
     return main_score+bonus_score
   end 

@@ -126,5 +126,9 @@ class User < ApplicationRecord
     end
     return loss
   end
+  
+  def prizes
+    return @prizes = Prize.where("user_id = ?",self)
+  end
 
 end
