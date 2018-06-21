@@ -6,7 +6,7 @@ class Prize < ApplicationRecord
   validates :name, length: { maximum: 64 }
   validates :code, length: { maximum: 8 }
   validates :sponsor, length: { maximum: 32 }
-  validates :description, length: { maximum: 256 }
+  validates :description, length: { maximum: 512 }
   
   belongs_to :match, optional: true 
   belongs_to :user, :class_name => 'User', :foreign_key => 'user_id', optional: true

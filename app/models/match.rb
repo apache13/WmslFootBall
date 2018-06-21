@@ -11,7 +11,7 @@ class Match < ApplicationRecord
   has_many :prizes
   
   def display_title        
-       return "#{self.description} #{self.title} (#{self.id})"
+       return "#{self.id}-#{self.description} #{self.title} (#{self.display_versus})"
   end
   
   def display_versus

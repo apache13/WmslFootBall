@@ -6,7 +6,61 @@ class PrizesController < ApplicationController
   # GET /prizes
   # GET /prizes.json
   def index
-    @prizes = Prize.all
+    
+    if params[:code].present? && params[:match].present?
+      @prizes = Prize.where("code = ?","#{params[:code]}").where("match_id = ?","#{params[:match]}")
+    else
+      if params[:code].present?
+        @prizes = Prize.where("code = ?","#{params[:code]}")
+      else
+        if params[:match].present?
+          @prizes = Prize.where("match_id = ?","#{params[:match]}")
+        else
+          @prizes = Prize.all
+        end
+      end        
+    end  
+    
+    if params[:assign?].present?
+      if params[:assign?] == "Yes"
+        @prizes = @prizes.select do |p|
+          !p.match.nil?
+        end
+      else
+        if params[:assign?] == "No"
+          @prizes = @prizes.select do |p|
+            p.match.nil?
+          end
+        end
+      end
+    end
+    
+    if params[:owner?].present?
+      if params[:owner?] == "Yes"
+        @prizes = @prizes.select do |p|
+          !p.user.nil?
+        end
+      else
+        if params[:owner?] == "No"
+          @prizes = @prizes.select do |p|
+            p.user.nil?
+          end
+        end
+      end
+    end
+    
+    if params[:sort].present?
+      if params[:sort]=="price-asc"
+        @prizes = @prizes.sort_by{|p| [p.price]}  
+      else
+        if params[:sort]=="price-desc"
+          @prizes = @prizes.sort_by{|p| [-p.price]}          
+        end  
+      end
+          
+    end
+      
+          
   end
 
   # GET /prizes/1

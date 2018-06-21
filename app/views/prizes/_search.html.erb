@@ -1,0 +1,53 @@
+<%= form_tag(prizes_path, method: "get") do |form| %>
+<div class="row">	
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:code) %>
+			<%= text_field_tag(:code, nil, :class=>'form-control') %>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:match) %>
+			<%= select_tag :match, options_from_collection_for_select(Match.all, "id", "display_title"), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:owner) %>
+			<%= select_tag :owner, options_from_collection_for_select(User.all, "id", "display_name"), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>	
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:sort) %>
+			<%= select_tag :sort, options_for_select(["price-asc","price-desc"]), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>
+</div>
+
+<div class="row">	
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:assign?) %>
+			<%= select_tag :assign?, options_for_select(["Yes","No"]), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group">
+			<%= label_tag(:owner?) %>
+			<%= select_tag :owner?, options_for_select(["Yes","No"]), :class=>'form-control', include_blank: true %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="actions">
+			<%= submit_tag("Search", :class=>'btn btn-default') %>
+			<%= submit_tag("Clear", :class=>'btn btn-default',:type => "reset") %>
+		</div>
+	</div>
+</div>
+
+<% end %>
