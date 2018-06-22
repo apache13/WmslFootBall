@@ -16,6 +16,8 @@ module WmslFootBall
     # -- all .rb files in that directory are automatically loaded.
     
     config.time_zone = 'Bangkok'
+    
+    #config.assets.paths << Rails.root.join("app", "assets", "fonts")
         
   end
 end
