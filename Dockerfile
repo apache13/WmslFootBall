@@ -1,4 +1,4 @@
-FROM ruby:latest
+FROM ruby:2.4.4
 
 RUN apt-get update && apt-get install -y nodejs sqlite3 nano curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
