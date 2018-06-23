@@ -5,21 +5,27 @@
 		</p>
 	</div>
 	<div class="col-md-9">
-		<p>
-			<strong>Registered : </strong><%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %>
-		</p>
-		<p>
-			<strong>Name : </strong><%= @user.display_name %>
-		</p>
-		<p>
-			<strong>Gender : </strong><%= display_gender(@user) %>
-			<strong>Payment : </strong><%= @user.display_payment %>
-			<strong>Party : </strong><%= @user.party %>			
-		</p>
-		<p>
-			<strong>Rank : </strong><%= @user.rank %>
-			<strong>PTS : </strong><%= @user.pts %>
-		</p>					
+		
+		<ul class="list-unstyled">
+			<li><p><strong>Registered : </strong><%= @user.created_at.strftime("%-d %-b %Y %H:%M:%S") %></p></li>
+			<li><p><strong>Name : </strong><%= @user.display_name %></p></li>
+			<li>
+				<ul class="list-inline">
+  					<li><p><strong>Gender : </strong><%= display_gender(@user) %></p></li>
+  					<li><p><strong>Payment : </strong><%= @user.display_payment %></p></li>
+  					<li><p><strong>Party : </strong><%= @user.party %></p></li>
+				</ul>		
+			</li>
+			<li>
+				<ul class="list-inline">
+  					<li><p><strong>Rank : </strong><%= @user.rank %></p></li>
+  					<li><p><strong>PTS : </strong><%= @user.pts %></p></li>
+  					<li><p><strong>Win : </strong><%= @user.ratio_win %> %</p></li>
+  					<li><p><strong>Prizes : </strong><%= @user.prizes.size %> (<%= @user.prizes.inject(0){|sum,x| sum + x.price} %> baht)</p></li>
+				</ul>
+			</li>	
+		</ul>				
+											
 	</div>	
 </div>
 <div class="row">
@@ -29,7 +35,7 @@
 			<thead>
 				<tr class="active">
 					<th>#</th>
-					<th class="text-center">Your Bet</th>
+					<th class="text-left">Your Bet</th>
 					<th class="text-center" style="width: 150px">Bet</th>
 				</tr>
 			</thead>

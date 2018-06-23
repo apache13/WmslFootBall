@@ -4,15 +4,11 @@
 			<div class="panel-heading">
 				<strong>Information</strong>
 			</div>
-			<div class="panel-body pre-scrollable">
+			<div class="panel-body pre-scrollable">				
 				<p>
 					<strong>Name : </strong>
 					<%= @user.display_name %>
-				</p>
-				<p>
-					<strong>Email : </strong>
-					<%= @user.email %>
-				</p>
+				</p>				
 				<p>
 					<strong>Gender : </strong><%= display_gender(@user) %>
 					<strong>Payment : </strong><%= @user.display_payment %>
