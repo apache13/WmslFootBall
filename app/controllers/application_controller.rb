@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
-  WillPaginate.per_page = 20
+  WillPaginate.per_page = 100
   
   private
   def current_user
