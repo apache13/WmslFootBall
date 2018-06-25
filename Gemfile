@@ -11,7 +11,7 @@ gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.11', '>= 3.11.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -59,7 +59,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 gem 'font-awesome-sass', '~> 4.7.0'
 
-gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-facebook', '~> 5.0'
 
 gem 'bootstrap-social-rails', '~> 4.12'
 
