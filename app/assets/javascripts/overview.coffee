@@ -3,5 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('.flexslider').flexslider()
-  return
+  $('.flexslider').flexslider({
+  	randomize: true
+})
+return
