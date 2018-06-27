@@ -147,7 +147,7 @@ GEM
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
-    omniauth-facebook (4.0.0)
+    omniauth-facebook (5.0.0)
       omniauth-oauth2 (~> 1.2)
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
@@ -254,8 +254,8 @@ DEPENDENCIES
   jquery-countdown-rails (~> 2.0, >= 2.0.2)
   jquery-rails
   lightbox-bootstrap-rails (~> 3.3, >= 3.3.0.3)
-  omniauth-facebook (~> 4.0)
-  puma (~> 3.7)
+  omniauth-facebook (~> 5.0)
+  puma (~> 3.11, >= 3.11.4)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
