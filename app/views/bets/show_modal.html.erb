@@ -63,8 +63,8 @@
   			<% end %>
   			<tr class="active">
   				<td><strong>Total<strong></td>
-  				<td></td>
-  				<td></td>
+  				<td class="text-center">Bonus</td>
+  				<td class="text-center"><%= @bet.bonus_champion? ? "x #{Config.find_by_key('BET_BONUS_CHAMPION_MULTIPLY').value.to_f*2}":"-"%></td>
   				<td class="text-center"><strong><%= @bet.pts %><strong></td>
   			</tr>
 		</table>

@@ -31,6 +31,8 @@ Config.create(key: 'BET_MAIN_NO_EXTRA_TIME_SCORE',value: '1')
 Config.create(key: 'BET_MAIN_PENALTY_SCORE',value: '3')
 Config.create(key: 'BET_MAIN_NO_PENALTY_SCORE',value: '1')
 
+Config.create(key: 'BET_BONUS_CHAMPION_MULTIPLY',value: '1.0')
+
 # Cleasing Data
 Bet.destroy_all
 Group.destroy_all

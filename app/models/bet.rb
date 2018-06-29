@@ -114,6 +114,27 @@ class Bet < ApplicationRecord
     return score
   end
   
+  def bonus_champion?
+    if self.match.final? && self.match.knockout?
+      champion = self.user.champion
+      if !champion.nil?
+        if champion.id == self.match.left.id || champion.id == self.match.right.id
+          return true
+        end
+      end      
+    end
+    return false
+  end
+  
+  def pts_bonus_champion(main_score)                  
+    if bonus_champion?
+      multiply = Config.find_by_key('BET_BONUS_CHAMPION_MULTIPLY').value.to_f    
+      bonus_score = (main_score * multiply).to_i      
+      return bonus_score
+    else
+      return 0  
+    end             
+  end
   
   def pts      
         
@@ -126,10 +147,10 @@ class Bet < ApplicationRecord
       main_score = main_score + pts_extra_time + pts_penalty
     end           
     
-    bonus_score = 0
+    bonus_score = pts_bonus_champion(main_score)
 
-    #logger.debug 'main_score : '+main_score.to_s
-    #logger.debug 'bonus_score : '+bonus_score.to_s
+    #logger.info 'main_score : '+main_score.to_s
+    #logger.info 'bonus_score : '+bonus_score.to_s
     
     return main_score+bonus_score
   end 

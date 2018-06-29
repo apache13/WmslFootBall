@@ -69,7 +69,7 @@ gem 'jquery-countdown-rails', '~> 2.0', '>= 2.0.2'
 
 gem 'lightbox-bootstrap-rails', '~> 3.3', '>= 3.3.0.3'
 
-gem 'flex-slider-rails', '~> 2.6', '>= 2.6.4.1'
+gem 'flex-slider-rails', '~> 2.7'
 
 gem 'flexirest', '~> 1.6', '>= 1.6.7'
 
