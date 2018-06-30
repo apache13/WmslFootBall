@@ -3,6 +3,33 @@ class UsersController < ApplicationController
   before_action :require_login_permission, only: [:show, :champion, :top_goal_scorer, :update_champion, :update_top_goal_scorer]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :champion, :top_goal_scorer]
 
+  def users_to_csv(users)   
+    csv_string = CsvShaper::Shaper.encode do |csv|      
+      csv.headers do |header|
+        header.columns :provider, :uid, :name, :nickname, :gender, :email, :admin, :payment, :party, :team_id, :top_goal_scorer, :win_ratio, :win_continuous, :loss_continuous
+      end      
+      users.each do |user|
+        csv.row do |row|
+          row.cell :provider, user.provider
+          row.cell :uid, user.uid
+          row.cell :name, user.name
+          row.cell :nickname, user.nickname
+          row.cell :gender, user.gender
+          row.cell :email, user.email
+          row.cell :admin, user.admin          
+          row.cell :payment, user.payment
+          row.cell :party, user.party.blank? ? "n/a":user.party
+          row.cell :team_id, user.team_id.blank? ? "n/a":user.champion.name
+          row.cell :top_goal_scorer, user.top_goal_scorer.blank? ? "n/a":user.top_goal_scorer          
+          row.cell :win_ratio, user.ratio_win
+          row.cell :win_continuous, user.continuous_win
+          row.cell :loss_continuous, user.continuous_loss                                                                        
+        end
+      end
+    end
+    return csv_string
+  end
+  
   # GET /users
   # GET /users.json
   def index
@@ -34,6 +61,14 @@ class UsersController < ApplicationController
           end
         end  
       end
+    end
+    
+    respond_to do |format|             
+      format.html { render :index }        
+      format.csv do        
+        @data = users_to_csv(@users)
+        render "data.csv.erb"                
+      end            
     end
     
   end
